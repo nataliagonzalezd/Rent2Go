@@ -35,7 +35,7 @@ class Category(db.Model):
     name = db.Column(db.String(120), unique=True, nullable=False)
     code = db.Column(db.String(80), unique=False, nullable=False)
     product = db.relationship('Product', backref='category', lazy=True)
-    related = db.relationship('Related_Product', backref='category', lazy=True)
+    related = db.relationship('Related_product', backref='category', lazy=True)
     
 
     def __repr__(self):
@@ -58,8 +58,8 @@ class Product(db.Model):
     costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=True)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
     favorites = db.relationship('Favorites', backref='product', lazy=True)
-    related_product = db.relationship('Related_Product', backref='product', lazy=True)
-    order_item = db.relationship('Order_Item', backref='product', lazy=True)
+    related_product = db.relationship('Related_product', backref='product', lazy=True)
+    order_item = db.relationship('Order_item', backref='product', lazy=True)
     cart = db.relationship('Cart', backref='product', lazy=True)
     
 
@@ -96,16 +96,16 @@ class Favorites(db.Model):
             "costumer_id": self.costumer_id
         }
 
-class Related_Product(db.Model):
+class Related_product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
-    related_product = db.Column(db.String(120), unique=False, nullable=False) #revisar relacion
+    related_product = db.Column(db.String(120), unique=False, nullable=False) 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
 
 
 
     def __repr__(self):
-        return f'<Related_Product {self.id}>'
+        return f'<Related_product {self.id}>'
 
     def serialize(self):
         return {
@@ -115,14 +115,14 @@ class Related_Product(db.Model):
             "category_id": self.category_id
         }
 
-class Order_Status_Code(db.Model):
+class Order_status_code(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status_code = db.Column(db.Integer, unique=False, nullable=False)
     description = db.Column(db.String(120), unique=False, nullable=False)
-    # order = db.relationship('Order', backref='order_status_code', lazy=True)
+    order = db.relationship('Order', backref='order_status_code', lazy=True)
     
     def __repr__(self):
-        return f'<Order_Status_Code {self.id}>'
+        return f'<Order_status_code {self.id}>'
 
     def serialize(self):
         return {
@@ -134,9 +134,9 @@ class Order_Status_Code(db.Model):
 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # order_status_code_id = db.Column(db.Integer, db.ForeignKey('order_status_code.id'), nullable=True) NO FUNCIONA
+    order_status_code_id = db.Column(db.Integer, db.ForeignKey('order_status_code.id'), nullable=True) 
     costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=True)
-    order_item = db.relationship('Order_Item', backref='order', lazy=True)
+    order_item = db.relationship('Order_item', backref='order', lazy=True)
 
 
     def __repr__(self):
@@ -145,12 +145,12 @@ class Order(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            # "order_status_code_id": self.order_status_code_id,
+            "order_status_code_id": self.order_status_code_id,
             "costumer_id": self.costumer_id,
         }
 
 
-class Order_Item(db.Model):
+class Order_item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
@@ -160,7 +160,7 @@ class Order_Item(db.Model):
 
 
     def __repr__(self):
-        return f'<Order_Item {self.id}>'
+        return f'<Order_item {self.id}>'
 
     def serialize(self):
         return {
