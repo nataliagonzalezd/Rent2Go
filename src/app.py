@@ -81,6 +81,11 @@ def login():
     if email != costumer.email or password != costumer.password:
         return jsonify({"msg": "Bad email or password"}), 401
 
+
+    
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
 @app.route('/costumer', methods=['POST'])
 def crear_Usuario():
     
@@ -93,11 +98,8 @@ def crear_Usuario():
         db.session.commit()
         return jsonify({"msg":"Nuevo usuario creado con exito"}), 200
     else:
-        return jsonify({"msg":"El email ya existe"}), 400
+        return jsonify({"msg":"El email ya esta registrado"}), 400
 
-    
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
