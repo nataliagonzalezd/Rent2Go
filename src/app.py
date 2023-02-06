@@ -94,7 +94,7 @@ def crear_Usuario():
         crear_nuevo_usuario = User(email= request_body["email"] , username = request_body["username"], password= request_body["password"], is_active= request_body["is_active"])
         db.session.add(crear_nuevo_usuario)
         db.session.commit()
-        return jsonify({"msg":"Nuevo usuario creado"}), 200
+        return jsonify({"msg":"Nuevo usuario a sido creado"}), 200
     else:
         return jsonify({"msg":"El email ya esta registrado"}), 400
 
