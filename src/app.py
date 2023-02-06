@@ -96,7 +96,7 @@ def crear_Usuario():
         db.session.commit()
         return jsonify({"msg":"Nuevo usuario a sido creado"}), 200
     else:
-        return jsonify({"msg":"El email ya esta registrado"}), 400
+        return jsonify({"msg":"El email ya esta registrado."}), 400
 
 
 # this only runs if `$ python src/main.py` is executed
