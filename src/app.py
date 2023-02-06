@@ -7,10 +7,14 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
-from api.models import db
+from api.models import db, Costumer
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
 
 #from models import Person
 
@@ -39,6 +43,10 @@ setup_admin(app)
 # add the admin
 setup_commands(app)
 
+
+app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
+
+jwt = JWTManager(app)
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
 
@@ -63,6 +71,19 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+@app.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    costumer = Costumer.query.filter_by(email=email, password=password).first()
+
+    if email != costumer.email or password != costumer.password:
+        return jsonify({"msg": "Bad email or password"}), 401
+
+    
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
