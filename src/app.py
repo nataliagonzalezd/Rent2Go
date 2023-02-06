@@ -84,17 +84,17 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
-@app.route('/costumer', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def crear_Usuario():
     
     request_body = request.json #Guardo la respuesta que trae la solicitud en una variable que se llama "request_body" que es un objeto
     print(request_body)
     get_costumer = Costumer.query.filter_by(email = request_body["email"]).first() #Filtro User para que me diga si este email ya esta registrado
     if get_costumer is None: #si no esta registrado que cree uno
-        crear_nuevo_usuario = User(email= request_body["email"] , username = request_body["username"], password= request_body["password"], is_active= request_body["is_active"])
+        crear_nuevo_usuario = Costumer(email= request_body["email"] , username = request_body["username"], password= request_body["password"])
         db.session.add(crear_nuevo_usuario)
         db.session.commit()
-        return jsonify({"msg":"Nuevo usuario a sido creado"}), 200
+        return jsonify({"msg":"Nuevo usuario ha sido creado"}), 200
     else:
         return jsonify({"msg":"El email ya esta registrado."}), 400
 
