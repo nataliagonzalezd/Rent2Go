@@ -17,7 +17,7 @@ export const Register = () => {
       >
         Register
       </button>
-      //Modal del register
+      //Modal del registerr
       <div
         class="modal fade "
         id="exampleModal"
@@ -37,7 +37,7 @@ export const Register = () => {
             </div>
             <div class="d-flex justify-content-center">
               <a class="form-text d-flex justify-content-center">
-                Registrate con tu correo electronico
+                Registrate con tu correo electronico aqui
               </a>
             </div>
             <div class="modal-body">
@@ -52,7 +52,7 @@ export const Register = () => {
                   type="email"
                   class="form-control"
                   id="exampleInputEmail1"
-                  placeholder="example@gmail.com"
+                  placeholder="ejemplo@gmail.com"
                   aria-describedby="emailHelp"
                 ></input>
               </div>
