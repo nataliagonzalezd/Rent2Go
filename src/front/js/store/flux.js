@@ -49,6 +49,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+      addUser: (productName, description, price) => {
+        fetch(
+          `https://3001-nataliagonzalez-rent2go-osfxu9dfdfb.ws-us85.gitpod.io/product`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: 2,
+              name: productName,
+              sku: 122,
+              description: description,
+              image: "jaja.jpg",
+              price: price,
+              costumer_id: null,
+              category_id: null,
+            }),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      },
       getMessage: async () => {
         try {
           // fetching data from the backend

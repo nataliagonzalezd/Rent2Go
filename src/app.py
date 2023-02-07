@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
-from api.models import db, Costumer
+from api.models import db, Costumer, Product
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
@@ -97,6 +97,36 @@ def crear_Usuario():
         return jsonify({"msg":"Nuevo usuario ha sido creado"}), 200
     else:
         return jsonify({"msg":"El email ya esta registrado."}), 400
+
+
+@app.route('/product', methods=['POST'])
+def add_new_product():
+    request_body = request.json
+    new_product = Product(id=request_body["id"], name=request_body["name"], sku=request_body["sku"],description=request_body["description"], image=request_body["image"],price=request_body["price"],costumer_id=request_body["costumer_id"],category_id=request_body["category_id"])
+    db.session.add(new_product)
+    db.session.commit()
+    return jsonify({"msg":"Producto creado correctamente"}),200
+
+@app.route('/product/<int:costumer_id>/<int:id>', methods=['DELETE'])
+def delete_product(costumer_id,id):
+    request_body=request.json
+    print(request_body)
+    print(costumer_id)
+    query= Product.query.filter_by(costumer_id=costumer_id,id=id).first()
+    print(query)
+    if query is None:
+        return jsonify({"msg":"No hubo coincidencias, no hay nada para eliminar"}),404
+    db.session.delete(query)
+    db.session.commit() 
+    return jsonify({"msg":"El producto seleccionado ha sido eliminado correctamente"}),
+
+#obteniendo info de todos los productos
+@app.route('/products', methods=['GET'])
+def handle_products():
+    allproducts = Product.query.all()
+    results = list(map(lambda item: item.serialize(),allproducts))
+    
+    return jsonify(results), 200
 
 
 # this only runs if `$ python src/main.py` is executed
