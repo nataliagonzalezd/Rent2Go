@@ -19,10 +19,33 @@ export const ToRent = () => {
   const [price, setPrice] = useState("");
   // const [products, setProducts] = useState([]);
   // const [productServer, setProductServer] = useState([]);
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const form = new FormData();
+    form.append("file", files[0]);
+    form.append("upload_preset", "cloudy");
+    form.append("timestamp", (Date.now() / 1000) | 0);
+    setLoading(true);
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dxhknbsqr/image/upload",
+      {
+        method: "POST",
+        body: form,
+      }
+    );
+    const file = await res.json();
+    setImage(file.secure_url);
+    setLoading(false);
+  };
+
+  console.log(image);
 
   function datas(e) {
     e.preventDefault();
-    actions.addUser(productName, description, price);
+    actions.addUser(productName, description, price, image);
     setProductName("");
     setDescription("");
     setPrice("");
@@ -87,8 +110,8 @@ export const ToRent = () => {
       <Form onSubmit={datas}>
         <FormGroup row>
           <Label for="exampleProduct" sm={2}>
-            Nombre del producto
-          </Label>
+            Nombre del producto{" "}
+          </Label>{" "}
           <Col sm={10}>
             <Input
               id="exampleProduct"
@@ -99,13 +122,13 @@ export const ToRent = () => {
               onChange={(e) => {
                 setProductName(e.target.value);
               }}
-            />
-          </Col>
-        </FormGroup>
+            />{" "}
+          </Col>{" "}
+        </FormGroup>{" "}
         <FormGroup row>
           <Label for="exampleEmail" sm={2}>
-            Descripcion
-          </Label>
+            Descripcion{" "}
+          </Label>{" "}
           <Col sm={10}>
             <Input
               id="exampleEmail"
@@ -116,22 +139,27 @@ export const ToRent = () => {
               onChange={(e) => {
                 setDescription(e.target.value);
               }}
-            />
-          </Col>
-        </FormGroup>
+            />{" "}
+          </Col>{" "}
+        </FormGroup>{" "}
         <FormGroup row>
           <Label for="exampleFile" sm={2}>
-            Insertar Foto
-          </Label>
+            Insertar Foto{" "}
+          </Label>{" "}
           <Col sm={10}>
-            <Input id="exampleFile" name="file" type="file" />
-            <FormText>Por favor inserte foto del producto</FormText>
-          </Col>
-        </FormGroup>
+            <Input
+              id="exampleFile"
+              name="file"
+              type="file"
+              onChange={uploadImage}
+            />{" "}
+            <FormText> Por favor inserte foto del producto </FormText>{" "}
+          </Col>{" "}
+        </FormGroup>{" "}
         <FormGroup row>
           <Label for="exampleEmail" sm={2}>
-            Price
-          </Label>
+            Price{" "}
+          </Label>{" "}
           <Col sm={10}>
             <Input
               id="exampleEmail"
@@ -142,34 +170,32 @@ export const ToRent = () => {
               onChange={(e) => {
                 setPrice(e.target.value);
               }}
-            />
-          </Col>
-        </FormGroup>
+            />{" "}
+          </Col>{" "}
+        </FormGroup>{" "}
         <FormGroup row>
           <Label for="exampleSelect" sm={2}>
-            Categoria
-          </Label>
+            Categoria{" "}
+          </Label>{" "}
           <Col sm={10}>
             <Input id="exampleSelect" name="select" type="select">
-              <option>Electronica</option>
-              <option>Jardineria</option>
-              <option>Indumentaria</option>
-              <option>Musica</option>
-              <option>Lectura</option>
-            </Input>
-          </Col>
-        </FormGroup>
+              <option> Electronica </option> <option> Jardineria </option>{" "}
+              <option> Indumentaria </option> <option> Musica </option>{" "}
+              <option> Lectura </option>{" "}
+            </Input>{" "}
+          </Col>{" "}
+        </FormGroup>{" "}
         <FormGroup row tag="fieldset">
-          <legend className="col-form-label col-sm-2">Estado</legend>
+          <legend className="col-form-label col-sm-2"> Estado </legend>{" "}
           <Col sm={10}>
             <FormGroup check>
-              <Input name="radio2" type="radio" /> <Label check>Nuevo</Label>
-            </FormGroup>
+              <Input name="radio2" type="radio" /> <Label check> Nuevo </Label>{" "}
+            </FormGroup>{" "}
             <FormGroup check>
-              <Input name="radio2" type="radio" /> <Label check>Usado</Label>
-            </FormGroup>
-          </Col>
-        </FormGroup>
+              <Input name="radio2" type="radio" /> <Label check> Usado </Label>{" "}
+            </FormGroup>{" "}
+          </Col>{" "}
+        </FormGroup>{" "}
         <FormGroup check row>
           <Col
             sm={{
@@ -177,10 +203,10 @@ export const ToRent = () => {
               size: 10,
             }}
           >
-            <Button type="submit">Submit</Button>
-          </Col>
-        </FormGroup>
-      </Form>
+            <Button type="submit"> Submit </Button>{" "}
+          </Col>{" "}
+        </FormGroup>{" "}
+      </Form>{" "}
     </div>
   );
 };
