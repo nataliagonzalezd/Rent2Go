@@ -2,8 +2,12 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 .abs-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+body {
+  background-color: rgb(174, 198, 228);
 }

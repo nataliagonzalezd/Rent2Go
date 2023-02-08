@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home.js";
 import ViewCart from "./pages/viewCart";
+import ViewProductDetails from "./pages/viewProductDetails.js";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -29,6 +30,10 @@ const Layout = () => {
             <Route element={<Register />} path="/register" />
             <Route element={<ToRent />} path="/torent" />
             <Route element={<ViewCart />} path="/viewCart" />
+            <Route
+              element={<ViewProductDetails />}
+              path="/viewProductDetails"
+            />
             <Route element={<Home />} path="/" />
             <Route element={<Login />} path="/login" />
             <Route element={<Demo />} path="/demo" />
