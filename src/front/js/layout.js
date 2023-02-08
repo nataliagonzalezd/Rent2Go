@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home.js";
+import ViewCart from "./pages/viewCart";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -27,6 +28,7 @@ const Layout = () => {
           <Routes>
             <Route element={<Register />} path="/register" />
             <Route element={<ToRent />} path="/torent" />
+            <Route element={<ViewCart />} path="/viewCart" />
             <Route element={<Home />} path="/" />
             <Route element={<Login />} path="/login" />
             <Route element={<Demo />} path="/demo" />
