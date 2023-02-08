@@ -3,66 +3,105 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
-    <nav className="navbar navbar-light bg-body-tertiary mb-0 mt-0 bg-black ">
-      <div className="container-fluid">
-        <a className="navbar-brand text-light" href="#">
-          Rent2Go
-        </a>
-        <button
-          className="navbar-toggler bg-light"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        {/* <form class="container-fluid">
-    <div class="input-group">
-      <span class="input-group-text" id="basic-addon1">@</span>
-      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-  </form> */}
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a
-                className="nav-link active text-light"
-                aria-current="page"
-                href="#"
-              >
-                Productos
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-light" href="#">
-                Ofertas
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-light" href="#">
-                Marcas
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-light" href="#">
-                Marcas
-              </a>
-            </li>
-  
-          </ul>
-          <form className="d-flex" role="search">
-            <button
-              className="btn btn-outline-success text-light"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
-        </div>
+    <>
+      <div className="bg-white border-bottom border-dark">
+        <nav className="navbar bg-white d-flex">
+          <div className="container-fluid d-flex bg-white">
+            <a className="navbar-brand d-flex justify-content-start align-items-center">
+              <img
+                src="https://i.pinimg.com/564x/aa/80/36/aa80366b7098c9cebc7f47b7614a2176.jpg"
+                className="w-25 h-25"
+                alt=""
+              />{" "}
+              Reant2go
+            </a>
+            <input
+              className="rounded-pill form-control w-50 mx-auto bg-light"
+              type="search"
+              placeholder="🔎Search"
+              aria-label="Search"
+            ></input>
+          </div>
+
+          <div className="d-flex justify-content-start">
+            <ul className="nav grid gap-5">
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle text-black"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Caregorias
+                </a>
+                <ul className="dropdown-menu text-black">
+                  <li>
+                    <a className="dropdown-item text-black" href="#">
+                      Pintura
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item text-black" href="">
+                      En construcción
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider text-black"></hr>
+                  </li>
+                  <li>
+                    <a className="dropdown-item text-black" href="">
+                      Favoritos
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link active text-black"
+                  aria-current="page"
+                  href="#"
+                >
+                  Ofertas
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link text-black" href="#">
+                  Marcas
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a className="nav-link text-black" href="#">
+                  Historial
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="d-flex justify-content-start">
+            <ul className="nav grid gap-1">
+              <li className="nav-item">
+                <a
+                  className="nav-link active text-black"
+                  aria-current="page"
+                  href="#"
+                >
+                  👤 Iniciar Sesion
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link active text-black"
+                  aria-current="page"
+                  href="#"
+                >
+                  🛒 Carrito
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </>
   );
 };

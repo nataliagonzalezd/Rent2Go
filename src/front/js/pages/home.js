@@ -13,18 +13,17 @@ export const Home = () => {
     <div className="">
       <Navbar />
       <div className="mx-5">
-
         <div className="text-center mt-5">
-      <img
-        src="https://uploads-ssl.webflow.com/5c471c24395cd54f559228e5/5d1623691e99cd415d15fc95_Page-under-construction_kompuestos.gif"
-        alt=""
-      />
-    </div>
+          <img
+            src="https://uploads-ssl.webflow.com/5c471c24395cd54f559228e5/5d1623691e99cd415d15fc95_Page-under-construction_kompuestos.gif"
+            alt=""
+          />
+        </div>
 
         {/* card Ofertas */}
         <div className="container-fluid row g-4 my-2 d-flex justify-content-center">
           <div className="col-8">
-            <Offers/>
+            <Offers />
           </div>
         </div>
 
@@ -44,16 +43,16 @@ export const Home = () => {
         {/* card inspirado en tus favoritos */}
         <div className="container-fluid row g-4 my-2 ">
           <div className="col-3">
-            <InspiredFavorites/>
+            <InspiredFavorites />
           </div>
           <div className="col-3">
-            <InspiredFavorites/>
+            <InspiredFavorites />
           </div>
           <div className="col-3">
-            <InspiredFavorites/>
+            <InspiredFavorites />
           </div>
           <div className="col-3">
-            <InspiredFavorites/>
+            <InspiredFavorites />
           </div>
         </div>
         {/* titulo vistos recientemente */}
@@ -110,10 +109,8 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
 
 export default Home;
-
