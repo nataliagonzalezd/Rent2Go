@@ -17,8 +17,22 @@ const getState = ({
                     initial: "white",
                 },
             ],
+            products: [],
         },
         actions: {
+            obtenerInfoProducts: () => {
+                fetch(
+                        "https://3001-nataliagonzalez-rent2go-bm7suybvi6c.ws-us86.gitpod.io/products"
+                    )
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            products: data.results,
+                        })
+                    )
+                    .catch((err) => console.error(err));
+            },
+
             register: (email, username, password) => {
                 fetch('https://3001-nataliagonzalez-rent2go-n3jylpcjj8j.ws-us86.gitpod.io/register', {
                         method: 'POST',
@@ -44,7 +58,7 @@ const getState = ({
                         console.log(data)
                     })
                     .catch((err) => console.log(err))
-            },
+            }
             login: (email, password) => {
                 fetch(
                         "https://3001-nataliagonzalez-rent2go-n3jylpcjj8j.ws-us86.gitpod.io/login", {
