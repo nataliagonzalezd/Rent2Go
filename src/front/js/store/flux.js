@@ -17,8 +17,22 @@ const getState = ({
                     initial: "white",
                 },
             ],
+            products: [],
         },
         actions: {
+            obtenerInfoProducts: () => {
+                fetch(
+                        "https://3001-nataliagonzalez-rent2go-bm7suybvi6c.ws-us86.gitpod.io/products"
+                    )
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            products: data.results,
+                        })
+                    )
+                    .catch((err) => console.error(err));
+            },
+
             login: (email, password) => {
                 fetch(
                         "https://3001-nataliagonzalez-rent2go-rh8igutux9n.ws-us85.gitpod.io/login", {
