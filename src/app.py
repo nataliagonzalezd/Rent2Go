@@ -84,7 +84,7 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
-@app.route('/register', methods=['POST'])
+@app.route('/costumer', methods=['POST'])
 def crear_Usuario():
     
     request_body = request.json #Guardo la respuesta que trae la solicitud en una variable que se llama "request_body" que es un objeto
@@ -97,6 +97,7 @@ def crear_Usuario():
         return jsonify({"msg":"Nuevo usuario ha sido creado"}), 200
     else:
         return jsonify({"msg":"El email ya esta registrado."}), 400
+
 
 
 @app.route('/product', methods=['POST'])
@@ -126,6 +127,16 @@ def handle_products():
     allproducts = Product.query.all()
     results = list(map(lambda item: item.serialize(),allproducts))
     
+    return jsonify(results), 200
+
+#obtener info de customer
+@app.route('/costumer', methods=['GET'])
+def handle_costomer():
+    allcostumer = Costumer.query.all()
+    print(allcostumer)
+    results = list(map(lambda item: item.serialize(),allcostumer))
+    print(results)
+
     return jsonify(results), 200
 
 
