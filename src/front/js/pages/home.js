@@ -3,6 +3,7 @@ import { Navbar } from "reactstrap";
 import { Footer } from "../component/footer.js";
 import InspiredFavorites from "../component/inspiredFavorites.js";
 import RecentlyViewed from "../component/recentlyViewed.js";
+import Carrusel from "../component/carruselDeCartasProbando.js";
 import MoreRented from "../component/moreRented.js";
 import Offers from "../component/offers.js";
 import "../../styles/home.css";
@@ -19,6 +20,87 @@ export const Home = () => {
             alt=""
           />
         </div>
+        {/* titulo Carrusel */}
+        <div className="d-flex pt-0">
+          <div className="p-1 flex-fill">
+            <h1 className="border-white p-1 border ">
+              <strong>Insipirado en tus favoritos!</strong>
+            </h1>
+          </div>
+          <div className="p-2 flex-fill">
+            <u className="border-white p-1 border ">Carrusel</u>
+          </div>
+        </div>
+
+
+        {/* Carrusel metiendo card DEBERIA DE FUNCIONAR Sin moverse */}
+
+        <div id="carouselExampleFade" className="carousel slide carousel-fade carousel-dark">
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+    <div className="cards-wrapper">
+                <div className="container-fluid row g-4 my-2 ">
+                  <div className="col-3">
+                    <Carrusel />
+                  </div>
+                  <div className="col-3">
+                    <Carrusel />
+                  </div>
+                  <div className="col-3">
+                    <Carrusel />
+                  </div>
+                  <div className="col-3">
+                    <Carrusel />
+                  </div>
+                </div>
+              </div>
+    </div>
+    <div className="carousel-item">
+    <div className="cards-wrapper">
+                <div className="container-fluid row g-4 my-2 ">
+                  <div className="col-3">
+                    <InspiredFavorites />
+                  </div>
+                  <div className="col-3">
+                    <InspiredFavorites />
+                  </div>
+                  <div className="col-3">
+                    <InspiredFavorites />
+                  </div>
+                  <div className="col-3">
+                    <InspiredFavorites />
+                  </div>
+                </div>
+              </div>
+    </div>
+    <div className="carousel-item">
+    <div className="cards-wrapper">
+                <div className="container-fluid row g-4 my-2 ">
+                  <div className="col-3">
+                    <RecentlyViewed />
+                  </div>
+                  <div className="col-3">
+                    <RecentlyViewed />
+                  </div>
+                  <div className="col-3">
+                    <RecentlyViewed />
+                  </div>
+                  <div className="col-3">
+                    <RecentlyViewed />
+                  </div>
+                </div>
+              </div>
+    </div>
+  </div>
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+</div>
 
         {/* card Ofertas */}
         <div className="container-fluid row g-4 my-2 d-flex justify-content-center">
@@ -80,7 +162,7 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* titulo inspirado en tus favoritos */}
+        titulo inspirado en tus favoritos
         <div className="d-flex pt-0">
           <div className="p-1 flex-fill">
             <h1 className="border-white p-1 border ">
@@ -93,7 +175,7 @@ export const Home = () => {
             </u>
           </div>
         </div>
-        {/* card inspirado en tus favoritos */}
+        card inspirado en tus favoritos
         <div className="container-fluid row g-4 my-2 ">
           <div className="col-3">
             <MoreRented />
@@ -107,7 +189,7 @@ export const Home = () => {
           <div className="col-3">
             <MoreRented />
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   );
