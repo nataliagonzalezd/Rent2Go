@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -84,7 +86,7 @@ export const Navbar = () => {
                 <a
                   className="nav-link active text-black"
                   aria-current="page"
-                  href="#"
+                  href="/login"
                 >
                   👤 Iniciar Sesion
                 </a>

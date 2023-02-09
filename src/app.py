@@ -71,6 +71,14 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+#@app.route('/register', methods=['POST'])
+#def add_costumer():
+ #   allusers = User.query.all()
+  #  results = list(map(lambda item: item.serialize(),allusers))
+    #request_body = json.loads(request.data)
+   # results.append(request_body)
+    #return jsonify(results), 201
+
 @app.route("/login", methods=["POST"])
 def login():
     email = request.json.get("email", None)
@@ -84,9 +92,8 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
-@app.route('/costumer', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def crear_Usuario():
-    
     request_body = request.json #Guardo la respuesta que trae la solicitud en una variable que se llama "request_body" que es un objeto
     print(request_body)
     get_costumer = Costumer.query.filter_by(email = request_body["email"]).first() #Filtro User para que me diga si este email ya esta registrado
@@ -130,7 +137,7 @@ def handle_products():
     return jsonify(results), 200
 
 #obtener info de customer
-@app.route('/costumer', methods=['GET'])
+@app.route('/register', methods=['GET'])
 def handle_costomer():
     allcostumer = Costumer.query.all()
     print(allcostumer)

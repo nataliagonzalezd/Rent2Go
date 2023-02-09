@@ -19,9 +19,35 @@ const getState = ({
             ],
         },
         actions: {
+            register: (email, username, password) => {
+                fetch('https://3001-nataliagonzalez-rent2go-q8bvi629kr6.ws-us86.gitpod.io/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "username": username,
+                            "email": email,
+                            "password": password,
+                        })
+                    })
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 200) {
+                            setStore({
+                                auth: true
+                            })
+                        }
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data)
+                    })
+                    .catch((err) => console.log(err))
+            },
             login: (email, password) => {
                 fetch(
-                        "https://3001-nataliagonzalez-rent2go-rh8igutux9n.ws-us85.gitpod.io/login", {
+                        "https://3001-nataliagonzalez-rent2go-q8bvi629kr6.ws-us86.gitpod.io/login", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -46,7 +72,6 @@ const getState = ({
                         if (data.msg === "Bad email or password") {
                             alert(data.msg);
                         }
-                        console.log(data.access_token);
                         localStorage.setItem("token", data.access_token);
                     })
                     .catch((err) => console.log(err));
