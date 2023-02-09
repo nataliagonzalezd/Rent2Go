@@ -58,7 +58,7 @@ const getState = ({
                         console.log(data)
                     })
                     .catch((err) => console.log(err))
-            }
+            },
             login: (email, password) => {
                 fetch(
                         "https://3001-nataliagonzalez-rent2go-n3jylpcjj8j.ws-us86.gitpod.io/login", {
