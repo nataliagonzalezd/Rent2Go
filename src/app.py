@@ -147,6 +147,13 @@ def handle_costomer():
     return jsonify(results), 200
 
 
+# #obteniendo info de un solo product
+@app.route('/product/<int:product_id>', methods=['GET'])
+def get_info_product(product_id):
+    
+    product = Product.query.filter_by(id=product_id).first()
+    return jsonify(product.serialize()), 200
+
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
