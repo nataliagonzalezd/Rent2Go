@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    actions.logout();
+    navigate("/login");
+  }
+
   return (
     <>
       <div className="bg-white border-bottom border-dark">
@@ -82,15 +90,11 @@ export const Navbar = () => {
           </div>
           <div className="d-flex justify-content-start">
             <ul className="nav grid gap-1">
-              <li className="nav-item">
-                <a
-                  className="nav-link active text-black"
-                  aria-current="page"
-                  href="/login"
-                >
-                  👤 Iniciar Sesion
-                </a>
-              </li>
+              {store.auth === true ? (
+                <button className="btn btn-dark" onClick={handleLogout}>
+                  Logout
+                </button>
+              ) : null}
               <li className="nav-item">
                 <a
                   className="nav-link active text-black"
