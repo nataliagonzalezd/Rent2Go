@@ -79,7 +79,7 @@ const getState = ({
                     const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
                     const data = await resp.json();
                     setStore({
-                        message: data.message
+                        message: data.message,
                     });
                     // don't forget to return something, that is how the async resolves
                     return data;
@@ -100,7 +100,7 @@ const getState = ({
 
                 //reset the global store
                 setStore({
-                    demo: demo
+                    demo: demo,
                 });
             },
         },
