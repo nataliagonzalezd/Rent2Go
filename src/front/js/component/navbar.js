@@ -47,12 +47,15 @@ export const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu text-black">
                   <li>
-                    <a className="dropdown-item text-black" href="#">
+                    <a
+                      className="dropdown-item text-black"
+                      href="/catalogovista"
+                    >
                       Pintura
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item text-black" href="">
+                    <a className="dropdown-item text-black" href="/">
                       En construcción
                     </a>
                   </li>
@@ -70,26 +73,49 @@ export const Navbar = () => {
                 <a
                   className="nav-link active text-black"
                   aria-current="page"
-                  href="#"
+                  href=""
                 >
                   Ofertas
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-black" href="#">
+                <a className="nav-link text-black" href="">
                   Marcas
                 </a>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link text-black" href="#">
+                <a className="nav-link text-black" href="">
                   Historial
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link text-black" href="/torent">
+                  Subir un producto
                 </a>
               </li>
             </ul>
           </div>
           <div className="d-flex justify-content-start">
             <ul className="nav grid gap-1">
+              <li className="nav-item">
+                <a
+                  className="nav-link active text-black"
+                  aria-current="page"
+                  href="/register"
+                >
+                  👥 Register
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link active text-black"
+                  aria-current="page"
+                  href="/login"
+                >
+                  👥 Login
+                </a>
+              </li>
               {store.auth === true ? (
                 <button className="btn btn-dark" onClick={handleLogout}>
                   Logout
@@ -99,7 +125,7 @@ export const Navbar = () => {
                 <a
                   className="nav-link active text-black"
                   aria-current="page"
-                  href="#"
+                  href="viewcart"
                 >
                   🛒 Carrito
                 </a>

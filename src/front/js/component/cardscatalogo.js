@@ -16,9 +16,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card d-flex">
@@ -33,9 +38,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -50,9 +60,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -67,9 +82,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -84,9 +104,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -101,9 +126,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -118,9 +148,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -135,9 +170,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -152,9 +192,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -169,9 +214,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -186,9 +236,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
         <div className="card">
@@ -203,9 +258,14 @@ const Cardscatalogo = function () {
             <h5 className="card-title d-flex">Nombre del producto</h5>
             <p className="card-text d-flex">Descripcion del producto</p>
             <h6 className="card-text d-flex">Precio: $99</h6>
-            <button type="button" class="btn btn-primary d-flex">
+            <a
+              class="btn btn-primary d-flex justify-content-center"
+              href="viewproductdetails"
+              role="button"
+            >
+              {" "}
               Detalles
-            </button>
+            </a>
           </div>
         </div>
       </div>
