@@ -102,24 +102,21 @@ const getState = ({
                 });
             },
             addUser: (productName, description, price, url) => {
-                fetch(
-                        `https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io/product`, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                id: 2,
-                                name: productName,
-                                sku: 122,
-                                description: description,
-                                image: url,
-                                price: price,
-                                costumer_id: null,
-                                category_id: null,
-                            }),
-                        }
-                    )
+                fetch(process.env.BACKEND_URL + "/api/product", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name: productName,
+                            sku: 122,
+                            description: description,
+                            image: url,
+                            price: parseInt(price),
+                            costumer_id: 1,
+                            category_id: 1,
+                        }),
+                    })
                     .then((response) => response.json())
                     .then((data) => console.log(data));
             },
