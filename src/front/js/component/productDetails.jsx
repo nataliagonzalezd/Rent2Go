@@ -1,6 +1,22 @@
 import React from "react";
+import { useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
+
+
+
 
 const ProductDetails = function () {
+  const { store, actions } = useContext(Context);
+
+  useEffect(() => {
+    actions.getProductsDetails()
+  }, [])
+
+
+
+
+  console.log(store.products)
+
   return (
     <>
       {/* Detalles del producto */}
@@ -51,7 +67,7 @@ const ProductDetails = function () {
               {/* Nombre y descripcion */}
               <div className="d-flex my-0">
                 <div className="w-100 text-start">
-                  <h2>Carpa 4 Personas</h2>
+                  <h2>{store.products?.name}</h2>
                 </div>
                 <div className="p-2 flex-shrink-1">
                   <button className="btn" type="button" id="enviar">
@@ -79,13 +95,13 @@ const ProductDetails = function () {
               {/* Calendario seleccion periodo de alquiler */}
               <div className="row g-3 mb-4 d-flex justi">
                 <div className="col-md-5 text-start">
-                  <label for="desde" className="form-label fw-bold">
+                  <label htmlFor="desde" className="form-label fw-bold">
                     Desde:
                   </label>
                   <input type="date" className="form-control" id="desde" />
                 </div>
                 <div className="col-md-5 text-start">
-                  <label for="hasta" className="form-label text-start fw-bold">
+                  <label htmlFor="hasta" className="form-label text-start fw-bold">
                     Hasta:
                   </label>
                   <input type="date" className="form-control" id="hasta" />
@@ -98,7 +114,7 @@ const ProductDetails = function () {
                 </div>
                 <div className="col-12 d-flex align-items-center">
                   <select className="form-select" id="inlineFormSelectPref">
-                    <option selected>1 unidad</option>
+                    <option value="0">1 unidad</option>
                     <option value="1">1 unidad</option>
                     <option value="2">1 unidad</option>
                     <option value="3">1 unidad</option>
