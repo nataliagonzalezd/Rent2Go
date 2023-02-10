@@ -10,7 +10,7 @@ const Jumbotroncatalogo = function () {
           alt="..."
         />
         <div className="card-img-overlay flex-column d-flex align-items-start">
-          <a className="card-text btn text-white" href="#">
+          <a className="card-text btn text-white" href="/">
             ←Pantalla de Inicio{" "}
           </a>
           <h1 className="card-title text-white"> Pintura </h1>
