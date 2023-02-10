@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 
 
-const ProductDetails = function () {
+const ProductDetails = function (props) {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
@@ -15,9 +15,11 @@ const ProductDetails = function () {
 
 
 
-  console.log(store.products)
+  console.log(store.products[0])
+
 
   return (
+
     <>
       {/* Detalles del producto */}
       <div className="card mx-1 my-5">
@@ -32,22 +34,22 @@ const ProductDetails = function () {
             {/* Imagenes pequenas del producto */}
             <div className="card d-flex align-items-center mx-3 border border-0">
               <img
-                src="https://http2.mlstatic.com/D_NQ_NP_813639-MLU53386298916_012023-O.webp"
+                src={props.image}
                 className="card-img my-2 img-thumbnail"
                 alt="..."
               />
               <img
-                src="https://http2.mlstatic.com/D_NQ_NP_823746-MLU53386298917_012023-O.webp"
+                src={props.image}
                 className="card-img mb-2 img-thumbnail"
                 alt="..."
               />
               <img
-                src="https://http2.mlstatic.com/D_NQ_NP_668156-MLU53386313895_012023-O.webp"
+                src={props.image}
                 className="card-img mb-2 img-thumbnail"
                 alt="..."
               />
               <img
-                src="https://http2.mlstatic.com/D_NQ_NP_917595-MLU53386313896_012023-O.webp"
+                src={props.image}
                 className="card-img mb-2 img-thumbnail"
                 alt="..."
               />
@@ -56,7 +58,7 @@ const ProductDetails = function () {
           {/* Imagen grande del producto */}
           <div className="col-md-7 my-4">
             <img
-              src="https://http2.mlstatic.com/D_NQ_NP_813639-MLU53386298916_012023-O.webp"
+              src={props.image}
               className="img-fluid rounded-start"
               alt="..."
             />
@@ -67,7 +69,7 @@ const ProductDetails = function () {
               {/* Nombre y descripcion */}
               <div className="d-flex my-0">
                 <div className="w-100 text-start">
-                  <h2>{store.products?.name}</h2>
+                  <h2>{props.name}</h2>
                 </div>
                 <div className="p-2 flex-shrink-1">
                   <button className="btn" type="button" id="enviar">
@@ -76,7 +78,7 @@ const ProductDetails = function () {
                 </div>
               </div>
               <p className="card-text text-start text-muted my-0">
-                Impermeable Configuracion Automatica - Azul
+                {props.description}
               </p>
               {/* Reviews del producto */}
               <div className="text-start my-0">
@@ -88,7 +90,7 @@ const ProductDetails = function () {
               </div>
               {/* Precio */}
               <div className=" text-start">
-                <h3 className="card-title mt-3 mb-0">$120</h3>
+                <h3 className="card-title mt-3 mb-0"> $ {props.price}</h3>
                 <p className="text-muted">Por dia</p>
               </div>
 
@@ -169,36 +171,7 @@ const ProductDetails = function () {
             >
               <div className="accordion-body text-start">
                 <p>
-                  Titulo de Catalogo Original : 4 Person Easy Pop Up Tent
-                  Waterproof Automatic Setup 2 Doors-instant Family Tents For
-                  Camping Hiking & Traveling Dark Blue. configuracion facil: la
-                  carpa emergente instantanea con postes preensamblados se
-                  configura en segundos, simplemente abra la bolsa y sueltela,
-                  tan facil y agradable y configure la carpa. no hay necesidad
-                  de perder un buen tiempo de campamento para instalar tiendas
-                  de campaña, incluso si llueve repentinamente, no tiene que
-                  estar nervioso. - disfrute de la brisa: las puertas delantera
-                  y trasera de malla brindan suficiente flujo de aire para que
-                  pueda disfrutar de la brisa. cerradas solo con el material de
-                  la pantalla o selladas con la puerta de nailon para una
-                  privacidad total, lo cual es tan conveniente que no tiene que
-                  salir. afuera para cerrar las ventanas cuando llueve. - carpa
-                  desplegable para 4 personas. interior espacioso: piso de 9.2 x
-                  6.6 pies; la carpa emergente se adapta a 3-4 personas en saco
-                  de dormir o 2-3 personas con muchos equipos de campamento;
-                  altura del centro: 4,3 pies. incluye 8 estacas para tienda de
-                  campaña para mantener la tienda estable, 4 cuerdas de viento
-                  de 3 mm. - tienda con vestibulo: tienda de campaña familiar
-                  impermeable y resistente a los desgarros, hecha de tela de
-                  poliester 190t, la tela de la base es 110g pe gris. puede
-                  dejar los zapatos y la ropa exterior embarrados en el
-                  vestibulo y no necesita llevar suciedad a la tienda principal.
-                  - disfrute de la carpa de ocio: esta carpa emergente es
-                  adecuada para campamentos informales, descanso en el patio
-                  trasero, festivales, actividades recreativas al aire libre,
-                  exploradores de niños / niñas, mochileros y reuniones en la
-                  playa. los bolsillos de almacenamiento y el gancho de la
-                  linterna mantienen los articulos ordenados y organizados.
+                  {props.description}
                 </p>
               </div>
             </div>
