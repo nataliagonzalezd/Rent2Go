@@ -1,3 +1,5 @@
+let url = "https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io";
+
 const getState = ({
     getStore,
     getActions,
@@ -20,48 +22,51 @@ const getState = ({
             products: [],
         },
         actions: {
-            obtenerInfoProducts: () => {
-                fetch(
-                        "https://3001-nataliagonzalez-rent2go-bm7suybvi6c.ws-us86.gitpod.io/products"
-                    )
+            getProductsDetails: () => {
+                fetch(url + "/products", {
+                        method: "GET",
+                    })
                     .then((res) => res.json())
                     .then((data) =>
                         setStore({
-                            products: data.results,
+                            products: data,
                         })
                     )
+
                     .catch((err) => console.error(err));
             },
 
             register: (email, username, password) => {
-                fetch('https://3001-nataliagonzalez-rent2go-n3jylpcjj8j.ws-us86.gitpod.io/register', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            "username": username,
-                            "email": email,
-                            "password": password,
-                        })
-                    })
+                fetch(
+                        "https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io/register", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                username: username,
+                                email: email,
+                                password: password,
+                            }),
+                        }
+                    )
                     .then((response) => {
                         console.log(response.status);
                         if (response.status === 200) {
                             setStore({
-                                auth: true
-                            })
+                                auth: true,
+                            });
                         }
-                        return response.json()
+                        return response.json();
                     })
                     .then((data) => {
-                        console.log(data)
+                        console.log(data);
                     })
-                    .catch((err) => console.log(err))
+                    .catch((err) => console.log(err));
             },
             login: (email, password) => {
                 fetch(
-                        "https://3001-nataliagonzalez-rent2go-n3jylpcjj8j.ws-us86.gitpod.io/login", {
+                        "https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io/login", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -91,14 +96,14 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
             logout: () => {
-                localStorage.removeItem('token');
+                localStorage.removeItem("token");
                 setStore({
-                    auth: false
-                })
+                    auth: false,
+                });
             },
             addUser: (productName, description, price, url) => {
                 fetch(
-                        `https://3001-nataliagonzalez-rent2go-osfxu9dfdfb.ws-us85.gitpod.io/product`, {
+                        `https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io/product`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
