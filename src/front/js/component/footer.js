@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<div className="footer bg-black"> 
-		</div>
-	</footer>
+  <>
+    <div className="bg-white border-top border-dark">
+      <footer className="navbar navbar-dark bg-white">
+        <div className="container-fluid justify-content-center">
+          <p className="text-black">Copyright @ Your Website 2023</p>
+        </div>
+      </footer>
+    </div>
+  </>
 );
