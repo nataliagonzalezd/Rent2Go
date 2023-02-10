@@ -53,20 +53,19 @@ const getState = ({
             },
             addUser: (productName, description, price, url) => {
                 fetch(
-                        `https://3001-nataliagonzalez-rent2go-osfxu9dfdfb.ws-us85.gitpod.io/product`, {
+                        process.env.BACKEND_URL + "/api/product", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
                             },
                             body: JSON.stringify({
-                                id: 2,
                                 name: productName,
                                 sku: 122,
                                 description: description,
                                 image: url,
-                                price: price,
-                                costumer_id: null,
-                                category_id: null,
+                                price: parseInt(price),
+                                costumer_id: 1,
+                                category_id: 1,
                             }),
                         }
                     )
