@@ -1,5 +1,3 @@
-let url = "https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io";
-
 const getState = ({
     getStore,
     getActions,
@@ -23,7 +21,7 @@ const getState = ({
         },
         actions: {
             getProductsDetails: () => {
-                fetch(url + "/products", {
+                fetch(process.env.BACKEND_URL + "/api/products", {
                         method: "GET",
                     })
                     .then((res) => res.json())
@@ -38,7 +36,7 @@ const getState = ({
 
             register: (email, username, password) => {
                 fetch(
-                        "https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io/register", {
+                        process.env.BACKEND_URL + "/api/register", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -66,7 +64,7 @@ const getState = ({
             },
             login: (email, password) => {
                 fetch(
-                        "https://3001-nataliagonzalez-rent2go-6ffcmgc37rt.ws-us86.gitpod.io/login", {
+                        process.env.BACKEND_URL + "/api/login", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
