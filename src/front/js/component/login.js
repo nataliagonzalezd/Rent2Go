@@ -60,24 +60,6 @@ export const Login = () => {
             showSignUp ? "" : " hidden"
           }`}
         >
-          <form action="#" className="form" id="form1">
-            <h2 className="form__title">Registro</h2>
-            <input
-              type="text"
-              placeholder="Nombre de usuario"
-              className="input"
-              id="username"
-            />{" "}
-            <input type="email" placeholder="Email" className="input" />
-            <input type="password" placeholder="Contraseña" className="input" />
-            <button className="btn">Crear Cuenta</button>
-          </form>
-        </div>
-        <div
-          className={`container__form container--signin${
-            showSignUp ? "hidden" : ""
-          }`}
-        >
           <form
             action="#"
             className="form"
@@ -109,6 +91,24 @@ export const Login = () => {
               Olvidaste tu contraseña?
             </a>
             <button className="btn">Ingresar</button>
+          </form>
+        </div>
+        <div
+          className={`container__form container--signin${
+            showSignUp ? "hidden" : ""
+          }`}
+        >
+          <form action="#" className="form" id="form1">
+            <h2 className="form__title">Registro</h2>
+            <input
+              type="text"
+              placeholder="Nombre de usuario"
+              className="input"
+              id="username"
+            />{" "}
+            <input type="email" placeholder="Email" className="input" />
+            <input type="password" placeholder="Contraseña" className="input" />
+            <button className="btn">Crear Cuenta</button>
           </form>
         </div>
         <div className="container__overlay">

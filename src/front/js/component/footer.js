@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import "../../styles/register.css";
 
 export const Footer = () => (
   <>
-    <div className="bg-white border-top border-dark">
-      <footer className="navbar navbar-dark bg-white">
+    <div className="border-top border-dark footer-css">
+      <footer className="navbar navbar-dark">
         <div className="container-fluid justify-content-center">
-          <p className="text-black">Copyright @ Your Website 2023</p>
+          <p>Copyright @ Your Website 2023</p>
         </div>
       </footer>
     </div>
