@@ -33,7 +33,6 @@ const getState = ({
 
                     .catch((err) => console.error(err));
             },
-
             register: (email, username, password) => {
                 fetch(
                         process.env.BACKEND_URL + "/api/register", {
