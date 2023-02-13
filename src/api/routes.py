@@ -131,11 +131,46 @@ def forgotpassword():
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
 
-    @api.route('/favorites', methods=['GET'])
-    def handle_favorites():
-        allfavorites = Favorites.query.all()
-        print(allfavorites.serialize())
-        results = list(map(lambda item: item.serialize(),allfavorites))
-    
+
+
+#obteniendo info de todos los favoritos
+@api.route('/costumer/<int:costumer_id>/favorites', methods=['GET'])
+def handle_favorites(costumer_id):
+    allfavorites = Favorites.query.filter_by(costumer_id=costumer_id).all()
+    results = list(map(lambda item: item.serialize(),allfavorites))
+
     return jsonify(results), 200
 
+#obteniendo un favorito
+@api.route('/costumer/<int:costumer_id>/favorites/<int:favorites_id>', methods=['GET'])
+def single_favorite(costumer_id, favorites_id):
+    singlefavorite = Favorites.query.filter_by(costumer_id=costumer_id, id=favorites_id).first()
+    if singlefavorite is None:
+        raise APIException('El producto no existe', status_code=404)
+    return jsonify(singlefavorite.serialize()), 200
+
+# #agregando productos a favoritos
+@api.route("/costumer/<int:costumer_id>/favorites/product", methods=["POST"])
+def add_favorites(costumer_id):
+    request_body = request.get_json()
+    favorites = Favorites.query.filter_by(costumer_id=costumer_id,product_id=request_body["product_id"]).first()
+    if favorites is None:
+        newFav = Favorites(
+            costumer_id=costumer_id, product_id=request_body["product_id"])
+        db.session.add(newFav)
+        db.session.commit()
+        return jsonify("Producto añadido"), 200
+    else:
+        return jsonify("Este producto ya existe"), 400
+
+
+# #eliminando productos de favoritos
+@api.route("/costumer/<int:costumer_id>/favorites", methods=["DELETE"])
+def del_favorites(costumer_id):
+    request_body = request.get_json()
+    favorites = Favorites.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
+    if favorites is None:
+        raise APIException("No hemos podido encontrar este producto", status_code=404)
+    db.session.delete(favorites)
+    db.session.commit()
+    return jsonify("El producto ha sido eliminado"), 200
