@@ -34,6 +34,22 @@ const getState = ({
                     .catch((err) => console.error(err));
             },
 
+            getCart: () => {
+                fetch(process.env.BACKEND_URL + "/api/products", {
+                        method: "GET",
+                    })
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            products: data,
+                        })
+                    )
+
+                    .catch((err) => console.error(err));
+            },
+
+
+
             register: (email, username, password) => {
                 fetch(
                         process.env.BACKEND_URL + "/api/register", {
