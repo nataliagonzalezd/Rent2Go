@@ -21,22 +21,22 @@ export const Register = () => {
     const errors = {};
     if (!values.username) {
       errors.username = "Nombre de usuario requerido";
-    } else if (values.username.length > 8) {
-      errors.firstName = "Nombre de usuario debe ser menor a 8 caracteres";
+    } else if (values.username.length > 10) {
+      errors.username = "Nombre de usuario debe ser menor a 10 caracteres";
     }
 
     if (!values.password) {
-      errors.password = "Por favor ingrese una contrasena";
+      errors.password = "Por favor ingrese una contraseña";
     } else if (values.password.length < 5) {
-      errors.password = "La contrasena debe tener mas de 5 caracteres";
+      errors.password = "La contraseña debe tener mas de 5 caracteres";
     }
 
     if (!values.email) {
-      errors.email = "Por favor ingrese correo electronico";
+      errors.email = "Por favor ingrese su correo electronico";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
     ) {
-      errors.email = "Por favor ingrese una direccion de correo valida";
+      errors.email = "Por favor ingrese una dirección de correo valida";
     }
 
     return errors;
@@ -74,7 +74,7 @@ export const Register = () => {
             action="#"
             className="form"
             id="form1"
-            onChange={formik.handleSubmit}
+            onSubmit={formik.handleSubmit}
           >
             <h2 className="form__title">Registro</h2>
             <input
@@ -84,9 +84,10 @@ export const Register = () => {
               id="username"
               name="username"
               value={formik.values.username}
+              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />{" "}
-            {formik.errors.username ? (
+            {formik.touched.username && formik.errors.username ? (
               <div>{formik.errors.username}</div>
             ) : null}
             <input
@@ -96,8 +97,12 @@ export const Register = () => {
               id="email"
               name="email"
               value={formik.values.email}
+              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
+            {formik.touched.email && formik.errors.email ? (
+              <div>{formik.errors.email}</div>
+            ) : null}
             <input
               type="password"
               placeholder="Contraseña"
@@ -105,12 +110,15 @@ export const Register = () => {
               id="password"
               name="password"
               value={formik.values.password}
+              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
-            {formik.errors.password ? (
+            {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}
-            <button className="btn">Crear Cuenta</button>
+            <button className="btn" type="submit">
+              Crear Cuenta
+            </button>
           </form>
         </div>
         <div
@@ -131,14 +139,19 @@ export const Register = () => {
         <div className="container__overlay">
           <div className="overlay">
             <div className="overlay__panel overlay--left">
-              <button className="btn" id="signIn" onClick={handleSignInClick}>
+              <a
+                className="btn"
+                id="signIn"
+                onClick={handleSignInClick}
+                href="/login"
+              >
                 Iniciar Sesion
-              </button>
+              </a>
             </div>
             <div className="overlay__panel overlay--right">
-              <button className="btn" id="signUp" onClick={handleSignUpClick}>
+              <a className="btn" id="signUp" onClick={handleSignUpClick}>
                 Registro
-              </button>
+              </a>
             </div>
           </div>
         </div>

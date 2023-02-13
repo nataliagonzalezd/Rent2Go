@@ -5,14 +5,14 @@ import { useFormik } from "formik";
 import "../../styles/register.css";
 
 export const Login = () => {
-  const [showSignUp, setShowSignUp] = useState(true);
-
-  const handleSignInClick = () => {
-    setShowSignUp(false);
-  };
+  const [showSignIn, setShowSignIn] = useState(true);
 
   const handleSignUpClick = () => {
-    setShowSignUp(true);
+    setShowSignIn(false);
+  };
+
+  const handleSignInClick = () => {
+    setShowSignIn(true);
   };
 
   const { store, actions } = useContext(Context);
@@ -54,48 +54,10 @@ export const Login = () => {
     <Navigate to="/" />
   ) : (
     <>
-      <div className={`container${showSignUp ? " right-panel-active" : ""}`}>
+      <div className={`container${showSignIn ? "" : " right-panel-active"}`}>
         <div
           className={`container__form container--signup${
-            showSignUp ? "" : " hidden"
-          }`}
-        >
-          <form
-            action="#"
-            className="form"
-            id="form2"
-            onChange={formik.handleSubmit}
-          >
-            <h2 className="form__title">Iniciar Sesion</h2>
-            <input
-              type="email"
-              placeholder="Email"
-              className="input"
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-            <input
-              type="password"
-              placeholder="Contraseña"
-              className="input"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
-            <a href="#" className="link">
-              Olvidaste tu contraseña?
-            </a>
-            <button className="btn">Ingresar</button>
-          </form>
-        </div>
-        <div
-          className={`container__form container--signin${
-            showSignUp ? "hidden" : ""
+            showSignIn ? "hidden" : ""
           }`}
         >
           <form action="#" className="form" id="form1">
@@ -108,20 +70,71 @@ export const Login = () => {
             />{" "}
             <input type="email" placeholder="Email" className="input" />
             <input type="password" placeholder="Contraseña" className="input" />
-            <button className="btn">Crear Cuenta</button>
+            <button className="btn" type="submit">
+              Crear Cuenta
+            </button>
+          </form>
+        </div>
+        <div
+          className={`container__form container--signin${
+            showSignIn ? "" : "hidden"
+          }`}
+        >
+          <form
+            action="#"
+            className="form"
+            id="form2"
+            onSubmit={formik.handleSubmit}
+          >
+            <h2 className="form__title">Iniciar Sesion</h2>
+            <input
+              type="email"
+              placeholder="Email"
+              className="input"
+              name="email"
+              value={formik.values.email}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <div>{formik.errors.email}</div>
+            ) : null}
+            <input
+              type="password"
+              placeholder="Contraseña"
+              className="input"
+              name="password"
+              value={formik.values.password}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <div>{formik.errors.password}</div>
+            ) : null}
+            <a href="#" className="link">
+              Olvidaste tu contraseña?
+            </a>
+            <button className="btn" type="submit">
+              Ingresar
+            </button>
           </form>
         </div>
         <div className="container__overlay">
           <div className="overlay">
             <div className="overlay__panel overlay--left">
-              <button className="btn" id="signIn" onClick={handleSignInClick}>
+              <a className="btn" id="signIn" onClick={handleSignInClick}>
                 Iniciar Sesion
-              </button>
+              </a>
             </div>
             <div className="overlay__panel overlay--right">
-              <button className="btn" id="signUp" onClick={handleSignUpClick}>
+              <a
+                className="btn"
+                id="signUp"
+                onClick={handleSignUpClick}
+                href="/register"
+              >
                 Registro
-              </button>
+              </a>
             </div>
           </div>
         </div>
