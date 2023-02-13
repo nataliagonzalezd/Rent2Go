@@ -33,7 +33,6 @@ const getState = ({
 
                     .catch((err) => console.error(err));
             },
-
             getCart: () => {
                 fetch(process.env.BACKEND_URL + "/api/products", {
                         method: "GET",
@@ -47,9 +46,6 @@ const getState = ({
 
                     .catch((err) => console.error(err));
             },
-
-
-
             register: (email, username, password) => {
                 fetch(
                         process.env.BACKEND_URL + "/api/register", {
