@@ -111,7 +111,7 @@ export const Login = () => {
             {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}
-            <a href="#" className="link">
+            <a href="/forgotpassword" className="link">
               Olvidaste tu contraseña?
             </a>
             <button className="btn" type="submit">
