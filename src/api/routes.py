@@ -1,13 +1,17 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+
+from flask import Flask, request, jsonify, url_for, Blueprint,current_app,json
 from api.models import db, Costumer, Product, Favorites
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+from flask_mail import Message
+import random
+import string
 
 api = Blueprint('api', __name__)
 
@@ -102,6 +106,36 @@ def handle_products():
     print(allproducts)
     results = list(map(lambda item: item.serialize(),allproducts))
     print(results)
+    
+    return jsonify(results), 200
+
+
+#RECUPERACION CONTRASEÑA OLVIDADA 
+@api.route("/forgotpassword", methods=["POST"])
+def forgotpassword():
+    recover_email = request.json['email']
+    recover_password = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(8)) 
+    #clave aleatoria nueva
+    if not recover_email:
+        return jsonify({"msg": "Debe ingresar el correo"}), 401
+	#busco si el correo existe en mi base de datos
+    costumer = Costumer.query.filter_by(email=recover_email).first()
+    if recover_email != costumer.email: 
+        return jsonify({"msg": "El correo ingresado no existe en nuestros registros"}), 400
+    #si existe guardo la nueva contraseña aleatoria
+    costumer.password = recover_password
+    db.session.commit()
+	#luego se la envio al usuario por correo para que pueda ingresar
+    msg = Message("Hi", recipients=[recover_email])
+    msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
+    current_app.mail.send(msg)
+    return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
+
+    @api.route('/favorites', methods=['GET'])
+    def handle_favorites():
+        allfavorites = Favorites.query.all()
+        print(allfavorites.serialize())
+        results = list(map(lambda item: item.serialize(),allfavorites))
     
     return jsonify(results), 200
 

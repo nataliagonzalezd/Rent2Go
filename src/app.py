@@ -15,6 +15,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail
 
 #from models import Person
 
@@ -43,12 +44,27 @@ setup_admin(app)
 # add the admin
 setup_commands(app)
 
-
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
 
 jwt = JWTManager(app)
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
+
+#CONFIGURACION EMAIL
+mail_settings = {
+    'MAIL_SERVER': 'sandbox.smtp.mailtrap.io',
+    'MAIL_PORT' : 2525,
+    'MAIL_USERNAME' : '129cdfe7d4e8a2',
+    'MAIL_PASSWORD' : '5f3e5b60b1ff9a',
+    'MAIL_USE_TLS' : True,
+    'MAIL_USE_SSL' : False,
+    "MAIL_DEFAULT_SENDER": 'rproyect32@gmail.com'
+}
+
+# configuracion mail
+app.config.update(mail_settings)
+mail = Mail(app)
+app.mail = mail
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
