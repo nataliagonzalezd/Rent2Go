@@ -1,6 +1,17 @@
 import React from "react";
+import { useContext,useEffect } from "react";
+import { Context } from "../store/appContext";
 
-const Cart = function () {
+const Cart = function (props) {
+  const { store, actions } = useContext(Context);
+
+  useEffect(() => {
+    actions.getCart()
+  }, [])
+
+  
+  console.log(store.products[0])
+
   return (
     <>
       <div>
@@ -11,7 +22,7 @@ const Cart = function () {
             <div className="row g-0">
               <div className="col-md-2">
                 <img
-                  src="https://www.mapa.com.uy/imgs/productos/216919010.jpg"
+                  src={props.image}
                   className="img-fluid rounded-start ms-4"
                   style={{
                     width: 150,
@@ -24,9 +35,9 @@ const Cart = function () {
               <div className="col-md-4">
                 <div className="card-body">
                   <h5 className="card-title">
-                    <strong> Nombre del producto </strong>{" "}
+                    <strong>{props.name} </strong>{" "}
                   </h5>{" "}
-                  <p className="card-text"> Descripcion: pinceles, multi </p>{" "}
+                  <p className="card-text">{props.description}</p>{" "}
                   <p className="card-text">
                     <small className="text-muted"> Envío: 2 - 4 semanas </small>{" "}
                   </p>{" "}
@@ -94,7 +105,7 @@ const Cart = function () {
               <p className="card-text">
                $ -25
               </p>
-              <h4 className="card-title"> $124</h4>
+              <h4 className="card-title">$ {props.price}</h4>
              
             </div>
           </div>
@@ -104,7 +115,7 @@ const Cart = function () {
         <div className="card-body">
           
               <a href="#" className="btn btn-primary">
-                Go somewhere
+                Alquilar
               </a>
             </div>
         </div>
