@@ -72,7 +72,7 @@ export const Navbar = () => {
                       className="dropdown-item text-black"
                       href="/catalogovista"
                     >
-                      Jardineria
+                      Jardineriaa
                     </a>
                   </li>
                   <li>
