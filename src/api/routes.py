@@ -181,3 +181,46 @@ def del_favorites(costumer_id):
     db.session.delete(favorites)
     db.session.commit()
     return jsonify("El producto ha sido eliminado"), 200
+
+    #obtener info de customer
+@api.route('/register', methods=['GET'])
+def handle_costomer():
+    allcostumer = Costumer.query.all()
+    print(allcostumer)
+    results = list(map(lambda item: item.serialize(),allcostumer))
+    print(results)
+
+    return jsonify(results), 200
+
+#obtener info category todos
+@api.route('/category', methods=['GET'])
+def handle_category():
+    allcategory = Category.query.all()
+    print(allcategory)
+    results = list(map(lambda item: item.serialize(),allcategory))
+    print(results)
+
+    return jsonify(results), 200
+
+#Obteniendo el producto dentro de una categoria
+@api.route('/category/<int:category_id>/products/', methods=['GET'])
+def get_products_category(category_id):
+    
+    category_products = Product.query.filter_by(category_id=category_id).all()
+    results = list(map(lambda item: item.serialize(),category_products))
+
+    return jsonify(results), 200
+
+#obtener info category solo 1
+@api.route('/category/<int:category_id>', methods=['GET'])
+def handle_category_varios(category_id):
+    category_one = Category.query.filter_by(id=category_id).first()
+
+    return jsonify(category_one.serialize()), 200
+
+# #obteniendo info de un solo product
+@api.route('/product/<int:product_id>', methods=['GET'])
+def get_info_product(product_id):
+    
+    product = Product.query.filter_by(id=product_id).first()
+    return jsonify(product.serialize()), 200
