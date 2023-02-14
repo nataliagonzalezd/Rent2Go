@@ -42,6 +42,13 @@ def add_new_product():
     db.session.commit()
     return jsonify({"msg":"Producto creado correctamente"}),200
 
+@api.route('/info', methods=['POST'])
+def edit_profile():
+    request_body = request.json
+    edit_profile = Costumer(name=request_body["name"], lastName=request_body["lastName"],address=request_body["address"], rol=request_body["rol"],phone=request_body["phone"],image=request_body["image"])
+    db.session.add(edit_profile)
+    db.session.commit()
+    return jsonify({"msg":"Datos de profile obtenidos de forma satisfactoria"}),200
 
     # generate sitemap with all your endpoints
 @api.route('/')

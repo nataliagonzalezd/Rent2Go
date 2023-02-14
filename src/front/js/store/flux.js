@@ -130,6 +130,24 @@ const getState = ({
                     .then((response) => response.json())
                     .then((data) => console.log(data));
             },
+            addInfo: (name, lastName, address, rol, phone, image) => {
+                fetch(process.env.BACKEND_URL + "/api/info", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            lastName: lastName,
+                            address: address,
+                            rol: rol,
+                            phone: phone,
+                            image: "dklsama",
+                        }),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data));
+            },
             getMessage: async () => {
                 try {
                     // fetching data from the backend

@@ -4,19 +4,22 @@ import "../../styles/editprofile.css";
 
 export const EditProfile = () => {
   const { actions } = useContext(Context);
-  const [username, setUserName] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [rol, setRol] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function datas(e) {
+  function info(e) {
     e.preventDefault();
-    actions.addUser(productName, description, price, image);
-    setProductName("");
-    setDescription("");
-    setPrice("");
+    actions.addInfo(name, lastName, address, rol, phone, image);
+    setName("");
+    setLastName("");
+    setAddress("");
+    setRol("");
+    setPhone("");
   }
 
   return (
@@ -304,30 +307,52 @@ export const EditProfile = () => {
             <h2 className="titular">Bienvenido, nombre</h2>
             <div className="input-container">
               <label htmlFor="">Nombre</label>
-              <input type="text" placeholder="" className="email text-input" />
-              <div className="input-icon envelope-icon-newsletter">
-                <span className="fontawesome-envelope scnd-font-color"></span>
-              </div>
-              <label htmlFor="">Apellido</label>
-              <input type="text" placeholder="" className="email text-input" />
-              <div className="input-icon envelope-icon-newsletter">
-                <span className="fontawesome-envelope scnd-font-color"></span>
-              </div>
-              <label htmlFor="">Direccion</label>
-              <input type="text" placeholder="" className="email text-input" />
-              <div className="input-icon envelope-icon-newsletter">
-                <span className="fontawesome-envelope scnd-font-color"></span>
-              </div>
-              <label htmlFor="">Rol</label>
-              <input type="text" placeholder="" className="email text-input" />
-              <div className="input-icon envelope-icon-newsletter">
-                <span className="fontawesome-envelope scnd-font-color"></span>
-              </div>
-              <label htmlFor="">Telefono</label>
-              <input type="text" placeholder="" className="email text-input" />
-              <div className="input-icon envelope-icon-newsletter">
-                <span className="fontawesome-envelope scnd-font-color"></span>
-              </div>
+              <form action="" onSubmit={info}>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="email text-input"
+                />
+                <div className="input-icon envelope-icon-newsletter">
+                  <span className="fontawesome-envelope scnd-font-color"></span>
+                </div>
+                <label htmlFor="">Apellido</label>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="email text-input"
+                />
+                <div className="input-icon envelope-icon-newsletter">
+                  <span className="fontawesome-envelope scnd-font-color"></span>
+                </div>
+                <label htmlFor="">Direccion</label>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="email text-input"
+                />
+                <div className="input-icon envelope-icon-newsletter">
+                  <span className="fontawesome-envelope scnd-font-color"></span>
+                </div>
+                <label htmlFor="">Rol</label>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="email text-input"
+                />
+                <div className="input-icon envelope-icon-newsletter">
+                  <span className="fontawesome-envelope scnd-font-color"></span>
+                </div>
+                <label htmlFor="">Telefono</label>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="email text-input"
+                />
+                <div className="input-icon envelope-icon-newsletter">
+                  <span className="fontawesome-envelope scnd-font-color"></span>
+                </div>
+              </form>
             </div>
             <a className="subscribe button" href="#21">
               Guardar Cambios
