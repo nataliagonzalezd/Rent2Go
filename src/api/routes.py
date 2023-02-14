@@ -42,10 +42,10 @@ def add_new_product():
     db.session.commit()
     return jsonify({"msg":"Producto creado correctamente"}),200
 
-@api.route('/info', methods=['POST'])
+@api.route('/editprofile', methods=['POST'])
 def edit_profile():
     request_body = request.json
-    edit_profile = Costumer(name=request_body["name"], lastName=request_body["lastName"],address=request_body["address"], rol=request_body["rol"],phone=request_body["phone"],image=request_body["image"])
+    edit_profile = Costumer(name=request_body["name"],email=request_body["email"],password=request_body["password"],username=request_body["username"], lastName=request_body["lastName"],address=request_body["address"], role=request_body["role"],phone=request_body["phone"],image=request_body["image"])
     db.session.add(edit_profile)
     db.session.commit()
     return jsonify({"msg":"Datos de profile obtenidos de forma satisfactoria"}),200
@@ -116,6 +116,16 @@ def handle_products():
     
     return jsonify(results), 200
 
+#obteniendo info de todos los productos
+@api.route('/editprofile', methods=['GET'])
+def handle_profile():
+    profile = Costumer.query.all()
+    print(profile)
+    results = list(map(lambda item: item.serialize(),profile))
+    print(results)
+    
+    return jsonify(results), 200
+
 
 #RECUPERACION CONTRASEÑA OLVIDADA 
 @api.route("/forgotpassword", methods=["POST"])
@@ -181,3 +191,13 @@ def del_favorites(costumer_id):
     db.session.delete(favorites)
     db.session.commit()
     return jsonify("El producto ha sido eliminado"), 200
+
+#obtener info de customer
+@api.route('/register', methods=['GET'])
+def handle_costomer():
+    allcostumer = Costumer.query.all()
+    print(allcostumer)
+    results = list(map(lambda item: item.serialize(),allcostumer))
+    print(results)
+
+    return jsonify(results), 200

@@ -17,21 +17,9 @@
     font-family: "zocial", sans-serif;
 }
 
-@font-face {
-    font-family: "icomoon";
-    src: url("https://jlalovi-cv.herokuapp.com/font/icomoon.eot");
-    src: url("https://jlalovi-cv.herokuapp.com/font/icomoon.eot?#iefix") format("embedded-opentype"),
-        url("https://jlalovi-cv.herokuapp.com/font/icomoon.ttf") format("truetype"),
-        url("https://jlalovi-cv.herokuapp.com/font/icomoon.woff") format("woff"),
-        url("https://jlalovi-cv.herokuapp.com/font/icomoon.svg#icomoon") format("svg");
-    font-weight: normal;
-    font-style: normal;
-}
-
 [class^="icon-"],
 [class*=" icon-"] {
     font-family: "icomoon";
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -767,7 +755,6 @@ p.center-date {
 #media-display {
     position: relative;
     height: 180px;
-    background: #787878 url("https://www.fancinema.com.ar/wp-content/uploads/catwoman1.jpg") center top;
 }
 
 #media-display .play {
