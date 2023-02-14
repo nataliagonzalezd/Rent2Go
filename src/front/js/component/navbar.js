@@ -121,6 +121,12 @@ export const Navbar = () => {
                   Logout
                 </button>
               ) : null}
+              <li>
+                <a type="button" class="btn" aria-expanded="false" href="viewFavorites">
+                  <i className="fa  fa-ligth fa-heart"></i>
+                </a>
+              </li>
+
               <li className="nav-item">
                 <a
                   className="nav-link active text-black"
