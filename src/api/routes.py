@@ -218,28 +218,13 @@ def add_cart():
     request_body = request.get_json()
     addcart = Cart.query.filter_by(costumer_id=request_body["costumer_id"], product_id=request_body["product_id"]).first()
     if addcart is None:
-        newAddCart= Cart(product_id=request_body["product_id"],price=request_body["price"],quantity=request_body["quantity"])
+        newAddCart= Cart(costumer_id=request_body["costumer_id"],product_id=request_body["product_id"],price=request_body["price"],quantity=request_body["quantity"])
         db.session.add(newAddCart)
         db.session.commit()
         return jsonify("Producto añadido"), 200
     else:
         return jsonify("Este producto ya existe"), 400
 
-
-# #--- 2) AGREGANDO un producto al carrito >>>NATI<<<  ---
-# @api.route("/costumer/<int:costumer_id>/cart", methods=["POST"])
-# def add_cart(costumer_id):
-#     request_body = request.get_json()
-#     addcart = Product.query.filter_by(costumer_id=costumer_id, id=request_body["product_id"]).first()
-#     if addcart is None:
-#         newAddCart= Cart(
-#             costumer_id=costumer_id, product_id=request_body["id"])
-#         db.session.add(newAddCart)
-#         db.session.commit()
-#         return jsonify("Producto añadido"), 200
-#     else:
-#         return jsonify("Este producto ya existe"), 400
-        
 
 # #--- 3) Eliminando un producto del carrito ---
 # @api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])

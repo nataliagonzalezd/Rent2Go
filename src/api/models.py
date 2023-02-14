@@ -197,6 +197,5 @@ class Cart(db.Model):
             "costumer_id": self.costumer_id,
             "product_id": self.product_id,
             "quantity": self.quantity,
-            "price": self.price
-            
+            "price": self.price           
         }
