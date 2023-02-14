@@ -47,6 +47,11 @@ export const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu text-black">
                   <li>
+                    <a className="dropdown-item text-black" href="/">
+                      Home
+                    </a>
+                  </li>
+                  <li>
                     <a
                       className="dropdown-item text-black"
                       href="/catalogovista"
@@ -55,8 +60,43 @@ export const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item text-black" href="/">
-                      En construcción
+                    <a
+                      className="dropdown-item text-black"
+                      href="/catalogovista"
+                    >
+                      Electronica
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item text-black"
+                      href="/catalogovista"
+                    >
+                      Jardineriaa
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item text-black"
+                      href="/catalogovista"
+                    >
+                      Indumentaria
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item text-black"
+                      href="/catalogovista"
+                    >
+                      Musica
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item text-black"
+                      href="/catalogovista"
+                    >
+                      Lectura
                     </a>
                   </li>
                   <li>
@@ -121,12 +161,6 @@ export const Navbar = () => {
                   Logout
                 </button>
               ) : null}
-              <li>
-                <a type="button" class="btn" aria-expanded="false" href="viewFavorites">
-                  <i className="fa  fa-ligth fa-heart"></i>
-                </a>
-              </li>
-
               <li className="nav-item">
                 <a
                   className="nav-link active text-black"

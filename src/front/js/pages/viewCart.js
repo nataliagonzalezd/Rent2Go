@@ -1,9 +1,8 @@
-import React, { useContext, useEffect }from "react";
+import React, { useContext, useEffect } from "react";
 import { Navbar } from "reactstrap";
 import Cart from "../component/cart.js";
 import { Footer } from "../component/footer.js";
 import { Context } from "../store/appContext.js";
-
 
 //create your first component
 const ViewCart = () => {
@@ -12,19 +11,20 @@ const ViewCart = () => {
     <div className="">
       <Navbar />
       <div className="text-center mt-5">
-          <div >
-            <h1>
-              <strong>Carro de la compra</strong>
-            </h1>
-          </div>
-          <div>
-          <h3>
-          Los gastos de envío y los códigos de descuento se confirman al finalizar la compra.
-            </h3>
-          </div>
+        <div>
+          <h1>
+            <strong>Carro de la compra</strong>
+          </h1>
         </div>
+        <div>
+          <h3>
+            Los gastos de envío y los códigos de descuento se confirman al
+            finalizar la compra.
+          </h3>
+        </div>
+      </div>
       <div className="mx-5">
-      {store.products.map((cadaProducto, index) => (
+        {store.products.map((cadaProducto, index) => (
           <Cart
             key={index}
             id={index + 1}
@@ -52,9 +52,9 @@ const ViewCart = () => {
           <div className="col-8">
             <Cart />
           </div>
-        </div> */} 
+        </div> */}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
