@@ -193,13 +193,6 @@ def handle_category_varios(category_id):
 
     return jsonify(category_one.serialize()), 200
 
-# #obteniendo info de un solo product
-@api.route('/product/<int:product_id>', methods=['GET'])
-def get_info_product(product_id):
-    
-    product = Product.query.filter_by(id=product_id).first()
-    return jsonify(product.serialize()), 200
-
 #obteniendo info de todos los productos
 @api.route('/products', methods=['GET'])
 def handle_products():
