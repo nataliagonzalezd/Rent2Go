@@ -26,7 +26,7 @@ const Cardscatalogo = function (props) {
             <p className="card-text d-flex">{props.description}</p>
             <h6 className="card-text d-flex"> $ {props.price}</h6>
             <a
-              class="btn btn-primary d-flex justify-content-center"
+              className="btn btn-primary d-flex justify-content-center"
               href="viewproductdetails"
               role="button"
             >

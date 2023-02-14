@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint,current_app,json
-from api.models import db, Costumer, Product, Favorites
+from api.models import db, Costumer, Product, Favorites, Cart
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -199,4 +199,96 @@ def get_info_product(product_id):
     
     product = Product.query.filter_by(id=product_id).first()
     return jsonify(product.serialize()), 200
+
+
+
+
+# -----------------------------------------------------------CART--------------------------------- #
+
+#--- 1) OBTENIENDO todos los prodcutos del carrito --- 
+@api.route('/costumer/<int:costumer_id>/cart', methods=['GET'])
+def handle_cart(costumer_id):
+    allproducts = Cart.query.filter_by(costumer_id=costumer_id).all()
+    results = list(map(lambda item: item.serialize(),allproducts))
+    return jsonify(results), 200
+
+#--- 2) AGREGANDO un producto al carrito ---
+@api.route("/cart", methods=["POST"])
+def add_cart():
+    request_body = request.get_json()
+    addcart = Cart.query.filter_by(costumer_id=request_body["costumer_id"], product_id=request_body["product_id"]).first()
+    if addcart is None:
+        newAddCart= Cart(product_id=request_body["product_id"],price=request_body["price"],quantity=request_body["quantity"])
+        db.session.add(newAddCart)
+        db.session.commit()
+        return jsonify("Producto añadido"), 200
+    else:
+        return jsonify("Este producto ya existe"), 400
+
+
+# #--- 2) AGREGANDO un producto al carrito >>>NATI<<<  ---
+# @api.route("/costumer/<int:costumer_id>/cart", methods=["POST"])
+# def add_cart(costumer_id):
+#     request_body = request.get_json()
+#     addcart = Product.query.filter_by(costumer_id=costumer_id, id=request_body["product_id"]).first()
+#     if addcart is None:
+#         newAddCart= Cart(
+#             costumer_id=costumer_id, product_id=request_body["id"])
+#         db.session.add(newAddCart)
+#         db.session.commit()
+#         return jsonify("Producto añadido"), 200
+#     else:
+#         return jsonify("Este producto ya existe"), 400
+        
+
+# #--- 3) Eliminando un producto del carrito ---
+# @api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])
+# def del_cart(costumer_id):
+#     request_body = request.get_json()
+#     prod = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
+#     if prod is None:
+#         raise APIException("No esxiste este producto", status_code=404)
+#     db.session.delete(prod)
+#     db.session.commit()
+#     return jsonify("El producto fue eliminado de tu carrito"), 200
+
+# #--- 4) Traer un producto del carrito ---
+# @api.route('/costumer/<int:costumer_id>/cart/<int:cart_id>', methods=['GET'])
+# def single_product(costumer_id, cart_id):
+#     singleProduct = Cart.query.filter_by(costumer_id=costumer_id, id=cart_id).first()
+#     if singleProduct is None:
+#         raise APIException('Este producto no existe', status_code=404)
+#     return jsonify(singleProduct.serialize()), 200
+
+
+
+
+
+# #--- añadiendo productos del carrito --- 
+# @api.route("/costumer/<int:costumer_id>/cart", methods=["POST"])
+# def add_cart(costumer_id):
+#     request_body = request.get_json()
+#     addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
+#     if addcart is None:
+#         newAddCart= Cart(
+#             costumer_id=costumer_id, product_id=request_body["product_id"])
+#         db.session.add(newAddCart)
+#         db.session.commit()
+#         return jsonify("Producto añadido"), 200
+#     else:
+#         return jsonify("Este producto ya existe"), 400
+
+# #--- Eliminando un producto del carrito ---
+# @api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])
+# def del_cart(costumer_id):
+#     request_body = request.get_json()
+#     prod = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
+#     if prod is None:
+#         raise APIException("No esxiste este producto", status_code=404)
+#     db.session.delete(prod)
+#     db.session.commit()
+#     return jsonify("El producto fue eliminado de tu carrito"), 200   
+
+
+
 
