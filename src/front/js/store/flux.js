@@ -18,6 +18,7 @@ const getState = ({
                 },
             ],
             products: [],
+            profile: [],
         },
         actions: {
             getProductsDetails: () => {
@@ -130,19 +131,22 @@ const getState = ({
                     .then((response) => response.json())
                     .then((data) => console.log(data));
             },
-            addInfo: (name, lastName, address, rol, phone, image) => {
-                fetch(process.env.BACKEND_URL + "/api/info", {
+            addInfo: (name, lastName, address, role, phone, image) => {
+                fetch(process.env.BACKEND_URL + "/api/editprofile", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
+                            email: "kmd@hotmail.com",
+                            username: "jja",
+                            password: "23",
                             name: name,
                             lastName: lastName,
                             address: address,
-                            rol: rol,
+                            role: role,
                             phone: phone,
-                            image: "dklsama",
+                            image: "dklsaa",
                         }),
                     })
                     .then((response) => response.json())
@@ -161,6 +165,19 @@ const getState = ({
                 } catch (error) {
                     console.log("Error loading message from backend", error);
                 }
+            },
+            getProfile: () => {
+                fetch(process.env.BACKEND_URL + "/api/editprofile", {
+                        method: "GET",
+                    })
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            profile: data,
+                        })
+                    )
+
+                    .catch((err) => console.error(err));
             },
             changeColor: (index, color) => {
                 //get the store

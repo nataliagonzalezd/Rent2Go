@@ -1,7 +1,6 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-
 from flask import Flask, request, jsonify, url_for, Blueprint,current_app,json
 from api.models import db, Costumer, Product, Favorites
 from api.utils import generate_sitemap, APIException
@@ -12,25 +11,17 @@ from flask_jwt_extended import JWTManager
 from flask_mail import Message
 import random
 import string
-
 api = Blueprint('api', __name__)
-
 # Handle/serialize errors like a JSON object
 @api.errorhandler(APIException)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_cod
-
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
-
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     }
-
     return jsonify(response_body), 200
-
-
 @api.route('/product', methods=['POST'])
 def add_new_product():
     request_body = request.json
@@ -41,22 +32,19 @@ def add_new_product():
     db.session.add(new_product)
     db.session.commit()
     return jsonify({"msg":"Producto creado correctamente"}),200
-
-@api.route('/info', methods=['POST'])
+@api.route('/editprofile', methods=['POST'])
 def edit_profile():
     request_body = request.json
-    edit_profile = Costumer(name=request_body["name"], lastName=request_body["lastName"],address=request_body["address"], rol=request_body["rol"],phone=request_body["phone"],image=request_body["image"])
+    edit_profile = Costumer(name=request_body["name"],email=request_body["email"],password=request_body["password"],username=request_body["username"], lastName=request_body["lastName"],address=request_body["address"], role=request_body["role"],phone=request_body["phone"],image=request_body["image"])
     db.session.add(edit_profile)
     db.session.commit()
     return jsonify({"msg":"Datos de profile obtenidos de forma satisfactoria"}),200
-
     # generate sitemap with all your endpoints
 @api.route('/')
 def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
-
 # any other endpoint will try to serve it like a static file
 @api.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
@@ -65,23 +53,17 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0 # avoid cache memory
     return response
-
 @api.route("/login", methods=["POST"])
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-
     costumer = Costumer.query.filter_by(email=email, password=password).first()
-
     if email != costumer.email or password != costumer.password:
         return jsonify({"msg": "Bad email or password"}), 401
-
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
-
 @api.route('/register', methods=['POST'])
 def crear_Usuario():
-    
     request_body = request.json #Guardo la respuesta que trae la solicitud en una variable que se llama "request_body" que es un objeto
     print(request_body)
     get_costumer = Costumer.query.filter_by(email = request_body["email"]).first() #Filtro User para que me diga si este email ya esta registrado
@@ -92,7 +74,6 @@ def crear_Usuario():
         return jsonify({"msg":"Nuevo usuario ha sido creado"}), 200
     else:
         return jsonify({"msg":"El email ya esta registrado."}), 400
-
 @api.route('/product/<int:costumer_id>/<int:id>', methods=['DELETE'])
 def delete_product(costumer_id,id):
     request_body=request.json
@@ -103,9 +84,8 @@ def delete_product(costumer_id,id):
     if query is None:
         return jsonify({"msg":"No hubo coincidencias, no hay nada para eliminar"}),404
     db.session.delete(query)
-    db.session.commit() 
+    db.session.commit()
     return jsonify({"msg":"El producto seleccionado ha sido eliminado correctamente"}),
-
 #obteniendo info de todos los productos
 @api.route('/products', methods=['GET'])
 def handle_products():
@@ -113,41 +93,41 @@ def handle_products():
     print(allproducts)
     results = list(map(lambda item: item.serialize(),allproducts))
     print(results)
-    
     return jsonify(results), 200
-
-
-#RECUPERACION CONTRASEÑA OLVIDADA 
+#obteniendo info de todos los productos
+@api.route('/editprofile', methods=['GET'])
+def handle_profile():
+    profile = Costumer.query.all()
+    print(profile)
+    results = list(map(lambda item: item.serialize(),profile))
+    print(results)
+    return jsonify(results), 200
+#RECUPERACION CONTRASEÑA OLVIDADA
 @api.route("/forgotpassword", methods=["POST"])
 def forgotpassword():
     recover_email = request.json['email']
-    recover_password = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(8)) 
+    recover_password = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(8))
     #clave aleatoria nueva
     if not recover_email:
         return jsonify({"msg": "Debe ingresar el correo"}), 401
-	#busco si el correo existe en mi base de datos
+    #busco si el correo existe en mi base de datos
     costumer = Costumer.query.filter_by(email=recover_email).first()
-    if recover_email != costumer.email: 
+    if recover_email != costumer.email:
         return jsonify({"msg": "El correo ingresado no existe en nuestros registros"}), 400
     #si existe guardo la nueva contraseña aleatoria
     costumer.password = recover_password
     db.session.commit()
-	#luego se la envio al usuario por correo para que pueda ingresar
+    #luego se la envio al usuario por correo para que pueda ingresar
     msg = Message("Hi", recipients=[recover_email])
     msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
-
-
-
 #obteniendo info de todos los favoritos
 @api.route('/costumer/<int:costumer_id>/favorites', methods=['GET'])
 def handle_favorites(costumer_id):
     allfavorites = Favorites.query.filter_by(costumer_id=costumer_id).all()
     results = list(map(lambda item: item.serialize(),allfavorites))
-
     return jsonify(results), 200
-
 #obteniendo un favorito
 @api.route('/costumer/<int:costumer_id>/favorites/<int:favorites_id>', methods=['GET'])
 def single_favorite(costumer_id, favorites_id):
@@ -155,7 +135,6 @@ def single_favorite(costumer_id, favorites_id):
     if singlefavorite is None:
         raise APIException('El producto no existe', status_code=404)
     return jsonify(singlefavorite.serialize()), 200
-
 # #agregando productos a favoritos
 @api.route("/costumer/<int:costumer_id>/favorites/product", methods=["POST"])
 def add_favorites(costumer_id):
@@ -169,8 +148,6 @@ def add_favorites(costumer_id):
         return jsonify("Producto añadido"), 200
     else:
         return jsonify("Este producto ya existe"), 400
-
-
 # #eliminando productos de favoritos
 @api.route("/costumer/<int:costumer_id>/favorites", methods=["DELETE"])
 def del_favorites(costumer_id):
@@ -181,15 +158,13 @@ def del_favorites(costumer_id):
     db.session.delete(favorites)
     db.session.commit()
     return jsonify("El producto ha sido eliminado"), 200
-
-    #obtener info de customer
+#obtener info de customer
 @api.route('/register', methods=['GET'])
 def handle_costomer():
     allcostumer = Costumer.query.all()
     print(allcostumer)
     results = list(map(lambda item: item.serialize(),allcostumer))
     print(results)
-
     return jsonify(results), 200
 
 #obtener info category todos
@@ -224,3 +199,11 @@ def get_info_product(product_id):
     
     product = Product.query.filter_by(id=product_id).first()
     return jsonify(product.serialize()), 200
+
+#obteniendo info de todos los productos
+@api.route('/products', methods=['GET'])
+def handle_products():
+    allproducts = Product.query.all()
+    results = list(map(lambda item: item.serialize(),allproducts))
+    
+    return jsonify(results), 200

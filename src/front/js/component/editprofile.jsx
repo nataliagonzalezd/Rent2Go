@@ -312,6 +312,10 @@ export const EditProfile = () => {
                   type="text"
                   placeholder=""
                   className="email text-input"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                 />
                 <div className="input-icon envelope-icon-newsletter">
                   <span className="fontawesome-envelope scnd-font-color"></span>
@@ -321,6 +325,10 @@ export const EditProfile = () => {
                   type="text"
                   placeholder=""
                   className="email text-input"
+                  value={lastName}
+                  onChange={(e) => {
+                    setLastName(e.target.value);
+                  }}
                 />
                 <div className="input-icon envelope-icon-newsletter">
                   <span className="fontawesome-envelope scnd-font-color"></span>
@@ -330,6 +338,10 @@ export const EditProfile = () => {
                   type="text"
                   placeholder=""
                   className="email text-input"
+                  value={address}
+                  onChange={(e) => {
+                    setAddress(e.target.value);
+                  }}
                 />
                 <div className="input-icon envelope-icon-newsletter">
                   <span className="fontawesome-envelope scnd-font-color"></span>
@@ -339,6 +351,11 @@ export const EditProfile = () => {
                   type="text"
                   placeholder=""
                   className="email text-input"
+                  type="text"
+                  value={rol}
+                  onChange={(e) => {
+                    setRol(e.target.value);
+                  }}
                 />
                 <div className="input-icon envelope-icon-newsletter">
                   <span className="fontawesome-envelope scnd-font-color"></span>
@@ -352,11 +369,11 @@ export const EditProfile = () => {
                 <div className="input-icon envelope-icon-newsletter">
                   <span className="fontawesome-envelope scnd-font-color"></span>
                 </div>
+                <button className="subscribe button" href="#21" type="submit">
+                  Guardar Cambios
+                </button>
               </form>
             </div>
-            <a className="subscribe button" href="#21">
-              Guardar Cambios
-            </a>
           </div>
         </div>
       </div>
