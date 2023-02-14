@@ -2,16 +2,13 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
   function handleLogout() {
     actions.logout();
     navigate("/login");
   }
-
   return (
     <>
       <div className="bg-white border-bottom border-dark">
@@ -28,11 +25,10 @@ export const Navbar = () => {
             <input
               className="rounded-pill form-control w-50 mx-auto bg-light"
               type="search"
-              placeholder="🔎Search"
+              placeholder=":lupa_derecha:Search"
               aria-label="Search"
             ></input>
           </div>
-
           <div className="d-flex justify-content-start">
             <ul className="nav grid gap-5">
               <li className="nav-item dropdown">
@@ -123,7 +119,6 @@ export const Navbar = () => {
                   Marcas
                 </a>
               </li>
-
               <li className="nav-item">
                 <a className="nav-link text-black" href="">
                   Historial
@@ -144,7 +139,7 @@ export const Navbar = () => {
                   aria-current="page"
                   href="/register"
                 >
-                  👥 Register
+                  :siluetas_de_bustos: Register
                 </a>
               </li>
               <li className="nav-item">
@@ -153,7 +148,7 @@ export const Navbar = () => {
                   aria-current="page"
                   href="/login"
                 >
-                  👥 Login
+                  :siluetas_de_bustos: Login
                 </a>
               </li>
               {store.auth === true ? (
@@ -167,7 +162,7 @@ export const Navbar = () => {
                   aria-current="page"
                   href="viewcart"
                 >
-                  🛒 Carrito
+                  :carrito_de_compras: Carrito
                 </a>
               </li>
             </ul>
