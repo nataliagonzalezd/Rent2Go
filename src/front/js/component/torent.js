@@ -17,8 +17,6 @@ export const ToRent = () => {
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  // const [products, setProducts] = useState([]);
-  // const [productServer, setProductServer] = useState([]);
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -50,60 +48,6 @@ export const ToRent = () => {
     setDescription("");
     setPrice("");
   }
-
-  // const handleClick = () => {
-  //   if (productName.length === 0) {
-  //     alert("Debe ingresar un producto");
-  //   } else {
-  //     setProducts([
-  //       ...products,
-  //       {
-  //         id: 4,
-  //         name: productName,
-  //         sku: 122,
-  //         description: "bici GT rodado 32",
-  //         image: "bici.jpg",
-  //         price: 233,
-  //         costumer_id: null,
-  //         category_id: null,
-  //       },
-  //     ]);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getProducts();
-  //   uptdateProducts();
-  // }, [products]);
-
-  // function getProducts() {
-  //   fetch(
-  //     `https://3001-nataliagonzalez-rent2go-zy0w7ts8dbi.ws-us85.gitpod.io/products`,
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => setProductServer(data));
-  // }
-
-  // function uptdateProducts() {
-  //   fetch(
-  //     `https://3001-nataliagonzalez-rent2go-zy0w7ts8dbi.ws-us85.gitpod.io/products`,
-  //     {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(products),
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(productServer));
-  // }
 
   return (
     <div className="abs-center">

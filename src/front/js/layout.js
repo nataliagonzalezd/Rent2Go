@@ -15,6 +15,8 @@ import { Login } from "./component/login.js";
 import { Register } from "./component/register";
 import { ToRent } from "./component/torent";
 import CatalogoVista from "./pages/catalogoVista";
+import { Profile } from "./component/profile.jsx";
+import { EditProfile } from "./component/editprofile.jsx";
 
 //create your first component
 const Layout = () => {
@@ -29,6 +31,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<CatalogoVista />} path="/catalogoVista" />
+            <Route element={<Profile />} path="/profile" />
             <Route element={<Register />} path="/register" />
             <Route element={<ToRent />} path="/torent" />
             <Route element={<ViewCart />} path="/viewCart" />
@@ -41,6 +44,7 @@ const Layout = () => {
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1> Not found! </h1>} />
+            <Route element={<EditProfile />} path="/editprofile" />
           </Routes>{" "}
           <Footer />
         </ScrollToTop>{" "}
