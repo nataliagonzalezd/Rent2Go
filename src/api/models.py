@@ -12,6 +12,7 @@ class Costumer(db.Model):
     address = db.Column(db.String(200), unique=False, nullable=True)
     role = db.Column(db.String(80), unique=False, nullable=True)
     phone = db.Column(db.String(80), unique=False, nullable=True)
+    image = db.Column(db.String(120), unique=False, nullable=False)
     favorites = db.relationship('Favorites', backref='costumer', lazy=True)
     product = db.relationship('Product', backref='costumer', lazy=True)
     order = db.relationship('Order', backref='costumer', lazy=True)
@@ -27,6 +28,7 @@ class Costumer(db.Model):
             "email": self.email,
             "name": self.name,
             "lastName": self.lastName,
+            "image": self.image,
             "username": self.username,
             "address": self.address,
             "role": self.role,
