@@ -2,8 +2,8 @@ import React, { Component, useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext.js";
 import "../../styles/editprofile.css";
 
-export const EditProfile = () => {
-  const { actions } = useContext(Context);
+export const EditProfile = (props) => {
+  const { actions, store } = useContext(Context);
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -21,6 +21,10 @@ export const EditProfile = () => {
     setRol("");
     setPhone("");
   }
+
+  useEffect(() => {
+    actions.getProfile();
+  }, []);
 
   return (
     <>
@@ -177,10 +181,15 @@ export const EditProfile = () => {
                 src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg"
               />
             </div>
-            <h1 className="user-name">Anne Hathaway</h1>
+            <h1 className="user-name">
+              {props.name}
+              {props.lastName}
+            </h1>
             <div className="profile-description">
               <p className="scnd-font-color">
-                Lorem ipsum dolor sit amet consectetuer adipiscing
+                {props.phone}
+                {props.image}
+                {props.address}
               </p>
             </div>
           </div>
@@ -351,7 +360,6 @@ export const EditProfile = () => {
                   type="text"
                   placeholder=""
                   className="email text-input"
-                  type="text"
                   value={rol}
                   onChange={(e) => {
                     setRol(e.target.value);
@@ -365,6 +373,10 @@ export const EditProfile = () => {
                   type="text"
                   placeholder=""
                   className="email text-input"
+                  value={phone}
+                  onChange={(e) => {
+                    setRol(e.target.value);
+                  }}
                 />
                 <div className="input-icon envelope-icon-newsletter">
                   <span className="fontawesome-envelope scnd-font-color"></span>
