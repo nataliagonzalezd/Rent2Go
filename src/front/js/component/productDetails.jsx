@@ -2,24 +2,16 @@ import React from "react";
 import { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 
-
-
-
 const ProductDetails = function (props) {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getProductsDetails()
-  }, [])
+    actions.getProductsDetails();
+  }, []);
 
-
-
-
-  console.log(store.products[0])
-
+  console.log(store.products[0]);
 
   return (
-
     <>
       {/* Detalles del producto */}
       <div className="card mx-1 my-5">
@@ -103,7 +95,10 @@ const ProductDetails = function (props) {
                   <input type="date" className="form-control" id="desde" />
                 </div>
                 <div className="col-md-5 text-start">
-                  <label htmlFor="hasta" className="form-label text-start fw-bold">
+                  <label
+                    htmlFor="hasta"
+                    className="form-label text-start fw-bold"
+                  >
                     Hasta:
                   </label>
                   <input type="date" className="form-control" id="hasta" />
@@ -170,9 +165,7 @@ const ProductDetails = function (props) {
               aria-labelledby="panelsStayOpen-headingOne"
             >
               <div className="accordion-body text-start">
-                <p>
-                  {props.description}
-                </p>
+                <p>{props.description}</p>
               </div>
             </div>
           </div>
