@@ -127,9 +127,6 @@ const getState = ({
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            email: "kmd@hotmail.com",
-                            username: "jja",
-                            password: "23",
                             name: name,
                             lastName: lastName,
                             address: address,
