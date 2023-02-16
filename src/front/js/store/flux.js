@@ -8,6 +8,7 @@ const getState = ({
             message: null,
             products: [],
             profile: [],
+            productsCart: [],
         },
         actions: {
             getProductsDetails: () => {
@@ -23,14 +24,15 @@ const getState = ({
 
                     .catch((err) => console.error(err));
             },
-            getCart: () => {
-                fetch(process.env.BACKEND_URL + "/api/products", {
+            // --- get cart 
+            getCart: (costumer_id,id) => {
+                fetch(process.env.BACKEND_URL +"/api/costumer/"+costumer_id+"/product/"+id, {
                         method: "GET",
                     })
                     .then((res) => res.json())
                     .then((data) =>
                         setStore({
-                            products: data,
+                            productsCart: data,
                         })
                     )
 

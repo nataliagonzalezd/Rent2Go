@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from 'react-router-dom'
+
 
 const ProductDetails = function (props) {
   const { store, actions } = useContext(Context);
@@ -123,7 +125,9 @@ const ProductDetails = function (props) {
                 <i className="fa fa-solid fa-box mx-1"></i>Stock
               </h6>
               <div>
-                <a
+              <Link to={"/costumer/" + props.costumer_id + "/product/" + props.id} className="btn btn-dark me-5">Anadir al carrito</Link>
+                <button
+                
                   className="btn btn-info container text-light"
                   type="button"
                   href="viewcart"
@@ -132,7 +136,7 @@ const ProductDetails = function (props) {
                 >
                   <i className="fa fa-solid fa-cart-plus mx-1"></i>Anadir al
                   carrito
-                </a>
+                </button>
                 <button
                   className="btn btn-primary container mt-3"
                   type="button"

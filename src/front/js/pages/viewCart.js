@@ -3,10 +3,18 @@ import { Navbar } from "reactstrap";
 import Cart from "../component/cart.js";
 import { Footer } from "../component/footer.js";
 import { Context } from "../store/appContext.js";
+import {Link, useParams} from "react-router-dom";
 
 //create your first component
 const ViewCart = () => {
   const { store, actions } = useContext(Context);
+  const params = useParams();
+
+  useEffect(() => {
+    actions.getCart(params.costumer_id,params.id)
+    console.log(params.costumer_id,params.id)
+}, [])
+
   return (
     <div className="">
       <Navbar />
@@ -24,7 +32,7 @@ const ViewCart = () => {
         </div>
       </div>
       <div className="mx-5">
-        {store.products.map((cadaProducto, index) => (
+        {store.productsCart.map((cadaProducto, index) => (
           <Cart
             key={index}
             id={index + 1}
