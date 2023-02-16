@@ -239,18 +239,25 @@ def edit_profile():
 
 # -----------------------------------------------------------CART--------------------------------- #
 
-#--- 1) OBTENIENDO todos los prodcutos del carrito --- 
-@api.route('/costumer/<int:costumer_id>/cart', methods=['GET'])
-def handle_cart(costumer_id):
-    allproducts = Cart.query.filter_by(costumer_id=costumer_id).all()
-    results = list(map(lambda item: item.serialize(),allproducts))
-    return jsonify(results), 200
+# # --- 1.1) OBTENIENDO todos los prodcutos del carrito --- 
+# # @api.route('/costumer/<int:costumer_id>/cart', methods=['GET'])
+# # def handle_cart(costumer_id):
+# #     allproducts = Cart.query.filter_by(costumer_id=costumer_id).all()
+# #     results = list(map(lambda item: item.serialize(),allproducts))
+# #     return jsonify(results), 200
+
+#--- 1.2) OBTENIENDO todos los prodcutos del carrito --- 
+@api.route('/costumer/<int:costumer_id>/product/<int:id>', methods=['GET'])
+def handle_product_cart(costumer_id,id):
+    productsCart = Product.query.filter_by(costumer_id=costumer_id,id=id).all()
+    results = list(map(lambda item: item.serialize(),productsCart))
+    return jsonify(results), 200    
 
 #--- 2) AGREGANDO un producto al carrito ---
-@api.route("/cart", methods=["POST"])
+@api.route("/costumer/<int:costumer_id>/product/<int:id>", methods=["POST"])
 def add_cart():
     request_body = request.get_json()
-    addcart = Cart.query.filter_by(costumer_id=request_body["costumer_id"], product_id=request_body["product_id"]).first()
+    addcart = Product.query.filter_by(costumer_id=costumer_id, id=id).all()
     if addcart is None:
         newAddCart= Cart(costumer_id=request_body["costumer_id"],product_id=request_body["product_id"],price=request_body["price"],quantity=request_body["quantity"])
         db.session.add(newAddCart)
@@ -259,17 +266,29 @@ def add_cart():
     else:
         return jsonify("Este producto ya existe"), 400
 
+#--- 3.2) Eliminando un producto del carrito ---
+@api.route("/cart", methods=["DELETE"])
+def del_cart():
+    request_body = request.get_json()
+    delcart = Cart.query.filter_by(costumer_id=request_body["costumer_id"], product_id=request_body["product_id"]).first()
+    if delcart is None:
+        raise APIException("No esxiste este producto", status_code=404)
+    db.session.delete(delcart)
+    db.session.commit()
+    return jsonify("El producto fue eliminado de tu carrito"), 200
 
-# #--- 3) Eliminando un producto del carrito ---
+# #--- 3.1) Eliminando un producto del carrito ---
 # @api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])
 # def del_cart(costumer_id):
 #     request_body = request.get_json()
-#     prod = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
-#     if prod is None:
+#     cartt = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
+#     if cartt is None:
 #         raise APIException("No esxiste este producto", status_code=404)
-#     db.session.delete(prod)
+#     db.session.delete(cartt)
 #     db.session.commit()
 #     return jsonify("El producto fue eliminado de tu carrito"), 200
+
+
 
 # #--- 4) Traer un producto del carrito ---
 # @api.route('/costumer/<int:costumer_id>/cart/<int:cart_id>', methods=['GET'])

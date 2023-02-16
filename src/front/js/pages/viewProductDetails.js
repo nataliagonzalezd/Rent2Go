@@ -18,11 +18,12 @@ const ViewProductDetails = () => {
         {store.products.map((cadaProducto, index) => (
           <ProductDetails
             key={index}
-            id={index + 1}
+            id={cadaProducto.id}
             name={cadaProducto.name}
             price={cadaProducto.price}
             description={cadaProducto.description}
             image={cadaProducto.image}
+            costumer_id={cadaProducto.costumer_id}
           />
         ))}
         <div className="card mx-1 my-5">
