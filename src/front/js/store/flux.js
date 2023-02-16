@@ -9,6 +9,7 @@ const getState = ({
             products: [],
             profile: [],
             productsCart: [],
+            productsDetail: [],
         },
         actions: {
             getProductsDetails: () => {
@@ -24,9 +25,21 @@ const getState = ({
 
                     .catch((err) => console.error(err));
             },
+            getProductsDetail: (costumer_id, id) => {
+                fetch(process.env.BACKEND_URL + "/api/costumer/" + costumer_id + "/product/detail/" + id, {
+                        method: "GET",
+                    })
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            productsDetail: data,
+                        })
+                    )
+                    .catch((err) => console.error(err));
+            },
             // --- get cart 
-            getCart: (costumer_id,id) => {
-                fetch(process.env.BACKEND_URL +"/api/costumer/"+costumer_id+"/product/"+id, {
+            getCart: (costumer_id, id) => {
+                fetch(process.env.BACKEND_URL + "/api/costumer/" + costumer_id + "/product/" + id, {
                         method: "GET",
                     })
                     .then((res) => res.json())

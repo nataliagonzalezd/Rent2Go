@@ -35,10 +35,13 @@ const Layout = () => {
             <Route element={<Profile />} path="/profile" />
             <Route element={<Register />} path="/register" />
             <Route element={<ToRent />} path="/torent" />
-            <Route element={<ViewCart />} path="/costumer/:costumer_id/product/:id" />
+            <Route
+              element={<ViewCart />}
+              path="/costumer/:costumer_id/product/:id"
+            />
             <Route
               element={<ViewProductDetails />}
-              path="/viewProductDetails"
+              path="/costumer/:costumer_id/product/detail/:id"
             />
             <Route element={<ViewFavorites />} path="/viewFavorites" />
             <Route element={<Home />} path="/" />

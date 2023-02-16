@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const Cardscatalogo = function (props) {
   const { store, actions } = useContext(Context);
@@ -9,7 +10,6 @@ const Cardscatalogo = function (props) {
     actions.getProductsDetails();
   }, []);
 
-  console.log(store.products[0]);
   return (
     <>
       <div className="row row-cols-md-5 grid gap-3 p-2 d-flex justify-content-center">
@@ -25,14 +25,22 @@ const Cardscatalogo = function (props) {
             <h5 className="card-title d-flex">{props.name}</h5>
             <p className="card-text d-flex">{props.description}</p>
             <h6 className="card-text d-flex"> $ {props.price}</h6>
-            <a
+            <Link
+              to={
+                "/costumer/" + props.costumer_id + "/product/detail/" + props.id
+              }
+              className="btn btn-dark me-5"
+            >
+              Detalle
+            </Link>
+            <button
               className="btn btn-primary d-flex justify-content-center"
               href="viewproductdetails"
               role="button"
             >
               {" "}
               Detalles
-            </a>
+            </button>
           </div>
         </div>
       </div>

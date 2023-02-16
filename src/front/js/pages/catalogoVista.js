@@ -19,11 +19,12 @@ const CatalogoVista = () => {
           {store.products.map((cadaProducto, index) => (
             <Cardscatalogo
               key={index}
-              id={index + 1}
+              id={cadaProducto.id}
               name={cadaProducto.name}
               price={cadaProducto.price}
               description={cadaProducto.description}
               image={cadaProducto.image}
+              costumer_id={cadaProducto.costumer_id}
             />
           ))}
         </div>
