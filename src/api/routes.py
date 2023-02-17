@@ -11,6 +11,7 @@ from flask_jwt_extended import JWTManager
 from flask_mail import Message
 import random
 import string
+import os
 
 api = Blueprint('api', __name__)
 # Handle/serialize errors like a JSON object
@@ -246,25 +247,42 @@ def edit_profile():
 # #     results = list(map(lambda item: item.serialize(),allproducts))
 # #     return jsonify(results), 200
 
-#--- 1.2) OBTENIENDO todos los prodcutos del carrito --- 
+#--- 1.2) OBTENIENDO un producto por id --- 
 @api.route('/costumer/<int:costumer_id>/product/<int:id>', methods=['GET'])
 def handle_product_cart(costumer_id,id):
     productsCart = Product.query.filter_by(costumer_id=costumer_id,id=id).all()
     results = list(map(lambda item: item.serialize(),productsCart))
     return jsonify(results), 200    
 
+
+#--- 1.2) OBTENIENDO un producto por id --- 
+@api.route('/costumer/<int:costumer_id>/product/detail/<int:id>', methods=['GET'])
+def handle_product_detail(costumer_id,id):
+    productsDetail = Product.query.filter_by(costumer_id=costumer_id,id=id).all()
+    results = list(map(lambda item: item.serialize(),productsDetail))
+    return jsonify(results), 200    
+
 #--- 2) AGREGANDO un producto al carrito ---
-@api.route("/costumer/<int:costumer_id>/product/<int:id>", methods=["POST"])
-def add_cart():
-    request_body = request.get_json()
-    addcart = Product.query.filter_by(costumer_id=costumer_id, id=id).all()
+@api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["POST"])
+def add_cart(costumer_id,id):
+    addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=id).first()
     if addcart is None:
-        newAddCart= Cart(costumer_id=request_body["costumer_id"],product_id=request_body["product_id"],price=request_body["price"],quantity=request_body["quantity"])
+        newAddCart= Cart(costumer_id=costumer_id,product_id=id)
         db.session.add(newAddCart)
         db.session.commit()
         return jsonify("Producto añadido"), 200
     else:
         return jsonify("Este producto ya existe"), 400
+
+# #--- 4) Traer un producto del carrito ---
+
+@api.route('/cart/<int:costumer_id>', methods=['GET'])
+def cart(costumer_id):
+    allcart = Cart.query.filter_by(costumer_id=costumer_id).all()
+    print(allcart)
+    results = list(map(lambda item:{**item.serialize(),**item.serialize2()},allcart))
+    print(results)
+    return jsonify(results), 200
 
 #--- 3.2) Eliminando un producto del carrito ---
 @api.route("/cart", methods=["DELETE"])
@@ -287,16 +305,6 @@ def del_cart():
 #     db.session.delete(cartt)
 #     db.session.commit()
 #     return jsonify("El producto fue eliminado de tu carrito"), 200
-
-
-
-# #--- 4) Traer un producto del carrito ---
-# @api.route('/costumer/<int:costumer_id>/cart/<int:cart_id>', methods=['GET'])
-# def single_product(costumer_id, cart_id):
-#     singleProduct = Cart.query.filter_by(costumer_id=costumer_id, id=cart_id).first()
-#     if singleProduct is None:
-#         raise APIException('Este producto no existe', status_code=404)
-#     return jsonify(singleProduct.serialize()), 200
 
 
 

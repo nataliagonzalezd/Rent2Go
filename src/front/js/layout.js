@@ -17,7 +17,6 @@ import { Register } from "./component/register";
 import { ToRent } from "./component/torent";
 import CatalogoVista from "./pages/catalogoVista";
 import { Profile } from "./component/profile.jsx";
-import ViewEditProfile from "./pages/viewEditProfile.jsx";
 
 //create your first component
 const Layout = () => {
@@ -35,10 +34,13 @@ const Layout = () => {
             <Route element={<Profile />} path="/profile" />
             <Route element={<Register />} path="/register" />
             <Route element={<ToRent />} path="/torent" />
-            <Route element={<ViewCart />} path="/costumer/:costumer_id/product/:id" />
+            <Route
+              element={<ViewCart />}
+              path="/costumer/:costumer_id/product/:id"
+            />
             <Route
               element={<ViewProductDetails />}
-              path="/viewProductDetails"
+              path="/costumer/:costumer_id/product/detail/:id"
             />
             <Route element={<ViewFavorites />} path="/viewFavorites" />
             <Route element={<Home />} path="/" />
@@ -46,7 +48,6 @@ const Layout = () => {
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1> Not found! </h1>} />
-            <Route element={<ViewEditProfile />} path="/editprofile" />
           </Routes>{" "}
           <Footer />
         </ScrollToTop>{" "}

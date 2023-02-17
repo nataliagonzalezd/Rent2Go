@@ -64,7 +64,9 @@ export const Register = () => {
     <Navigate to="/" />
   ) : (
     <>
-      <div className={`container${showSignUp ? " right-panel-active" : ""}`}>
+      <div
+        className={`container m-form${showSignUp ? " right-panel-active" : ""}`}
+      >
         <div
           className={`container__form container--signup${
             showSignUp ? "" : " hidden"

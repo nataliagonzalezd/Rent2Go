@@ -183,8 +183,8 @@ class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
-    quantity = db.Column(db.Integer, unique=False, nullable=False)
-    price = db.Column(db.Integer, unique=False, nullable=False)
+    quantity = db.Column(db.Integer, unique=False, nullable=True)
+    price = db.Column(db.Integer, unique=False, nullable=True)
     
 
 
@@ -198,4 +198,11 @@ class Cart(db.Model):
             "product_id": self.product_id,
             "quantity": self.quantity,
             "price": self.price           
+        }
+
+    def serialize2(self):
+        product = Product.query.filter_by(id=self.product_id).first()
+        print(product.serialize())
+        return {    
+            "productinfo":product.serialize()
         }

@@ -39,8 +39,6 @@ export const ToRent = () => {
     setLoading(false);
   };
 
-  console.log(image);
-
   function datas(e) {
     e.preventDefault();
     actions.addUser(productName, description, price, image);

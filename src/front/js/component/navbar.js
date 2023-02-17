@@ -25,7 +25,7 @@ export const Navbar = () => {
             <input
               className="rounded-pill form-control w-50 mx-auto bg-light"
               type="search"
-              placeholder=":lupa_derecha:Search"
+              placeholder="Search"
               aria-label="Search"
             ></input>
           </div>
@@ -139,7 +139,7 @@ export const Navbar = () => {
                   aria-current="page"
                   href="/register"
                 >
-                  :siluetas_de_bustos: Register
+                  Register
                 </a>
               </li>
               <li className="nav-item">
@@ -148,7 +148,7 @@ export const Navbar = () => {
                   aria-current="page"
                   href="/login"
                 >
-                  :siluetas_de_bustos: Login
+                  Login
                 </a>
               </li>
               {store.auth === true ? (
@@ -162,7 +162,7 @@ export const Navbar = () => {
                   aria-current="page"
                   href="viewcart"
                 >
-                  :carrito_de_compras: Carrito
+                  Carrito
                 </a>
               </li>
             </ul>

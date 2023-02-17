@@ -9,6 +9,8 @@ const getState = ({
             products: [],
             profile: [],
             productsCart: [],
+            productsDetail: [],
+            cart: [],
         },
         actions: {
             getProductsDetails: () => {
@@ -24,20 +26,32 @@ const getState = ({
 
                     .catch((err) => console.error(err));
             },
-            // --- get cart 
-            getCart: (costumer_id,id) => {
-                fetch(process.env.BACKEND_URL +"/api/costumer/"+costumer_id+"/product/"+id, {
+            getProductsDetail: (costumer_id, id) => {
+                fetch(process.env.BACKEND_URL + "/api/costumer/" + costumer_id + "/product/detail/" + id, {
                         method: "GET",
                     })
                     .then((res) => res.json())
                     .then((data) =>
                         setStore({
-                            productsCart: data,
+                            productsDetail: data,
                         })
                     )
-
                     .catch((err) => console.error(err));
             },
+            // --- get cart 
+            // getCart: (costumer_id, id) => {
+            //     fetch(process.env.BACKEND_URL + "/api/costumer/" + costumer_id + "/product/" + id, {
+            //             method: "GET",
+            //         })
+            //         .then((res) => res.json())
+            //         .then((data) =>
+            //             setStore({
+            //                 productsCart: data,
+            //             })
+            //         )
+
+            //         .catch((err) => console.error(err));
+            // },
             register: (email, username, password) => {
                 fetch(
                         process.env.BACKEND_URL + "/api/register", {
@@ -121,6 +135,12 @@ const getState = ({
                     })
                     .then((response) => response.json())
                     .then((data) => console.log(data));
+            },
+            addCart: (costumer_id, id) => {
+                fetch(process.env.BACKEND_URL + "api/costumer/" + costumer_id + "/cart/" + id)
+                    .then((res) => res.json())
+                    .then((data) => console.log(data))
+                    .catch((err) => console.error(err));
             },
             addInfo: (name, lastName, address, role, phone, image) => {
                 fetch(process.env.BACKEND_URL + "/api/editprofile", {

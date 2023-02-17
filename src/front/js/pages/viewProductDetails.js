@@ -10,12 +10,18 @@ import { useParams } from "react-router-dom";
 //create your first component
 const ViewProductDetails = () => {
   const { store, actions } = useContext(Context);
+  const params = useParams();
+
+  useEffect(() => {
+    actions.getProductsDetail(params.costumer_id, params.id);
+    console.log(store.productsDetail);
+  }, []);
 
   return (
     <div>
       <Navbar />
       <div className="mx-5">
-        {store.products.map((cadaProducto, index) => (
+        {store.productsDetail.map((cadaProducto, index) => (
           <ProductDetails
             key={index}
             id={cadaProducto.id}
