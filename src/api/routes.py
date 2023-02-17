@@ -77,6 +77,15 @@ def delete_product(costumer_id,id):
 
 # ----------------------------------------------------------- Productos--------------------------------- #
 
+
+
+#--- OBTENIENDO un producto por id --- 
+@api.route('/costumer/<int:costumer_id>/product/detail/<int:id>', methods=['GET'])
+def handle_product_detail(costumer_id,id):
+    productsDetail = Product.query.filter_by(costumer_id=costumer_id,id=id).all()
+    results = list(map(lambda item: item.serialize(),productsDetail))
+    return jsonify(results), 200   
+
 #--- agregando post de product ---
 @api.route('/product', methods=['POST'])
 def add_new_product():
@@ -238,31 +247,9 @@ def edit_profile():
     db.session.commit()
     return jsonify({"msg":"Datos de profile obtenidos de forma satisfactoria"}),200
 
-# -----------------------------------------------------------CART--------------------------------- #
+# -----------------------------------------------------------CART--------------------------------- # 
 
-# # --- 1.1) OBTENIENDO todos los prodcutos del carrito --- 
-# # @api.route('/costumer/<int:costumer_id>/cart', methods=['GET'])
-# # def handle_cart(costumer_id):
-# #     allproducts = Cart.query.filter_by(costumer_id=costumer_id).all()
-# #     results = list(map(lambda item: item.serialize(),allproducts))
-# #     return jsonify(results), 200
-
-#--- 1.2) OBTENIENDO un producto por id --- 
-@api.route('/costumer/<int:costumer_id>/product/<int:id>', methods=['GET'])
-def handle_product_cart(costumer_id,id):
-    productsCart = Product.query.filter_by(costumer_id=costumer_id,id=id).all()
-    results = list(map(lambda item: item.serialize(),productsCart))
-    return jsonify(results), 200    
-
-
-#--- 1.2) OBTENIENDO un producto por id --- 
-@api.route('/costumer/<int:costumer_id>/product/detail/<int:id>', methods=['GET'])
-def handle_product_detail(costumer_id,id):
-    productsDetail = Product.query.filter_by(costumer_id=costumer_id,id=id).all()
-    results = list(map(lambda item: item.serialize(),productsDetail))
-    return jsonify(results), 200    
-
-#--- 2) AGREGANDO un producto al carrito ---
+#---  AGREGANDO un producto al carrito ---
 @api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["POST"])
 def add_cart(costumer_id,id):
     addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=id).first()
@@ -276,7 +263,7 @@ def add_cart(costumer_id,id):
     else:
         return jsonify("Este producto ya existe"), 400
 
-# #--- 4) Traer un producto del carrito ---
+# #---  Traer un producto del carrito ---
 
 @api.route('/cart/<int:costumer_id>', methods=['GET'])
 def cart(costumer_id):
@@ -286,7 +273,7 @@ def cart(costumer_id):
     print(results)
     return jsonify(results), 200
 
-#--- 3.2) Eliminando un producto del carrito ---
+#---  Eliminando un producto del carrito ---
 @api.route("/cart", methods=["DELETE"])
 def del_cart():
     request_body = request.get_json()
