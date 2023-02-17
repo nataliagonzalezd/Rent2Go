@@ -5,8 +5,6 @@ import { Context } from "../store/appContext";
 const Cart = function (props) {
   const { store, actions } = useContext(Context);
 
-  console.log(store.products[0]);
-
   return (
     <>
       <div>
@@ -42,7 +40,7 @@ const Cart = function (props) {
                       <div className="ui-quantity-selector__container">
                         <input
                           type="submit"
-                          value="-"
+                          defaultValue="-"
                           className="cu-button-reset ui-quantity-selector__button"
                           style={{
                             width: 30,
@@ -50,7 +48,7 @@ const Cart = function (props) {
                         />{" "}
                         <input
                           type="tel"
-                          value="1"
+                          defaultValue="1"
                           className="u-button-reset ui-quantity-selector__input"
                           style={{
                             width: 30,
@@ -58,7 +56,7 @@ const Cart = function (props) {
                         />{" "}
                         <input
                           type="submit"
-                          value="+"
+                          defaultValue="+"
                           className="cu-button-reset ui-quantity-selector__button"
                           style={{
                             width: 30,
