@@ -31,16 +31,8 @@ const Cardscatalogo = function (props) {
               }
               className="btn btn-dark me-5"
             >
-              Detalle
-            </Link>
-            <button
-              className="btn btn-primary d-flex justify-content-center"
-              href="viewproductdetails"
-              role="button"
-            >
-              {" "}
               Detalles
-            </button>
+            </Link>
           </div>
         </div>
       </div>

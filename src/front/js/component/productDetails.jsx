@@ -2,9 +2,18 @@ import React from "react";
 import { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ProductDetails = function (props) {
   const { store, actions } = useContext(Context);
+
+  const params = useParams();
+
+  useEffect(() => {
+    console.log(params.costumer_id, params.id);
+    console.log(store.cart);
+    actions.addCart(params.costumer_id, params.id);
+  }, []);
 
   return (
     <>
@@ -118,27 +127,13 @@ const ProductDetails = function (props) {
                 <i className="fa fa-solid fa-box mx-1"></i>Stock
               </h6>
               <div>
-                <Link
-                  to={"/costumer/" + props.costumer_id + "/product/" + props.id}
-                  className="btn btn-dark me-5"
+                <button
+                  className="btn btn-primary"
+                  onClick={actions.addCart(params.costumer_id, params.id)}
                 >
                   Anadir al carrito
-                </Link>
-                <button
-                  className="btn btn-info container text-light"
-                  type="button"
-                  href="viewcart"
-                  id="enviar"
-                  role="button"
-                >
-                  <i className="fa fa-solid fa-cart-plus mx-1"></i>Anadir al
-                  carrito
                 </button>
-                <button
-                  className="btn btn-primary container mt-3"
-                  type="button"
-                  id="enviar"
-                >
+                <button className="btn btn-primary" type="button" id="enviar">
                   Alquilar ahora
                 </button>
               </div>

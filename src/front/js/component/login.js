@@ -54,7 +54,9 @@ export const Login = () => {
     <Navigate to="/" />
   ) : (
     <>
-      <div className={`container${showSignIn ? "" : " right-panel-active"}`}>
+      <div
+        className={`container m-form${showSignIn ? "" : " right-panel-active"}`}
+      >
         <div
           className={`container__form container--signup${
             showSignIn ? "hidden" : ""

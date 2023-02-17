@@ -263,11 +263,11 @@ def handle_product_detail(costumer_id,id):
     return jsonify(results), 200    
 
 #--- 2) AGREGANDO un producto al carrito ---
-@api.route("/costumer/<int:costumer_id>/cart/<int:product_id>", methods=["POST"])
-def add_cart(costumer_id,product_id):
-    addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=product_id).first()
+@api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["POST"])
+def add_cart(costumer_id,id):
+    addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=id).first()
     if addcart is None:
-        newAddCart= Cart(costumer_id=costumer_id,product_id=product_id)
+        newAddCart= Cart(costumer_id=costumer_id,product_id=id)
         db.session.add(newAddCart)
         db.session.commit()
         return jsonify("Producto añadido"), 200
