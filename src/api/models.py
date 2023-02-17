@@ -185,9 +185,8 @@ class Cart(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
     quantity = db.Column(db.Integer, unique=False, nullable=True)
     price = db.Column(db.Integer, unique=False, nullable=True)
+    status= db.Column(db.Boolean, unique=False, nullable=False)
     
-
-
     def __repr__(self):
         return f'<Cart {self.id}>'
 

@@ -12,7 +12,7 @@ const ProductDetails = function (props) {
   useEffect(() => {
     console.log(params.costumer_id, params.id);
     console.log(store.cart);
-    actions.addCart(params.costumer_id, params.id);
+    // actions.addCart(params.costumer_id, params.id);
   }, []);
 
   return (
@@ -127,17 +127,17 @@ const ProductDetails = function (props) {
                 <i className="fa fa-solid fa-box mx-1"></i>Stock
               </h6>
               <div>
-                <button
-                  className="btn btn-primary"
-                  onClick={actions.addCart(params.costumer_id, params.id)}
-                >
-                  Anadir al carrito
-                </button>
                 <button className="btn btn-primary" type="button" id="enviar">
                   Alquilar ahora
                 </button>
               </div>
             </form>
+            <button
+              className="btn btn-primary"
+              onClick={() => actions.addCart(params.costumer_id, params.id)}
+            >
+              Anadir al carrito
+            </button>
           </div>
         </div>
         <div className="accordion row g-0" id="accordionPanelsStayOpenExample">
