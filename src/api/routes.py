@@ -267,10 +267,12 @@ def handle_product_detail(costumer_id,id):
 def add_cart(costumer_id,id):
     addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=id).first()
     if addcart is None:
-        newAddCart= Cart(costumer_id=costumer_id,product_id=id)
+        newAddCart= Cart(costumer_id=costumer_id,product_id=id,status=True)
         db.session.add(newAddCart)
         db.session.commit()
-        return jsonify("Producto añadido"), 200
+        activeCart = Cart.query.filter_by(costumer_id=costumer_id, status=True).all()
+        results = list(map(lambda item:{**item.serialize(),**item.serialize2()},activeCart))
+        return jsonify(results), 200
     else:
         return jsonify("Este producto ya existe"), 400
 
