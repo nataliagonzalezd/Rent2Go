@@ -11,8 +11,8 @@ const ViewCart = () => {
   const params = useParams();
 
   useEffect(() => {
-    actions.getCart(params.costumer_id, params.id);
-    console.log(params.costumer_id, params.id);
+    actions.getCart(params.costumer_id);
+    console.log(params.costumer_id);
   }, []);
 
   return (
@@ -35,11 +35,12 @@ const ViewCart = () => {
         {store.productsCart.map((cadaProducto, index) => (
           <Cart
             key={index}
-            id={index + 1}
-            name={cadaProducto.name}
-            price={cadaProducto.price}
-            description={cadaProducto.description}
-            image={cadaProducto.image}
+            id={cadaProducto.productinfo.id}
+            name={cadaProducto.productinfo.name}
+            price={cadaProducto.productinfo.price}
+            description={cadaProducto.productinfo.description}
+            image={cadaProducto.productinfo.image}
+            costumer_id={cadaProducto.productinfo.costumer_id}
           />
         ))}
         {/* <div className="text-center mt-5">

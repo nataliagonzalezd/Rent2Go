@@ -157,13 +157,13 @@ export const Navbar = () => {
                 </button>
               ) : null}
               <li className="nav-item">
-                <a
+                <button
                   className="nav-link active text-black"
                   aria-current="page"
                   href="viewcart"
                 >
                   Carrito
-                </a>
+                </button>
               </li>
             </ul>
           </div>

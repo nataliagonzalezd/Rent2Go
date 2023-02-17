@@ -6,7 +6,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       profile: [],
       productsCart: [],
       productsDetail: [],
-      cart: [],
     },
     actions: {
       getProductsDetails: () => {
@@ -41,20 +40,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           .catch((err) => console.error(err));
       },
-      // --- get cart
-      // getCart: (costumer_id, id) => {
-      //     fetch(process.env.BACKEND_URL + "/api/costumer/" + costumer_id + "/product/" + id, {
-      //             method: "GET",
-      //         })
-      //         .then((res) => res.json())
-      //         .then((data) =>
-      //             setStore({
-      //                 productsCart: data,
-      //             })
-      //         )
-
-      //         .catch((err) => console.error(err));
-      // },
+      getCart: (costumer_id) => {
+        fetch(process.env.BACKEND_URL + "/api/cart/" + costumer_id, {
+          method: "GET",
+        })
+          .then((res) => res.json())
+          .then((data) =>
+            setStore({
+              productsCart: data,
+            })
+          )
+          .catch((err) => console.error(err));
+      },
       register: (email, username, password) => {
         fetch(process.env.BACKEND_URL + "/api/register", {
           method: "POST",
@@ -159,9 +156,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .then((data) => {
             console.log(data);
-            // setStore({
-            //   cart: data,
-            // });
           })
           .catch((err) => console.log(err));
       },

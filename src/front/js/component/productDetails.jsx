@@ -138,6 +138,12 @@ const ProductDetails = function (props) {
             >
               Anadir al carrito
             </button>
+            <Link
+              to={"/cart/" + props.costumer_id}
+              className="btn btn-dark me-5"
+            >
+              Carrito
+            </Link>
           </div>
         </div>
         <div className="accordion row g-0" id="accordionPanelsStayOpenExample">
