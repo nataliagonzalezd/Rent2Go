@@ -89,6 +89,7 @@ class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
     costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=True)
+    status= db.Column(db.Boolean, unique=False, nullable=False)
 
 
 
@@ -100,6 +101,13 @@ class Favorites(db.Model):
             "id": self.id,
             "product_id": self.product_id,
             "costumer_id": self.costumer_id
+        }
+
+    def serialize3(self):
+        product = Product.query.filter_by(id=self.product_id).first()
+        print(product.serialize())
+        return {    
+            "productinfo":product.serialize()
         }
 
 class Related_product(db.Model):

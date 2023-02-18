@@ -144,31 +144,38 @@ def forgotpassword():
 # ----------------------------------------------------------- Favoritos --------------------------------- #
 
 #---  Obteniendo info de todos los favoritos ---
-@api.route('/costumer/<int:costumer_id>/favorites', methods=['GET'])
+@api.route('/favorites/<int:costumer_id>', methods=['GET'])
 def handle_favorites(costumer_id):
     allfavorites = Favorites.query.filter_by(costumer_id=costumer_id).all()
-    results = list(map(lambda item: item.serialize(),allfavorites))
+    results = list(map(lambda item:{**item.serialize(),**item.serialize3()},allfavorites))
     return jsonify(results), 200
 
-#---  Obteniendo un favorito ---
-@api.route('/costumer/<int:costumer_id>/favorites/<int:favorites_id>', methods=['GET'])
-def single_favorite(costumer_id, favorites_id):
-    singlefavorite = Favorites.query.filter_by(costumer_id=costumer_id, id=favorites_id).first()
-    if singlefavorite is None:
-        raise APIException('El producto no existe', status_code=404)
-    return jsonify(singlefavorite.serialize()), 200
+
+# #---  AGREGANDO un producto al carrito ---
+# @api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["POST"])
+# def add_cart(costumer_id,id):
+#     addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=id).first()
+#     if addcart is None:
+#         newAddCart= Cart(costumer_id=costumer_id,product_id=id,status=True)
+#         db.session.add(newAddCart)
+#         db.session.commit()
+#         activeCart = Cart.query.filter_by(costumer_id=costumer_id, status=True).all()
+#         results = list(map(lambda item:{**item.serialize(),**item.serialize2()},activeCart))
+#         return jsonify(results), 200
+#     else:
+#         return jsonify("Este producto ya existe"), 400
 
 #---  agregando productos a favoritos ---
-@api.route("/costumer/<int:costumer_id>/favorites/product", methods=["POST"])
-def add_favorites(costumer_id):
-    request_body = request.get_json()
-    favorites = Favorites.query.filter_by(costumer_id=costumer_id,product_id=request_body["product_id"]).first()
-    if favorites is None:
-        newFav = Favorites(
-            costumer_id=costumer_id, product_id=request_body["product_id"])
+@api.route("/costumer/<int:costumer_id>/favorites/<int:id>", methods=["POST"])
+def add_favorites(costumer_id, id):
+    addfavorites = Favorites.query.filter_by(costumer_id=costumer_id, product_id=id).first()
+    if addfavorites is None:
+        newFav = Favorites(costumer_id=costumer_id,product_id=id,status=True)
         db.session.add(newFav)
         db.session.commit()
-        return jsonify("Producto añadido"), 200
+        activeFav = Favorites.query.filter_by(costumer_id=costumer_id, status=True).all()
+        results = list(map(lambda item:{**item.serialize(),**item.serialize3()},activeFav))
+        return jsonify(results), 200
     else:
         return jsonify("Este producto ya existe"), 400
 
