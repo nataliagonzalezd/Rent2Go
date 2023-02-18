@@ -68,9 +68,18 @@ const ProductDetails = function (props) {
                   <h2>{props.name}</h2>
                 </div>
                 <div className="p-2 flex-shrink-1">
-                  <button className="btn" type="button" id="enviar">
+                  <button className="btn" type="button" id="enviar" onClick={() => actions.addFavorites(params.costumer_id, params.id)}>
                     <i className="fa  fa-ligth fa-heart"></i>
                   </button>
+
+                  {/* <Link
+                    to={
+                      "/costumer/" + props.costumer_id + "/product/detail/" + props.id
+                    }
+                    className="btn"
+                  >
+                    <i className="fa  fa-ligth fa-heart"></i>
+                  </Link> */}
                 </div>
               </div>
               <p className="card-text text-start text-muted my-0">
