@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Footer } from "../component/footer.js";
 import Jumbotroncatalogo from "../component/jumbotroncatalogo.js";
 import Filtroscatalogo from "../component/filtroscatalogo.js";
 import Cardscatalogo from "../component/cardscatalogo.js";
