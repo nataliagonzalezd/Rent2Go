@@ -119,7 +119,7 @@ const getState = ({
                     auth: false,
                 });
             },
-            addUser: (productName, description, price, url) => {
+            addProduct: (productName, description, price, url) => {
                 fetch(process.env.BACKEND_URL + "/api/product", {
                         method: "POST",
                         headers: {
@@ -127,7 +127,6 @@ const getState = ({
                         },
                         body: JSON.stringify({
                             name: productName,
-                            sku: 122,
                             description: description,
                             image: url,
                             price: parseInt(price),
@@ -196,18 +195,18 @@ const getState = ({
                     console.log("Error loading message from backend", error);
                 }
             },
-            getProfile: () => {
-                fetch(process.env.BACKEND_URL + "/api/editprofile", {
-                        method: "GET",
-                    })
-                    .then((res) => res.json())
-                    .then((data) =>
-                        setStore({
-                            profile: data,
-                        })
-                    )
-                    .catch((err) => console.error(err));
-            },
+            // getProfile: () => {
+            //     fetch(process.env.BACKEND_URL + "/api/editprofile", {
+            //             method: "GET",
+            //         })
+            //         .then((res) => res.json())
+            //         .then((data) =>
+            //             setStore({
+            //                 profile: data,
+            //             })
+            //         )
+            //         .catch((err) => console.error(err));
+            // },
             /////////////////////////////// FAVORITOS /////////////////////////////
             getFavorites: (costumer_id) => {
                 fetch(process.env.BACKEND_URL + "/api/favorites/" + costumer_id, {
