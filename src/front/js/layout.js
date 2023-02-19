@@ -14,9 +14,9 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login.js";
 import { Register } from "./component/register";
-import { ToRent } from "./component/torent";
 import CatalogoVista from "./pages/catalogoVista";
 import { Profile } from "./component/profile.jsx";
+import NewProduct from "./component/newProduct.jsx";
 
 //create your first component
 const Layout = () => {
@@ -33,7 +33,7 @@ const Layout = () => {
             <Route element={<CatalogoVista />} path="/catalogoVista" />
             <Route element={<Profile />} path="/profile" />
             <Route element={<Register />} path="/register" />
-            <Route element={<ToRent />} path="/torent" />
+            <Route element={<NewProduct />} path="/newProduct" />
             <Route element={<ViewCart />} path="/cart/:costumer_id" />
             <Route
               element={<ViewProductDetails />}

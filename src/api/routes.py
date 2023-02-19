@@ -93,7 +93,7 @@ def add_new_product():
     print(
         request_body
     )
-    new_product = Product(name=request_body["name"], sku=request_body["sku"],description=request_body["description"], image=request_body["image"],price=request_body["price"],costumer_id=request_body["costumer_id"],category_id=request_body["category_id"])
+    new_product = Product(name=request_body["name"],description=request_body["description"], image=request_body["image"],price=request_body["price"],costumer_id=request_body["costumer_id"],category_id=request_body["category_id"])
     db.session.add(new_product)
     db.session.commit()
     return jsonify({"msg":"Producto creado correctamente"}),200

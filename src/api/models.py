@@ -57,7 +57,6 @@ class Category(db.Model):
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    sku = db.Column(db.Integer, unique=False, nullable=False)
     description = db.Column(db.String(120), unique=False, nullable=False)
     image = db.Column(db.String(120), unique=False, nullable=False)
     price = db.Column(db.Integer, unique=False, nullable=False)
@@ -77,7 +76,6 @@ class Product(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "sku": self.sku,
             "description": self.description,
             "image": self.image,
             "price": self.price,

@@ -125,7 +125,7 @@ export const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-black" href="/torent">
+                <a className="nav-link text-black" href="/newProduct">
                   Subir un producto
                 </a>
               </li>
