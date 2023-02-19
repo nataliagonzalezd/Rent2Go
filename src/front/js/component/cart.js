@@ -2,8 +2,28 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 
+
 const Cart = function (props) {
   const { store, actions } = useContext(Context);
+
+  let subtotal= props.price
+
+  for (let i = 0; i < store.productsCart.length; i++) {
+    subtotal +=
+      store.productsCart[i].productsInfo.price *
+      store.productsCart[i].amount;
+  }
+  console.log(productsCart);
+  
+  const alquilar = async () => {
+    let total = subtotal * 1.22;
+    console.log(total);
+    await actions.pagoMercadoPago(total);
+    let direccion = await store.mercadoPago.init_point;
+    // console.log(direccion);
+    window.location.replace(direccion);
+  };
+  
 
   return (
     <>
@@ -103,9 +123,10 @@ const Cart = function (props) {
               </div>
               <div className="col-md-12">
                 <div className="card-body">
-                  <a href="#" className="btn btn-primary">
-                    Alquilar
-                  </a>
+                <button type="button" className="btn btn-sm rounded-1 m-3 px-3"
+                  onClick={alquilar}> 
+                  Alquilar 
+                </button>
                 </div>
               </div>
             </div>

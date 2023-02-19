@@ -15,6 +15,8 @@ const ViewCart = () => {
     console.log(params.costumer_id);
   }, []);
 
+// for (let i =0;i < store.products_in_cart.lenght; i++ )
+
   return (
     <div className="">
       <Navbar />
@@ -43,6 +45,7 @@ const ViewCart = () => {
             costumer_id={cadaProducto.productinfo.costumer_id}
           />
         ))}
+        
         {/* <div className="text-center mt-5">
           <div >
             <h1>
