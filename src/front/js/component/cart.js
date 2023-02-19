@@ -2,28 +2,8 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 
-
 const Cart = function (props) {
   const { store, actions } = useContext(Context);
-
-  let subtotal= props.price
-
-  for (let i = 0; i < store.productsCart.length; i++) {
-    subtotal +=
-      store.productsCart[i].productsInfo.price *
-      store.productsCart[i].amount;
-  }
-  console.log(productsCart);
-  
-  const alquilar = async () => {
-    let total = subtotal * 1.22;
-    console.log(total);
-    await actions.pagoMercadoPago(total);
-    let direccion = await store.mercadoPago.init_point;
-    // console.log(direccion);
-    window.location.replace(direccion);
-  };
-  
 
   return (
     <>
@@ -101,32 +81,10 @@ const Cart = function (props) {
                 </div>{" "}
               </div>{" "}
             </div>
-
-            <div className="col-md-4">
-              <div className="card mb-3">
-                <div className="row g-0">
-                  <div className="col-md-6">
-                    <div className="card-body">
-                      <h5 className="card-title">Productos en el carrito</h5>
-                      <p className="card-text">ahorro aplicado</p>
-                      <h1 className="card-title"> TOTAL</h1>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="card-body">
-                      <h5 className="card-title"> $ 149</h5>
-                      <p className="card-text">$ -25</p>
-                      <h4 className="card-title">$ {props.price}</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12">
+            <div>
+              <div className="col-md-6">
                 <div className="card-body">
-                <button type="button" className="btn btn-sm rounded-1 m-3 px-3"
-                  onClick={alquilar}> 
-                  Alquilar 
-                </button>
+                  <h4 className="card-title">$ {props.price}</h4>
                 </div>
               </div>
             </div>

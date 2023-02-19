@@ -57,14 +57,14 @@ def serve_any_other_file(path):
 @api.route("/preference", methods=["POST"])
 def preference():
     body = json.loads(request.data)
-    # total = body["total"]  ARREEEEGLAAARRR!!!
+    total = body["total"]  
     # Crea un ítem en la preferencia
     preference_data = {
         "items": [
             {
                 "title": "Rent2Go",
                 "quantity": 1,
-                "unit_price": 70,
+                "unit_price":total,
             }
         ],
         "payer":{
