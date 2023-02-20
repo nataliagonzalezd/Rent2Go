@@ -3,6 +3,7 @@ import { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ProductDetails = function (props) {
   const { store, actions } = useContext(Context);
@@ -14,6 +15,16 @@ const ProductDetails = function (props) {
     console.log(store.cart);
     // actions.addCart(params.costumer_id, params.id);
   }, []);
+
+  function cartAdded() {
+      Swal.fire({
+        icon: "success",
+        title: "Añadido al carrito ",
+        confirmButtonColor: "#2e2c3c",
+      }); 
+    }
+
+
 
   return (
     <>
@@ -143,7 +154,10 @@ const ProductDetails = function (props) {
             </form>
             <button
               className="btn btn-primary"
-              onClick={() => actions.addCart(params.costumer_id, params.id)}
+              onClick={() =>{const funcion1=  actions.addCart(params.costumer_id, params.id);
+              const funcion2=cartAdded();
+            funcion1();
+          funcion2();}}
             >
               Anadir al carrito
             </button>

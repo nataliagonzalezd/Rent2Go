@@ -3,6 +3,7 @@ import { Context } from "../store/appContext.js";
 import { Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import "../../styles/register.css";
+import Swal from "sweetalert2";
 
 export const Login = () => {
   const [showSignIn, setShowSignIn] = useState(true);
@@ -17,6 +18,13 @@ export const Login = () => {
 
   const { store, actions } = useContext(Context);
 
+  function recupContra() {
+    Swal.fire({
+      icon: "success",
+      title: "Hemos enviado un correo de recuperacion.",
+      confirmButtonColor: "#2e2c3c",
+    }); 
+  }
   const validate = (values) => {
     const errors = {};
 
@@ -33,6 +41,8 @@ export const Login = () => {
     ) {
       errors.email = "Por favor ingrese una direccion de correo valida";
     }
+
+
 
     return errors;
   };
@@ -113,7 +123,7 @@ export const Login = () => {
             {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}
-            <a href="/forgotpassword" className="link">
+            <a  className="link" onClick={recupContra}>
               Olvidaste tu contraseña?
             </a>
             <button className="btn" type="submit">
