@@ -71,9 +71,9 @@ def preference():
             "email":"test_user_17805074@testuser.com"
         },
         "back_urls": {
-            "success": "https://3000-nataliagonzalez-rent2go-eljt57zm1fl.ws-us87.gitpod.io",
-            "failure": "https://3000-nataliagonzalez-rent2go-eljt57zm1fl.ws-us87.gitpod.io",
-            "pending": "https://3000-nataliagonzalez-rent2go-eljt57zm1fl.ws-us87.gitpod.io"
+            "success": "https://3000-nataliagonzalez-rent2go-5s7yw0m3e7s.ws-us87.gitpod.io",
+            "failure": "https://3000-nataliagonzalez-rent2go-5s7yw0m3e7s.ws-us87.gitpod.io",
+            "pending": "https://3000-nataliagonzalez-rent2go-5s7yw0m3e7s.ws-us87.gitpod.io"
 	},
         "auto_return": "approved"
     }
@@ -93,7 +93,7 @@ def login():
     if email != costumer.email or password != costumer.password:
         return jsonify({"msg": "Bad email or password"}), 401
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token, costumer_id=costumer.id) 
 
 # ---  Elimina un producto  ---
 @api.route('/product/<int:costumer_id>/<int:id>', methods=['DELETE'])

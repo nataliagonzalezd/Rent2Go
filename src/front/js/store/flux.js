@@ -110,6 +110,7 @@ const getState = ({
                             alert(data.msg);
                         }
                         localStorage.setItem("token", data.access_token);
+                        localStorage.setItem("costumer_id", data.costumer_id);
                     })
                     .catch((err) => console.log(err));
             },
@@ -249,9 +250,11 @@ const getState = ({
             // MERCADO PAGO ---------------------------------------------
             pagoMercadoPago: async (total) => {
                 try {
-                    const response = await axios.post(process.env.BACKEND_URL + "/api/preference", {
-                        total: total,
-                    });
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/preference", {
+                            total: total,
+                        }
+                    );
                     console.log(response.data);
                     setStore({
                         mercadoPago: response.data,
