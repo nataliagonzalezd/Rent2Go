@@ -6,14 +6,32 @@ import { Context } from "../store/appContext.js";
 import { Link, useParams } from "react-router-dom";
 
 //create your first component
-const ViewCart = () => {
+const ViewCart = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
+
+  let subtotal = 0;
+
+  for (let i = 0; i < store.productsCart.length; i++) {
+    subtotal += store.productsCart[i].productinfo.price;
+  }
+  console.log(store.productsCart);
+
+  const alquilar = async () => {
+    let total = subtotal * 1.22;
+    console.log(total);
+    await actions.pagoMercadoPago(total);
+    let direccion = await store.mercadoPago.init_point;
+    // console.log(direccion);
+    window.location.replace(direccion);
+  };
+
 
   useEffect(() => {
     actions.getCart(params.costumer_id);
     console.log(params.costumer_id);
   }, []);
+
 
   return (
     <div className="">
@@ -43,6 +61,35 @@ const ViewCart = () => {
             costumer_id={cadaProducto.productinfo.costumer_id}
           />
         ))}
+        <div className="col-md-4">
+              <div className="card mb-3">
+                <div className="row g-0">
+                  <div className="col-md-6">
+                    <div className="card-body">
+                      <h5 className="card-title">subtotal</h5>
+                      <h5 className="card-title">impuestos</h5>
+                      <h1 className="card-title"> TOTAL</h1>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="card-body">
+                      <h5 className="card-title">{subtotal} </h5>
+                      <h5 className="card-title">{subtotal*0.22} </h5>
+                      <h1 className="card-title"> {subtotal*1.22}</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="card-body">
+                <button type="button" className="btn btn-sm rounded-1 m-3 px-3"
+                  onClick={alquilar}> 
+                  Alquilar 
+                </button>
+                </div>
+              </div>
+            </div>
+        
         {/* <div className="text-center mt-5">
           <div >
             <h1>

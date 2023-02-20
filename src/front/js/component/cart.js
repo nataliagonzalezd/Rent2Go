@@ -81,31 +81,10 @@ const Cart = function (props) {
                 </div>{" "}
               </div>{" "}
             </div>
-
-            <div className="col-md-4">
-              <div className="card mb-3">
-                <div className="row g-0">
-                  <div className="col-md-6">
-                    <div className="card-body">
-                      <h5 className="card-title">Productos en el carrito</h5>
-                      <p className="card-text">ahorro aplicado</p>
-                      <h1 className="card-title"> TOTAL</h1>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="card-body">
-                      <h5 className="card-title"> $ 149</h5>
-                      <p className="card-text">$ -25</p>
-                      <h4 className="card-title">$ {props.price}</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12">
+            <div>
+              <div className="col-md-6">
                 <div className="card-body">
-                  <a href="#" className="btn btn-primary">
-                    Alquilar
-                  </a>
+                  <h4 className="card-title">$ {props.price}</h4>
                 </div>
               </div>
             </div>

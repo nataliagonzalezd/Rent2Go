@@ -1,3 +1,4 @@
+import axios from "axios";
 const getState = ({
     getStore,
     getActions,
@@ -11,6 +12,7 @@ const getState = ({
             productsCart: [],
             productsDetail: [],
             productsFavorites: [],
+            mercadoPago: {},
         },
         actions: {
             getProductsDetails: () => {
@@ -243,6 +245,20 @@ const getState = ({
                         console.log(data);
                     })
                     .catch((err) => console.log(err));
+            },
+            // MERCADO PAGO ---------------------------------------------
+            pagoMercadoPago: async (total) => {
+                try {
+                    const response = await axios.post(process.env.BACKEND_URL + "/api/preference", {
+                        total: total,
+                    });
+                    console.log(response.data);
+                    setStore({
+                        mercadoPago: response.data,
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
             },
             /////////////////////////////////////////////////////////////
         },

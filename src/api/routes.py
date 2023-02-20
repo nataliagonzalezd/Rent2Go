@@ -13,6 +13,12 @@ import random
 import string
 import os
 
+# SDK de Mercado Pago
+import mercadopago
+# Agrega credenciales
+sdk = mercadopago.SDK("APP_USR-2815099995655791-092911-c238fdac299eadc66456257445c5457d-1160950667")
+
+
 api = Blueprint('api', __name__)
 # Handle/serialize errors like a JSON object
 
@@ -46,6 +52,35 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+
+# ----------------------------------------------------------- MERCADO PAGO --------------------------------- #
+@api.route("/preference", methods=["POST"])
+def preference():
+    body = json.loads(request.data)
+    total = body["total"]  
+    # Crea un ítem en la preferencia
+    preference_data = {
+        "items": [
+            {
+                "title": "Rent2Go",
+                "quantity": 1,
+                "unit_price":total,
+            }
+        ],
+        "payer":{
+            "email":"test_user_17805074@testuser.com"
+        },
+        "back_urls": {
+            "success": "https://3000-nataliagonzalez-rent2go-eljt57zm1fl.ws-us87.gitpod.io",
+            "failure": "https://3000-nataliagonzalez-rent2go-eljt57zm1fl.ws-us87.gitpod.io",
+            "pending": "https://3000-nataliagonzalez-rent2go-eljt57zm1fl.ws-us87.gitpod.io"
+	},
+        "auto_return": "approved"
+    }
+
+    preference_response = sdk.preference().create(preference_data)
+    preference = preference_response["response"]
+    return preference, 200
 
 # ----------------------------------------------------------- Login  --------------------------------- #
 
