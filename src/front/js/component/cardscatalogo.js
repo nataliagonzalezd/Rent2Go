@@ -7,7 +7,7 @@ const Cardscatalogo = function (props) {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getProductsDetails();
+    actions.getProductsCategory(props.category_id);
   }, []);
 
   return (
@@ -36,7 +36,7 @@ const Cardscatalogo = function (props) {
           </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         <p>Mostrando 12 de 40 Productos</p>
         <p>
           Pag{" "}
@@ -58,7 +58,7 @@ const Cardscatalogo = function (props) {
             2
           </a>
         </p>
-      </div>
+      </div> */}
     </>
   );
 };

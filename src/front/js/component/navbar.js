@@ -50,7 +50,7 @@ export const Navbar = () => {
                   <li>
                     <a
                       className="dropdown-item text-black"
-                      href="/catalogovista"
+                      href="/category/1/products"
                     >
                       Pintura
                     </a>
@@ -58,7 +58,7 @@ export const Navbar = () => {
                   <li>
                     <a
                       className="dropdown-item text-black"
-                      href="/catalogovista"
+                      href="/category/2/products"
                     >
                       Electronica
                     </a>
@@ -66,7 +66,7 @@ export const Navbar = () => {
                   <li>
                     <a
                       className="dropdown-item text-black"
-                      href="/catalogovista"
+                      href="/category/3/products"
                     >
                       Jardineriaa
                     </a>
@@ -74,7 +74,7 @@ export const Navbar = () => {
                   <li>
                     <a
                       className="dropdown-item text-black"
-                      href="/catalogovista"
+                      href="/category/4/products"
                     >
                       Indumentaria
                     </a>
@@ -82,7 +82,7 @@ export const Navbar = () => {
                   <li>
                     <a
                       className="dropdown-item text-black"
-                      href="/catalogovista"
+                      href="/category/5/products"
                     >
                       Musica
                     </a>
@@ -90,7 +90,7 @@ export const Navbar = () => {
                   <li>
                     <a
                       className="dropdown-item text-black"
-                      href="/catalogovista"
+                      href="/category/6/products"
                     >
                       Lectura
                     </a>
