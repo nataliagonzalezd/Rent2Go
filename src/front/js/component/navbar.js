@@ -166,13 +166,13 @@ export const Navbar = () => {
                 </button>
               </li>
               <li className="nav-item">
-                <button
+                <a
                   className="nav-link active text-black"
                   aria-current="page"
                   href="viewfavorites"
                 >
                   Favoritos
-                </button>
+                </a>
               </li>
             </ul>
           </div>
