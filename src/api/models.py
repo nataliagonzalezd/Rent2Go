@@ -58,7 +58,10 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
     description = db.Column(db.String(120), unique=False, nullable=False)
-    image = db.Column(db.String(120), unique=False, nullable=False)
+    image= db.Column(db.String(300), unique=False, nullable=False)
+    image2= db.Column(db.String(300), unique=False, nullable=True)
+    image3= db.Column(db.String(300), unique=False, nullable=True)
+    image4= db.Column(db.String(300), unique=False, nullable=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
     costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
@@ -78,6 +81,9 @@ class Product(db.Model):
             "name": self.name,
             "description": self.description,
             "image": self.image,
+            "image2": self.image2,
+            "image3": self.image3,
+            "image4": self.image4,
             "price": self.price,
             "costumer_id": self.costumer_id,
             "category_id": self.category_id
