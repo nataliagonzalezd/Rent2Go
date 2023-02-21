@@ -118,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           auth: false,
         });
       },
-      addProduct: (productName, description, price, url) => {
+      addProduct: (productName, description, price, urls, url2, url3, url4) => {
         fetch(process.env.BACKEND_URL + "/api/product", {
           method: "POST",
           headers: {
@@ -127,7 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             name: productName,
             description: description,
-            image: url,
+            images: urls,
             price: parseInt(price),
             costumer_id: 1,
             category_id: 1,

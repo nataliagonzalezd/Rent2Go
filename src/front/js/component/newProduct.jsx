@@ -1,37 +1,24 @@
-import React, { Component, useState, useContext, useCallback } from "react";
+import React, { Component, useState, useContext } from "react";
 import { Context } from "../store/appContext.js";
-import { useDropzone } from "react-dropzone";
 import "../../styles/newProduct.css";
 import "../../styles/uploadImage.css";
 import anime from "animejs";
 import Swal from "sweetalert2";
 
 export const NewProduct = () => {
-  // ---> Funcion onDrop guarda archivos seleccionados
-
-  const onDrop = useCallback((acceptedFiles) => {
-    const newImages = acceptedFiles.map((file) =>
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      })
-    );
-    setImages((prevImages) => [...prevImages, ...newImages]);
-  }, []);
-
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
   const { actions, store } = useContext(Context);
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
+  const [imagesCloudinary, setImagesCloudinary] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState(null);
   console.log(images);
+  console.log(imagesCloudinary[0]);
 
   function productAdded() {
-    if (datas) {
+    if (datas.msg === "Producto creado correctamente") {
       Swal.fire({
         icon: "success",
         title: "Producto creado con éxito",
@@ -61,29 +48,44 @@ export const NewProduct = () => {
 
   function datas(e) {
     e.preventDefault();
-    actions.addProduct(productName, description, price, image);
+    actions.addProduct(productName, description, price, imagesCloudinary);
     setProductName("");
     setDescription("");
     setPrice("");
+    setImages("");
   }
 
   const uploadImage = async (e) => {
-    const files = e.target.files;
+    e.preventDefault();
     const form = new FormData();
-    form.append("file", files[0]);
-    form.append("upload_preset", "cloudy");
-    form.append("timestamp", (Date.now() / 1000) | 0);
-    setLoading(true);
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dxhknbsqr/image/upload",
-      {
-        method: "POST",
-        body: form,
-      }
-    );
-    const file = await res.json();
-    setImage(file.secure_url);
-    setLoading(false);
+    const files = e.target.files;
+    try {
+      const filesArray = Object.values(files);
+      console.log(files);
+      console.log(filesArray);
+      setLoading(true);
+
+      const response = await Promise.all(
+        filesArray.map((file) => {
+          form.append(`file`, file);
+          form.append("upload_preset", "cloudy");
+          return fetch(
+            "https://api.cloudinary.com/v1_1/dxhknbsqr/image/upload",
+            {
+              method: "POST",
+              body: form,
+            }
+          ).then((res) => res.json());
+        })
+      );
+
+      const Urls = response.map((res) => res.secure_url);
+
+      setImagesCloudinary(Urls);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const updateAnimation = (target, offsetValue) => {
@@ -179,21 +181,16 @@ export const NewProduct = () => {
               <label htmlFor="InsertImage" className="mt-5">
                 Insertar Imagenes:
               </label>
-              <label className="form-label" htmlFor="customFile">
-                Portada
-              </label>
-              <input
-                type="file"
-                className="form-control"
-                id="customFile"
-                accept="image/*"
-                title="Portada"
-                onChange={uploadImage}
-              />
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
+              <div>
+                <input
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  multiple
+                  onChange={(e) => uploadImage(e)}
+                />
                 <label className="form-label" htmlFor="customFile">
-                  Insertar +
+                  <i className="fa fa-solid fa-upload"></i>
                 </label>
               </div>
               <button

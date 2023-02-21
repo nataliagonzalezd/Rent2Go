@@ -113,7 +113,6 @@ def delete_product(costumer_id,id):
 # ----------------------------------------------------------- Productos--------------------------------- #
 
 
-
 #--- OBTENIENDO un producto por id --- 
 @api.route('/costumer/<int:costumer_id>/product/detail/<int:id>', methods=['GET'])
 def handle_product_detail(costumer_id,id):
@@ -126,9 +125,9 @@ def handle_product_detail(costumer_id,id):
 def add_new_product():
     request_body = request.json
     print(
-        request_body
+        request_body["images"][0]
     )
-    new_product = Product(name=request_body["name"], description=request_body["description"], image=request_body["image"],price=request_body["price"],costumer_id=request_body["costumer_id"],category_id=request_body["category_id"])
+    new_product = Product(name=request_body["name"], description=request_body["description"],image=request_body["images"][0],image2=request_body["images"][1],image3=request_body["images"][2],image4=request_body["images"][3] ,price=request_body["price"],costumer_id=request_body["costumer_id"],category_id=request_body["category_id"])
     db.session.add(new_product)
     db.session.commit()
     return jsonify({"msg":"Producto creado correctamente"}),200
