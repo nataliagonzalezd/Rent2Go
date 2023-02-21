@@ -2,10 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { Navbar } from "reactstrap";
 import ProductDetails from "../component/productDetails.jsx";
 import RelatedProduct from "../component/relatedProduct.jsx";
-import VendorReviews from "../component/vendorReviews.jsx";
-import { Footer } from "../component/footer.js";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import { Maps } from "../component/maps.jsx";
+import VendorReviews from "../component/vendorReviews.jsx";
+import "leaflet/dist/leaflet.css";
 
 //create your first component
 const ViewProductDetails = () => {
@@ -49,7 +50,9 @@ const ViewProductDetails = () => {
             </div>{" "}
           </div>{" "}
         </div>{" "}
-        <VendorReviews />
+        <div>
+          <VendorReviews />
+        </div>
       </div>{" "}
       {/* <Footer /> */}
     </div>
