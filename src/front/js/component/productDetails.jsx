@@ -16,6 +16,7 @@ const ProductDetails = function (props) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [numDias, setNumDias] = useState(null); //(seteo el numero de dias)
+  const numDiasValue = numDias !== null ? numDias : '';
 
   const start = new Date(startDate);
   const end = new Date(endDate);
@@ -23,6 +24,7 @@ const ProductDetails = function (props) {
   const days = Math.round(Math.abs((end - start) / oneDay));
   const precioProducto = props.price;
   const costoTotal = numDias * precioProducto;
+
   
   const handleDateChange = (date) => {
     if (!startDate || (startDate && endDate)) {
@@ -202,8 +204,9 @@ const ProductDetails = function (props) {
                   <input
                     id="numDias"
                     type="number"
-                    value={numDias}
+                    value={numDiasValue }
                     onChange={handleNumDiasChange}
+                    disabled
                   />
 
                   <p>Costo total de la reserva: {costoTotal}</p>
