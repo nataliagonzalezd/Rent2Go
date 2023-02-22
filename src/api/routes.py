@@ -213,17 +213,29 @@ def add_favorites(costumer_id, id):
     else:
         return jsonify("Este producto ya existe"), 400
 
-#---  eliminando productos de favoritos ---
-@api.route("/costumer/<int:costumer_id>/favorites", methods=["DELETE"])
-def del_favorites(costumer_id):
-    request_body = request.get_json()
-    favorites = Favorites.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
+#---  eliminando un producto de favoritos ---
+@api.route("/costumer/<int:costumer_id>/favorites/<int:id>", methods=["DELETE"])
+def del_favorites(costumer_id, id):
+    favorites = Favorites.query.filter_by(costumer_id=costumer_id).filter_by(product_id=id).first()
     if favorites is None:
-        raise APIException("No hemos podido encontrar este producto", status_code=404)
-    db.session.delete(favorites)
-    db.session.commit()
-    return jsonify("El producto ha sido eliminado"), 200
-
+        return jsonify("No hemos podido encontrar este producto", status_code=404)
+    else:
+        db.session.delete(favorites)
+        db.session.commit()
+        return jsonify("El producto ha sido eliminado"), 200
+    
+#---  eliminando todos los productos de favoritos ---
+@api.route("/costumer/<int:costumer_id>/favorites", methods=["DELETE"])
+def del_all_favorites(costumer_id):
+    delAll = Favorites.query.filter_by(costumer_id=costumer_id).all()
+    print(delAll)
+    if delAll is not None:
+        for o in delAll:
+            db.session.delete(o)
+            db.session.commit()
+        return jsonify("Todos los favoritos han sido eliminados"), 200
+    else:   
+        return jsonify("No hemos podido encontrar este producto", status_code=404) 
 
 # ----------------------------------------------------------- Costumer --------------------------------- #
 
@@ -314,57 +326,29 @@ def cart(costumer_id):
     print(results)
     return jsonify(results), 200
 
-#---  Eliminando un producto del carrito ---
-@api.route("/cart", methods=["DELETE"])
-def del_cart():
-    request_body = request.get_json()
-    delcart = Cart.query.filter_by(costumer_id=request_body["costumer_id"], product_id=request_body["product_id"]).first()
-    if delcart is None:
-        raise APIException("No esxiste este producto", status_code=404)
-    db.session.delete(delcart)
-    db.session.commit()
-    return jsonify("El producto fue eliminado de tu carrito"), 200
-
-# #--- 3.1) Eliminando un producto del carrito ---
-# @api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])
-# def del_cart(costumer_id):
-#     request_body = request.get_json()
-#     cartt = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
-#     if cartt is None:
-#         raise APIException("No esxiste este producto", status_code=404)
-#     db.session.delete(cartt)
-#     db.session.commit()
-#     return jsonify("El producto fue eliminado de tu carrito"), 200
-
-
-
-
-
-# #--- añadiendo productos del carrito --- 
-# @api.route("/costumer/<int:costumer_id>/cart", methods=["POST"])
-# def add_cart(costumer_id):
-#     request_body = request.get_json()
-#     addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
-#     if addcart is None:
-#         newAddCart= Cart(
-#             costumer_id=costumer_id, product_id=request_body["product_id"])
-#         db.session.add(newAddCart)
-#         db.session.commit()
-#         return jsonify("Producto añadido"), 200
-#     else:
-#         return jsonify("Este producto ya existe"), 400
-
-# #--- Eliminando un producto del carrito ---
-# @api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])
-# def del_cart(costumer_id):
-#     request_body = request.get_json()
-#     prod = Cart.query.filter_by(costumer_id=costumer_id, product_id=request_body["product_id"]).first()
-#     if prod is None:
-#         raise APIException("No esxiste este producto", status_code=404)
-#     db.session.delete(prod)
-#     db.session.commit()
-#     return jsonify("El producto fue eliminado de tu carrito"), 200   
-
+#---  eliminando un product de cart ---
+@api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["DELETE"])
+def del_cart(costumer_id, id):
+    cart = Cart.query.filter_by(costumer_id=costumer_id).filter_by(product_id=id).first()
+    if cart is None:
+        return jsonify("No hemos podido encontrar este producto", status_code=404)
+    else:
+        db.session.delete(cart)
+        db.session.commit()
+        return jsonify("El producto ha sido eliminado"), 200
+    
+#---  eliminando todos los productos de cart ---
+@api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])
+def del_all_cart(costumer_id):
+    delAllCart = Cart.query.filter_by(costumer_id=costumer_id).all()
+    print(delAllCart)
+    if delAllCart is not None:
+        for o in delAllCart:
+            db.session.delete(o)
+            db.session.commit()
+        return jsonify("Todos los productos han sido eliminados"), 200
+    else:   
+        return jsonify("No hemos podido encontrar este producto", status_code=404) 
 
 
 
