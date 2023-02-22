@@ -153,11 +153,11 @@ const getState = ({
                         }
                     )
                     .then((response) => {
-                        if (response.status === 200) {
-                            alert("Producto agregado al carrito");
-                        } else if (response.status === 400) {
-                            console.log("Este producto ya existe");
-                        }
+                        // if (response.status === 200) {
+                        //     alert("Producto agregado al carrito");
+                        // } else if (response.status === 400) {
+                        //     console.log("Este producto ya existe");
+                        // }
                         return response.json();
                     })
                     .then((data) => {
@@ -236,11 +236,32 @@ const getState = ({
                         }
                     )
                     .then((response) => {
-                        if (response.status === 200) {
-                            alert("Producto agregado a favoritos");
-                        } else if (response.status === 400) {
-                            console.log("Este producto ya existe");
+                        // if (response.status === 200) {
+                        //     alert("Producto agregado a favoritos");
+                        // } else if (response.status === 400) {
+                        //     console.log("Este producto ya existe");
+                        // }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            delFavorites: (costumer_id, id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/favorites/" +
+                        id, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
                         }
+                    )
+                    .then((response) => {
                         return response.json();
                     })
                     .then((data) => {
@@ -249,9 +270,7 @@ const getState = ({
                     .catch((err) => console.log(err));
             },
             // Precio productos ---------------------------------------------
-            PrecioTotal: async (total) => {
-
-            },
+            PrecioTotal: async (total) => {},
             // MERCADO PAGO ---------------------------------------------
             pagoMercadoPago: async (total) => {
                 try {

@@ -25,7 +25,7 @@ const ProductDetails = function (props) {
   const precioProducto = props.price;
   const costoTotal = numDias * precioProducto;
 
-  
+
   const handleDateChange = (date) => {
     if (!startDate || (startDate && endDate)) {
       setStartDate(date);
@@ -39,7 +39,7 @@ const ProductDetails = function (props) {
       }
     }
   };
-// useEffect para el calendario
+  // useEffect para el calendario
   useEffect(() => {
     setNumDias(days);
     // console.log(startDate,endDate)
@@ -50,7 +50,7 @@ const ProductDetails = function (props) {
   function handleNumDiasChange(event) {
     setNumDias(event.target.value); // Actualizamos el estado de numDias
   }
-// fin calendario --------------- 
+  // fin calendario --------------- 
 
   useEffect(() => {
     console.log(params.costumer_id, params.id);
@@ -66,7 +66,7 @@ const ProductDetails = function (props) {
     });
   }
 
- 
+
   return (
     <>
       {/* Detalles del producto */}
@@ -130,15 +130,6 @@ const ProductDetails = function (props) {
                   >
                     <i className="fa  fa-ligth fa-heart"></i>
                   </button>
-
-                  {/* <Link
-                    to={
-                      "/costumer/" + props.costumer_id + "/product/detail/" + props.id
-                    }
-                    className="btn"
-                  >
-                    <i className="fa  fa-ligth fa-heart"></i>
-                  </Link> */}
                 </div>
               </div>
               <p className="card-text text-start text-muted my-0">
@@ -204,7 +195,7 @@ const ProductDetails = function (props) {
                   <input
                     id="numDias"
                     type="number"
-                    value={numDiasValue }
+                    value={numDiasValue}
                     onChange={handleNumDiasChange}
                     disabled
                   />
