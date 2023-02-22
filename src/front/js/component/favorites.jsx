@@ -1,10 +1,15 @@
 import React from "react";
 import { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { useParams, Navigate } from "react-router-dom";
+
 
 
 const Favorites = function (props) {
     const { store, actions } = useContext(Context)
+    const params = useParams();
+
+
     return (
         <div className="card mx-3 my-3 text-dark">
             <div className="row g-0">
@@ -23,7 +28,17 @@ const Favorites = function (props) {
                     </div>
 
                     <div className="align-text-bottom text-dark">
-                        <a href="" className="text-dark"> <i className="fa fa-solid fa-trash"></i> Eliminar favorito </a>
+
+                        <button
+                            className="btn"
+                            type="button"
+                            id="enviar"
+                            onClick={() =>
+                                actions.delFavorites(params.costumer_id, params.id)
+                            }
+                        >
+                            <i className="fa fa-solid fa-trash"></i> Eliminar
+                        </button>
                     </div>
 
 

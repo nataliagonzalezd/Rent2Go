@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 const Cart = function (props) {
   const { store, actions } = useContext(Context);
 
+
   return (
     <>
       <div>
@@ -70,8 +71,15 @@ const Cart = function (props) {
                     <div className="d-flex align-items-end flex-column">
                       <div className="p-2">
                         {" "}
-                        <button className="btn">
-                          <i className="fa fa-solid fa-trash"> </i>
+                        <button
+                          className="btn"
+                          type="button"
+                          id="enviar"
+                          onClick={() =>
+                            actions.delCart(params.costumer_id, params.id)
+                          }
+                        >
+                          <i className="fa fa-solid fa-trash"></i> Eliminar
                         </button>
                       </div>
                       <div className="mt-auto p-2"> Flex item </div>{" "}
