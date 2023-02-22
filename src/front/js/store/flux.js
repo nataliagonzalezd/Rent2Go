@@ -270,7 +270,6 @@ const getState = ({
             },
 
             /////////////////////////////////////////////////////////////
-
             getProductsCategory: (category_id) => {
                 fetch(
                         process.env.BACKEND_URL +
