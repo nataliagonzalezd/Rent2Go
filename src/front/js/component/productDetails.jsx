@@ -1,14 +1,56 @@
 import React from "react";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ProductDetails = function (props) {
   const { store, actions } = useContext(Context);
 
   const params = useParams();
+
+  // const para el calendario
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [numDias, setNumDias] = useState(null); //(seteo el numero de dias)
+  const numDiasValue = numDias !== null ? numDias : '';
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const oneDay = 24 * 60 * 60 * 1000;
+  const days = Math.round(Math.abs((end - start) / oneDay));
+  const precioProducto = props.price;
+  const costoTotal = numDias * precioProducto;
+
+  
+  const handleDateChange = (date) => {
+    if (!startDate || (startDate && endDate)) {
+      setStartDate(date);
+      setEndDate(null);
+    } else if (startDate && !endDate) {
+      if (date >= startDate) {
+        setEndDate(date);
+      } else {
+        setEndDate(startDate);
+        setStartDate(date);
+      }
+    }
+  };
+// useEffect para el calendario
+  useEffect(() => {
+    setNumDias(days);
+    // console.log(startDate,endDate)
+    console.log(days);
+  }, [days]);
+
+  // Funcion para actualizar el estado de los dias
+  function handleNumDiasChange(event) {
+    setNumDias(event.target.value); // Actualizamos el estado de numDias
+  }
+// fin calendario --------------- 
 
   useEffect(() => {
     console.log(params.costumer_id, params.id);
@@ -17,15 +59,14 @@ const ProductDetails = function (props) {
   }, []);
 
   function cartAdded() {
-      Swal.fire({
-        icon: "success",
-        title: "Añadido al carrito ",
-        confirmButtonColor: "#2e2c3c",
-      }); 
-    }
+    Swal.fire({
+      icon: "success",
+      title: "Añadido al carrito ",
+      confirmButtonColor: "#2e2c3c",
+    });
+  }
 
-
-
+ 
   return (
     <>
       {/* Detalles del producto */}
@@ -79,7 +120,14 @@ const ProductDetails = function (props) {
                   <h2>{props.name}</h2>
                 </div>
                 <div className="p-2 flex-shrink-1">
-                  <button className="btn" type="button" id="enviar" onClick={() => actions.addFavorites(params.costumer_id, params.id)}>
+                  <button
+                    className="btn"
+                    type="button"
+                    id="enviar"
+                    onClick={() =>
+                      actions.addFavorites(params.costumer_id, params.id)
+                    }
+                  >
                     <i className="fa  fa-ligth fa-heart"></i>
                   </button>
 
@@ -110,8 +158,28 @@ const ProductDetails = function (props) {
                 <p className="text-muted">Por dia</p>
               </div>
 
+              {/* Calendario de google  */}
+              <div>
+                <DatePicker
+                  selected={startDate}
+                  onChange={handleDateChange}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate}
+                  placeholderText="Desde"
+                />
+                <DatePicker
+                  selected={endDate}
+                  onChange={handleDateChange}
+                  selectsEnd
+                  startDate={startDate}
+                  endDate={endDate}
+                  minDate={startDate}
+                  placeholderText="Hasta"
+                />
+              </div>
               {/* Calendario seleccion periodo de alquiler */}
-              <div className="row g-3 mb-4 d-flex justi">
+              {/* <div className="row g-3 mb-4 d-flex justi">
                 <div className="col-md-5 text-start">
                   <label htmlFor="desde" className="form-label fw-bold">
                     Desde:
@@ -127,19 +195,21 @@ const ProductDetails = function (props) {
                   </label>
                   <input type="date" className="form-control" id="hasta" />
                 </div>
-              </div>
+              </div> */}
               {/* Seleccion de cantidad */}
               <div className="row row-cols-lg-auto g-3 mb-2">
-                <div className="col-12 d-flex align-items-center">
-                  <h5>Cantidad</h5>
-                </div>
-                <div className="col-12 d-flex align-items-center">
-                  <select className="form-select" id="inlineFormSelectPref">
-                    <option value="0">1 unidad</option>
-                    <option value="1">1 unidad</option>
-                    <option value="2">1 unidad</option>
-                    <option value="3">1 unidad</option>
-                  </select>
+                {/* prueba */}
+                <div>
+                  <label htmlFor="numDias">Número de días:</label>
+                  <input
+                    id="numDias"
+                    type="number"
+                    value={numDiasValue }
+                    onChange={handleNumDiasChange}
+                    disabled
+                  />
+
+                  <p>Costo total de la reserva: {costoTotal}</p>
                 </div>
               </div>
               {/* Stock */}
@@ -154,10 +224,12 @@ const ProductDetails = function (props) {
             </form>
             <button
               className="btn btn-primary"
-              onClick={() =>{const funcion1=  actions.addCart(params.costumer_id, params.id);
-              const funcion2=cartAdded();
-            funcion1();
-          funcion2();}}
+              onClick={() => {
+                const funcion1 = actions.addCart(params.costumer_id, params.id);
+                const funcion2 = cartAdded();
+                funcion1();
+                funcion2();
+              }}
             >
               Anadir al carrito
             </button>
