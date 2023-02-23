@@ -24,7 +24,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               products: data,
             })
           )
-
           .catch((err) => console.error(err));
       },
       getProductsDetail: (costumer_id, id) => {
@@ -56,19 +55,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               orderitem: data,
             })
           )
-          .catch((err) => console.error(err));
-      },
-      getCategory: () => {
-        fetch(process.env.BACKEND_URL + "/api/category/", {
-          method: "GET",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            setStore({
-              category: data,
-            });
-          })
           .catch((err) => console.error(err));
       },
       delProduct: (costumer_id, id) => {
@@ -114,7 +100,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
-
       //////////////////////////////// CARRITO//////////////////////////////////
       getCart: (costumer_id) => {
         fetch(process.env.BACKEND_URL + "/api/cart/" + costumer_id, {
@@ -276,7 +261,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((data) => console.log(data));
       },
-
       addInfo: (name, lastName, address, role, phone, image) => {
         fetch(process.env.BACKEND_URL + "/api/editprofile", {
           method: "POST",
@@ -424,16 +408,16 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
-      updateProduct: (id) => {
+      updateProduct: (id, name, description, price) => {
         fetch(process.env.BACKEND_URL + "/api/product/" + id, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: "name",
-            description: "jaja",
-            price: 89,
+            name: name,
+            description: description,
+            price: price,
           }),
         })
           .then((response) => {
@@ -470,8 +454,20 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           .catch((err) => console.error(err));
       },
+      getCategory: () => {
+        fetch(process.env.BACKEND_URL + "/api/category/", {
+          method: "GET",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setStore({
+              category: data,
+            });
+          })
+          .catch((err) => console.error(err));
+      },
     },
   };
 };
-
 export default getState;

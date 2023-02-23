@@ -16,16 +16,12 @@ import { Login } from "./component/login.js";
 import { Register } from "./component/register";
 import CatalogoVista from "./pages/catalogoVista";
 import MyRent from "./pages/myRent";
-import { Profile } from "./component/profile.jsx";
 import NewProduct from "./component/newProduct.jsx";
-import MyProductsView from "./pages/myproducts.jsx";
+import MyProductsView from "./pages/DashboardViews/dashboardView.jsx";
+import MyDashMenuView from "./pages/DashboardViews/dashMenuView.jsx";
 
-//create your first component
 const Layout = () => {
-  //the basename is used when your project is published in a subdirectory and not in the root of the domain
-  // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
-
   return (
     <div>
       <BrowserRouter basename={basename}>
@@ -37,8 +33,7 @@ const Layout = () => {
               path="/category/:category_id/products"
             />
             <Route element={<MyRent />} path="/order_item/:product_id" />
-            <Route element={<Profile />} path="/profile" />
-            <Route element={<Register />} path="/register" />
+            s <Route element={<Register />} path="/register" />
             <Route element={<NewProduct />} path="/newProduct" />
             <Route element={<ViewCart />} path="/cart" />
             <Route
@@ -46,6 +41,7 @@ const Layout = () => {
               path="/costumer/:costumer_id/product/detail/:id"
             />
             <Route element={<ViewFavorites />} path="/viewFavorites" />
+            <Route element={<MyDashMenuView />} path="/product" />
             <Route element={<MyProductsView />} path="/product/:id" />
             <Route element={<Home />} path="/" />
             <Route element={<Login />} path="/login" />
