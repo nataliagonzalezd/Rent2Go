@@ -25,7 +25,6 @@ const ProductDetails = function (props) {
   const precioProducto = props.price;
   const costoTotal = numDias * precioProducto;
 
-
   const handleDateChange = (date) => {
     if (!startDate || (startDate && endDate)) {
       setStartDate(date);
