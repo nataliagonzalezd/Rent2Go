@@ -123,7 +123,7 @@ const getState = ({
                     )
                     .catch((err) => console.error(err));
             },
-            addCart: (costumer_id, id) => {
+            addCart: (costumer_id, id, quantity) => {
                 fetch(
                         process.env.BACKEND_URL +
                         "/api/costumer/" +
@@ -134,6 +134,9 @@ const getState = ({
                             headers: {
                                 "Content-Type": "application/json",
                             },
+                            body: JSON.stringify({
+                                quantity: quantity,
+                            }),
                         }
                     )
                     .then((response) => {

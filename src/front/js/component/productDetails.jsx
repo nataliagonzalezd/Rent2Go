@@ -345,7 +345,7 @@ import "react-datepicker/dist/react-datepicker.css";
             <button
               className="btn btn-primary"
               onClick={() => {
-                const funcion1 = actions.addCart(params.costumer_id, params.id);
+                const funcion1 = actions.addCart(params.costumer_id, params.id, numDias);
                 const funcion2 = cartAdded();
                 funcion1();
                 funcion2();
