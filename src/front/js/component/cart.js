@@ -1,9 +1,12 @@
 import React from "react";
 import { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { useParams, Navigate } from "react-router-dom";
+
 
 const Cart = function (props) {
   const { store, actions } = useContext(Context);
+  const params = useParams();
 
 
   return (
@@ -76,7 +79,7 @@ const Cart = function (props) {
                           type="button"
                           id="enviar"
                           onClick={() =>
-                            actions.delCart(params.costumer_id, params.id)
+                            actions.delCart(props.costumer_id, props.id)
                           }
                         >
                           <i className="fa fa-solid fa-trash"></i> Eliminar
