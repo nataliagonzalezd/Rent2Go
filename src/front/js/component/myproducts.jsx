@@ -7,9 +7,11 @@ import { useParams } from "react-router-dom";
 
 const MyProducts = function () {
   const { store, actions } = useContext(Context);
-  const [name, setName] = useState(name);
-  const [description, setDescription] = useState(description);
-  const [price, setPrice] = useState(price);
+  const [name, setName] = useState();
+  const [description, setDescription] = useState();
+  const [price, setPrice] = useState();
+  const [imagesCloudinary, setImagesCloudinary] = useState([]);
+  const [loading, setLoading] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -20,7 +22,46 @@ const MyProducts = function () {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(name);
-    actions.updateProduct(params.id, name, description, price);
+    actions.updateProduct(
+      params.id,
+      name,
+      description,
+      price,
+      imagesCloudinary
+    );
+  };
+
+  const uploadImage = async (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    const files = e.target.files;
+    try {
+      const filesArray = Object.values(files);
+      console.log(files);
+      console.log(filesArray);
+      setLoading(true);
+
+      const response = await Promise.all(
+        filesArray.map((file) => {
+          form.append(`file`, file);
+          form.append("upload_preset", "cloudy");
+          return fetch(
+            "https://api.cloudinary.com/v1_1/dxhknbsqr/image/upload",
+            {
+              method: "POST",
+              body: form,
+            }
+          ).then((res) => res.json());
+        })
+      );
+
+      const Urls = response.map((res) => res.secure_url);
+
+      setImagesCloudinary(Urls);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -191,6 +232,17 @@ const MyProducts = function () {
                   onChange={(event) => setPrice(event.target.value)}
                 />
               </label>
+              <label htmlFor="InsertImage" className="mt-5">
+                Insertar Imagenes:
+              </label>
+              <div>
+                <input
+                  type="file"
+                  id="image"
+                  multiple
+                  onChange={(e) => uploadImage(e)}
+                />
+              </div>
               <br />
               <button type="submit">Update Product</button>
             </form>

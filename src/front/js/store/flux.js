@@ -242,7 +242,7 @@ const getState = ({
                     auth: false,
                 });
             },
-            addProduct: (productName, description, price, urls, url2, url3, url4) => {
+            addProduct: (productName, description, price, urls) => {
                 fetch(process.env.BACKEND_URL + "/api/product", {
                         method: "POST",
                         headers: {
@@ -404,7 +404,7 @@ const getState = ({
                     console.log(error);
                 }
             },
-            updateProduct: (id, name, description, price) => {
+            updateProduct: (id, name, description, price, urls) => {
                 fetch(process.env.BACKEND_URL + "/api/product/" + id, {
                         method: "PUT",
                         headers: {
@@ -414,6 +414,7 @@ const getState = ({
                             name: name,
                             description: description,
                             price: price,
+                            image: urls,
                         }),
                     })
                     .then((response) => {
