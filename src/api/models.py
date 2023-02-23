@@ -16,6 +16,7 @@ class Costumer(db.Model):
     favorites = db.relationship('Favorites', backref='costumer', lazy=True)
     product = db.relationship('Product', backref='costumer', lazy=True)
     order = db.relationship('Order', backref='costumer', lazy=True)
+    order_item = db.relationship('Order_item', backref='costumer', lazy=True)
     cart = db.relationship('Cart', backref='costumer', lazy=True)
 
 
@@ -172,6 +173,7 @@ class Order_item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+    costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=True)
     quantity = db.Column(db.Integer, unique=False, nullable=False)
     price = db.Column(db.Integer, unique=False, nullable=False)
     
@@ -185,9 +187,28 @@ class Order_item(db.Model):
             "id": self.id,
             "order_id": self.order_id,
             "product_id": self.product_id,
+            "costumer_id": self.costumer_id,
             "quantity": self.quantity,
             "price": self.price
             
+        }
+    def serialize4(self):
+        product = Product.query.filter_by(id=self.product_id).first()
+        print(product.serialize())
+        return {    
+            "productinfo":product.serialize()
+        }
+    def serialize5(self):
+        order = Order.query.filter_by(id=self.order_id).first()
+        print(order.serialize())
+        return {    
+            "orderinfo":order.serialize()
+        }
+    def serialize7(self):
+        customer = Costumer.query.filter_by(id=self.costumer_id).first()
+        print(customer.serialize())
+        return {    
+            "customerinfo":customer.serialize()
         }
 
 

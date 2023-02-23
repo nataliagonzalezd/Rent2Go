@@ -107,6 +107,14 @@ export const Navbar = () => {
                       Lectura
                     </a>
                   </li>
+                  <li>
+                    <a
+                      className="dropdown-item text-black"
+                      href="/order_item/1"
+                    >
+                      Alquilando
+                    </a>
+                  </li>
                 </ul>
               </div>
             </li>
