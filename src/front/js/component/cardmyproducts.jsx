@@ -21,10 +21,16 @@ const CardProduct = (props) => {
         <div className="check1">
           <i className="fa fa-solid fa-pen"></i>
           <div>
-            <Link
-              to={"/costumer/" + props.costumer_id + "/editproduct/" + props.id}
-            />
-            <i className="fa fa-solid fa-trash"></i>
+            <button
+              className="btn"
+              type="button"
+              id="enviar"
+              onClick={() =>
+                actions.delProduct(props.costumer_id, props.id)
+              }
+            >
+              <i className="fa fa-solid fa-trash"></i>
+            </button>
           </div>
           <div className="star">
             <i className="fa-solid fa-pen-to-square"></i>

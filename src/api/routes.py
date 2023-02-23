@@ -150,6 +150,30 @@ def handle_profile():
     print(results)
     return jsonify(results), 200
 
+#---  eliminando un producto ---
+@api.route("/costumer/<int:costumer_id>/product/<int:id>", methods=["DELETE"])
+def del_product(costumer_id, id):
+    product = Product.query.filter_by(costumer_id=costumer_id).filter_by(id=id).first()
+    if product is not None:
+        db.session.delete(product)
+        db.session.commit()
+        return jsonify("El producto ha sido eliminado"), 200
+    else:
+        return jsonify("No hemos podido encontrar este producto"), 404
+    
+#---  eliminando todos los productos---
+@api.route("/costumer/<int:costumer_id>/products", methods=["DELETE"])
+def del_all_products(costumer_id):
+    delAllProducts = Product.query.filter_by(costumer_id=costumer_id).all()
+    print(delAllProducts)
+    if delAllProducts == []:
+        return jsonify("No hemos podido encontrar este producto"), 404
+        
+    else:   
+        for o in delAllProducts:
+            db.session.delete(o)
+            db.session.commit()
+        return jsonify("Todos los productos han sido eliminados"), 200
 
 # ----------------------------------------------------------- RECUPERACION CONTRASEÑA OLVIDADA --------------------------------- #
 

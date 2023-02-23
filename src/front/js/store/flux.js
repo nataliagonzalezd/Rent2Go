@@ -47,6 +47,48 @@ const getState = ({
                     )
                     .catch((err) => console.error(err));
             },
+            delProduct: (costumer_id, id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/product/" +
+                        id, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            delAllProducts: (costumer_id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/products", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+
             //////////////////////////////// CARRITO//////////////////////////////////
             getCart: (costumer_id) => {
                 fetch(process.env.BACKEND_URL + "/api/cart/" + costumer_id, {
