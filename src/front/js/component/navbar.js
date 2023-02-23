@@ -13,6 +13,15 @@ export const Navbar = () => {
     actions.getCategory();
   }, []);
 
+  useEffect(() => {
+    actions.getFavorites(localStorage.getItem("costumer_id"));
+  }, [store.productsFavorites]);
+
+  useEffect(() => {
+    actions.getCart(localStorage.getItem("costumer_id"));
+  }, [store.productsCart]);
+
+
   function handleLogout() {
     actions.logout();
     localStorage.removeItem("costumer_id");
@@ -185,20 +194,26 @@ export const Navbar = () => {
               </div>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item d-flex justify-content-center ">
               <a
-                className="nav-link active text-light mx-2"
+                className="nav-link active text-light"
                 aria-current="page"
                 href="cart"
               >
                 <i className="fa fa-solid fa-cart-plus"></i>
               </a>
+              <span className="notification">
+                {store.productsCart.length}
+              </span>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item d-flex justify-content-center">
               <a className="nav-link active text-light" href="viewfavorites">
                 <i className="fa fa-regular fa-heart"></i>
               </a>
+              <span className="notification">
+                {store.productsFavorites.length}
+              </span>
             </li>
           </ul>
         </div>
