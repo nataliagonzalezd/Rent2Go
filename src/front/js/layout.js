@@ -17,6 +17,7 @@ import { Register } from "./component/register";
 import CatalogoVista from "./pages/catalogoVista";
 import { Profile } from "./component/profile.jsx";
 import NewProduct from "./component/newProduct.jsx";
+import MyProductsView from "./pages/myproducts.jsx";
 
 //create your first component
 const Layout = () => {
@@ -43,6 +44,7 @@ const Layout = () => {
               path="/costumer/:costumer_id/product/detail/:id"
             />
             <Route element={<ViewFavorites />} path="/viewFavorites" />
+            <Route element={<MyProductsView />} path="/myproducts" />
             <Route element={<Home />} path="/" />
             <Route element={<Login />} path="/login" />
             <Route element={<Demo />} path="/demo" />

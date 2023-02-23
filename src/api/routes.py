@@ -185,19 +185,7 @@ def handle_favorites(costumer_id):
     return jsonify(results), 200
 
 
-# #---  AGREGANDO un producto al carrito ---
-# @api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["POST"])
-# def add_cart(costumer_id,id):
-#     addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=id).first()
-#     if addcart is None:
-#         newAddCart= Cart(costumer_id=costumer_id,product_id=id,status=True)
-#         db.session.add(newAddCart)
-#         db.session.commit()
-#         activeCart = Cart.query.filter_by(costumer_id=costumer_id, status=True).all()
-#         results = list(map(lambda item:{**item.serialize(),**item.serialize2()},activeCart))
-#         return jsonify(results), 200
-#     else:
-#         return jsonify("Este producto ya existe"), 400
+
 
 #---  agregando productos a favoritos ---
 @api.route("/costumer/<int:costumer_id>/favorites/<int:id>", methods=["POST"])
@@ -216,26 +204,28 @@ def add_favorites(costumer_id, id):
 #---  eliminando un producto de favoritos ---
 @api.route("/costumer/<int:costumer_id>/favorites/<int:id>", methods=["DELETE"])
 def del_favorites(costumer_id, id):
-    favorites = Favorites.query.filter_by(costumer_id=costumer_id).filter_by(product_id=id).first()
-    if favorites is None:
-        return jsonify("No hemos podido encontrar este producto", status_code=404)
-    else:
+    favorites = Favorites.query.filter_by(costumer_id=costumer_id, product_id=id).first()
+    if favorites is not None:
         db.session.delete(favorites)
         db.session.commit()
         return jsonify("El producto ha sido eliminado"), 200
+    else:
+        return jsonify("No hemos podido encontrar este producto"), 404
+
     
 #---  eliminando todos los productos de favoritos ---
 @api.route("/costumer/<int:costumer_id>/favorites", methods=["DELETE"])
 def del_all_favorites(costumer_id):
     delAll = Favorites.query.filter_by(costumer_id=costumer_id).all()
     print(delAll)
-    if delAll is not None:
+    if delAll == []:
+        return jsonify("No hemos podido encontrar este producto"), 404
+        
+    else:   
         for o in delAll:
             db.session.delete(o)
             db.session.commit()
-        return jsonify("Todos los favoritos han sido eliminados"), 200
-    else:   
-        return jsonify("No hemos podido encontrar este producto", status_code=404) 
+        return jsonify("Todos los productos han sido eliminados"), 200 
 
 # ----------------------------------------------------------- Costumer --------------------------------- #
 
@@ -330,25 +320,53 @@ def cart(costumer_id):
 @api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["DELETE"])
 def del_cart(costumer_id, id):
     cart = Cart.query.filter_by(costumer_id=costumer_id).filter_by(product_id=id).first()
-    if cart is None:
-        return jsonify("No hemos podido encontrar este producto", status_code=404)
-    else:
+    if cart is not None:
         db.session.delete(cart)
         db.session.commit()
         return jsonify("El producto ha sido eliminado"), 200
+    else:
+        return jsonify("No hemos podido encontrar este producto"), 404
     
 #---  eliminando todos los productos de cart ---
 @api.route("/costumer/<int:costumer_id>/cart", methods=["DELETE"])
 def del_all_cart(costumer_id):
     delAllCart = Cart.query.filter_by(costumer_id=costumer_id).all()
     print(delAllCart)
-    if delAllCart is not None:
+    if delAllCart == []:
+        return jsonify("No hemos podido encontrar este producto"), 404
+        
+    else:   
         for o in delAllCart:
             db.session.delete(o)
             db.session.commit()
         return jsonify("Todos los productos han sido eliminados"), 200
-    else:   
-        return jsonify("No hemos podido encontrar este producto", status_code=404) 
 
+## ------> Actualizando Productos
+
+@api.route('/product/<int:id>', methods=['PUT'])
+def update_product(id):
+
+    product = Product.query.get(id)
+
+    if product is None:
+        return jsonify({'error': 'Producto no encontrado.'}), 404
+
+    request_body = request.json
+    if 'name' in request_body:
+        product.name = request_body['name']
+    if 'description' in request_body:
+        product.description = request_body['description']
+    if 'image' in request_body:
+        product.image = request_body['image']
+    if 'price' in request_body:
+        product.price = request_body['price']
+    if 'costumer_id' in request_body:
+        product.costumer_id = request_body['costumer_id']
+    if 'category_id' in request_body:
+        product.category_id = request_body['category_id']
+
+    db.session.commit()
+
+    return jsonify({'msg': 'Producto actualizado correctamente.'}), 200
 
 
