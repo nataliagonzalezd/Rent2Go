@@ -79,6 +79,7 @@
         "formik": "^2.2.9",
         "leaflet": "^1.9.3",
         "mercadopago": "^1.5.15",
+        "moment": "^2.29.4",
         "prop-types": "^15.6.1",
         "react": "^16.14.0",
         "react-datepicker": "^4.10.0",

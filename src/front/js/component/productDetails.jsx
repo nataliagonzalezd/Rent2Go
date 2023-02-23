@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import moment from 'moment';
+// import Moment from 'react-moment';
 import "react-datepicker/dist/react-datepicker.css";
 
 // const ProductDetails = function (props) {
