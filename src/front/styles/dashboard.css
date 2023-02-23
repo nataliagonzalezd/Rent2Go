@@ -3,16 +3,14 @@
     outline: none;
 }
 
-body {
-    margin: 0;
-    overflow: hidden;
-    width: 0px;
-}
-
-.dashboard {
-    height: 100vh;
-    display: flex;
-}
+/* body {
+  margin: 0;
+  overflow: hidden;
+  width: 0px;
+} */
+/* height: 100vh;
+display: flex;
+} */
 
 .left {
     height: 100%;
@@ -132,6 +130,15 @@ body {
 }
 
 .btn {
+    border-radius: 3px;
+    border: 1px;
+    padding: 0 10px 0 30px;
+    height: 30px;
+    font-weight: bold;
+    position: relative;
+}
+
+.btn-dashboard {
     border-radius: 3px;
     border: 1px;
     padding: 0 10px 0 30px;
@@ -377,6 +384,20 @@ body {
     transform: scale(0.96);
 }
 
+.card-dashboard {
+    background-color: white;
+    border-radius: 4px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    padding: 25px 25px 15px 25px;
+    transition: 0.3s;
+}
+
+.card-dashboard:hover {
+    box-shadow: 5px 1px 20px 1px #ddd;
+    transform: scale(0.96);
+}
+
 .mail-names {
     color: grey;
     font-weight: bold;
@@ -570,5 +591,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-
-*/

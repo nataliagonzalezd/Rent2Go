@@ -7,8 +7,7 @@ const MyProductsView = () => {
 
   useEffect(() => {
     actions.getProductsDetails();
-    console.log(store.products);
-  }, []);
+  }, [store.products]);
 
   return (
     <div className="container-fluid row g-4 my-2 d-flex justify-content-center">

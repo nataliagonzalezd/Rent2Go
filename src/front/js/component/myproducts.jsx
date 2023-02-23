@@ -1,25 +1,26 @@
 import React from "react";
 import { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
-
-// import "../../styles/dashboard.css";
-
+import "../../styles/dashboard.css";
 import MyCardsView from "../pages/cardProduct.jsx";
+import { useParams } from "react-router-dom";
 
 const MyProducts = function () {
   const { store, actions } = useContext(Context);
-  const [name, setName] = useState(store.products[0].name);
-  const [description, setDescription] = useState(store.products[0].description);
-  const [price, setPrice] = useState(store.products[0].price);
+  const [name, setName] = useState(name);
+  const [description, setDescription] = useState(description);
+  const [price, setPrice] = useState(price);
+  const params = useParams();
 
   useEffect(() => {
     actions.getProductsDetails();
     console.log(store.products);
-    actions.updateProduct(params.id);
   }, []);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    console.log(name);
+    actions.updateProduct(params.id, name, description, price);
   };
 
   return (
@@ -90,7 +91,7 @@ const MyProducts = function () {
             </div>
             <div className="folders">Labels</div>
             <div className="section1">
-              <button className="btn buton1">
+              <button className="btn-dashboard buton1">
                 {" "}
                 Important
                 <span className="tag">
@@ -98,7 +99,7 @@ const MyProducts = function () {
                 </span>
               </button>
 
-              <button className="btn buton2">
+              <button className="btn-dashboard buton2">
                 {" "}
                 New
                 <span className="tag">
@@ -107,14 +108,14 @@ const MyProducts = function () {
               </button>
             </div>
             <div className="section2">
-              <button className="btn buton3">
+              <button className="btn-dashboard buton3">
                 {" "}
                 Old
                 <span className="tag">
                   <img src="https://i.ibb.co/C5q0MDM/tag.png" />
                 </span>
               </button>
-              <button className="btn buton4">
+              <button className="btn-dashboard buton4">
                 {" "}
                 Priority
                 <span className="tag">
@@ -138,6 +139,16 @@ const MyProducts = function () {
               <label className="checkbox">
                 <input type="checkbox" />
               </label>
+              <button
+                className="btn-dashboard"
+                type="button"
+                id="enviar"
+                onClick={() =>
+                  actions.delAllProducts(localStorage.getItem("costumer_id"))
+                }
+              >
+                Eliminar todos
+              </button>
               <div className="down-arrow">
                 <img src="https://i.ibb.co/WDqrXj6/drop-down-arrow.png" />
               </div>

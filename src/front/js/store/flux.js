@@ -13,6 +13,7 @@ const getState = ({
             productsDetail: [],
             productsFavorites: [],
             categoryproducts: [],
+            orderitem: [],
             mercadoPago: {},
             costoTotalStore: (null),
         },
@@ -55,6 +56,60 @@ const getState = ({
                     )
                     .catch((err) => console.error(err));
             },
+            getOrderItem: (order_item_id) => {
+                fetch(process.env.BACKEND_URL + "/api/order_item/" + order_item_id, {
+                        method: "GET",
+                    })
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            orderitem: data,
+                        })
+                    )
+                    .catch((err) => console.error(err));
+            },
+            delProduct: (costumer_id, id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/product/" +
+                        id, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            delAllProducts: (costumer_id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/products", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+
             //////////////////////////////// CARRITO//////////////////////////////////
             getCart: (costumer_id) => {
                 fetch(process.env.BACKEND_URL + "/api/cart/" + costumer_id, {
@@ -357,16 +412,16 @@ const getState = ({
                     console.log(error);
                 }
             },
-            updateProduct: (id) => {
+            updateProduct: (id, name, description, price) => {
                 fetch(process.env.BACKEND_URL + "/api/product/" + id, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            name: "name",
-                            description: "jaja",
-                            price: 89,
+                            name: name,
+                            description: description,
+                            price: price,
                         }),
                     })
                     .then((response) => {

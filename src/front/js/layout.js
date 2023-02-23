@@ -15,6 +15,7 @@ import { Footer } from "./component/footer";
 import { Login } from "./component/login.js";
 import { Register } from "./component/register";
 import CatalogoVista from "./pages/catalogoVista";
+import MyRent from "./pages/myRent";
 import { Profile } from "./component/profile.jsx";
 import NewProduct from "./component/newProduct.jsx";
 import MyProductsView from "./pages/myproducts.jsx";
@@ -35,6 +36,7 @@ const Layout = () => {
               element={<CatalogoVista />}
               path="/category/:category_id/products"
             />
+            <Route element={<MyRent />} path="/order_item/:product_id" />
             <Route element={<Profile />} path="/profile" />
             <Route element={<Register />} path="/register" />
             <Route element={<NewProduct />} path="/newProduct" />
@@ -44,7 +46,8 @@ const Layout = () => {
               path="/costumer/:costumer_id/product/detail/:id"
             />
             <Route element={<ViewFavorites />} path="/viewFavorites" />
-            <Route element={<MyProductsView />} path="/myproducts" />
+            <Route element={<MyProductsView />} path="/product" />
+            <Route element={<MyProductsView />} path="/product/:id" />
             <Route element={<Home />} path="/" />
             <Route element={<Login />} path="/login" />
             <Route element={<Demo />} path="/demo" />
