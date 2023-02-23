@@ -211,7 +211,7 @@ class Order_item(db.Model):
             "customerinfo":customer.serialize()
         }
 
-
+# models del carrito
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=True)

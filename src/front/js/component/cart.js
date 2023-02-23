@@ -95,7 +95,7 @@ const Cart = function (props) {
             <div>
               <div className="col-md-6">
                 <div className="card-body">
-                  <h4 className="card-title">$ {props.price}</h4>
+                  <h4 className="card-title">$ {store.costoTotalStore}</h4>
                 </div>
               </div>
             </div>

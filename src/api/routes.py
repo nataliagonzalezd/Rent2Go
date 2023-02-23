@@ -319,9 +319,10 @@ def edit_profile():
 #---  AGREGANDO un producto al carrito ---
 @api.route("/costumer/<int:costumer_id>/cart/<int:id>", methods=["POST"])
 def add_cart(costumer_id,id):
+    request_body = request.json
     addcart = Cart.query.filter_by(costumer_id=costumer_id, product_id=id).first()
     if addcart is None:
-        newAddCart= Cart(costumer_id=costumer_id,product_id=id,status=True)
+        newAddCart= Cart(costumer_id=costumer_id,product_id=id,quantity=request_body["quantity"],status=True)
         db.session.add(newAddCart)
         db.session.commit()
         activeCart = Cart.query.filter_by(costumer_id=costumer_id, status=True).all()

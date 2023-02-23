@@ -12,8 +12,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       orderitem: [],
       category: [],
       mercadoPago: {},
+      costoTotalStore: null,
     },
     actions: {
+      // costo total para el precio
+      costoTotalFlux: (costoTotal) => {
+        setStore({
+          costoTotalStore: costoTotal,
+        });
+        console.log("funciona ");
+      },
+
       getProductsDetails: () => {
         fetch(process.env.BACKEND_URL + "/api/products", {
           method: "GET",
@@ -26,6 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           .catch((err) => console.error(err));
       },
+
       getProductsDetail: (costumer_id, id) => {
         fetch(
           process.env.BACKEND_URL +
@@ -57,6 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           .catch((err) => console.error(err));
       },
+
       delProduct: (costumer_id, id) => {
         fetch(
           process.env.BACKEND_URL +
@@ -79,6 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       delAllProducts: (costumer_id) => {
         fetch(
           process.env.BACKEND_URL +
@@ -100,6 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       //////////////////////////////// CARRITO//////////////////////////////////
       getCart: (costumer_id) => {
         fetch(process.env.BACKEND_URL + "/api/cart/" + costumer_id, {
@@ -113,7 +126,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           .catch((err) => console.error(err));
       },
-      addCart: (costumer_id, id) => {
+
+      addCart: (costumer_id, id, quantity) => {
         fetch(
           process.env.BACKEND_URL +
             "/api/costumer/" +
@@ -125,6 +139,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             headers: {
               "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+              quantity: quantity,
+            }),
           }
         )
           .then((response) => {
@@ -140,6 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       delCart: (costumer_id, id) => {
         fetch(
           process.env.BACKEND_URL +
@@ -162,6 +180,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       delAllCart: (costumer_id) => {
         fetch(
           process.env.BACKEND_URL + "/api/costumer/" + costumer_id + "/cart",
@@ -207,6 +226,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       login: (email, password) => {
         fetch(process.env.BACKEND_URL + "/api/login", {
           method: "POST",
@@ -237,12 +257,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       logout: () => {
         localStorage.removeItem("token");
         setStore({
           auth: false,
         });
       },
+
       addProduct: (productName, description, price, urls, url2, url3, url4) => {
         fetch(process.env.BACKEND_URL + "/api/product", {
           method: "POST",
@@ -261,6 +283,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((data) => console.log(data));
       },
+
       addInfo: (name, lastName, address, role, phone, image) => {
         fetch(process.env.BACKEND_URL + "/api/editprofile", {
           method: "POST",
@@ -279,6 +302,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((data) => console.log(data));
       },
+
       getMessage: async () => {
         try {
           // fetching data from the backend
@@ -293,6 +317,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+
       // getProfile: () => {
       //     fetch(process.env.BACKEND_URL + "/api/editprofile", {
       //             method: "GET",
@@ -318,6 +343,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           )
           .catch((err) => console.error(err));
       },
+
       addFavorites: (costumer_id, id) => {
         fetch(
           process.env.BACKEND_URL +
@@ -345,6 +371,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       delFavorites: (costumer_id, id) => {
         fetch(
           process.env.BACKEND_URL +
@@ -367,6 +394,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((err) => console.log(err));
       },
+
       delAllFavorites: (costumer_id) => {
         fetch(
           process.env.BACKEND_URL +
@@ -408,6 +436,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
+
       updateProduct: (id, name, description, price) => {
         fetch(process.env.BACKEND_URL + "/api/product/" + id, {
           method: "PUT",
@@ -436,6 +465,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             throw error;
           });
       },
+
       getProductsCategory: (category_id) => {
         fetch(
           process.env.BACKEND_URL +
