@@ -3,11 +3,11 @@
   outline: none;
 }
 
-body {
+/* body {
   margin: 0;
   overflow: hidden;
   width: 0px;
-}
+} */
 
 .dashboard {
   height: 100vh;
@@ -133,7 +133,7 @@ body {
   margin-bottom: 10px;
 }
 
-.btn {
+.btn-dashboard {
   border-radius: 3px;
   border: 1px;
   padding: 0 10px 0 30px;
@@ -365,7 +365,7 @@ body {
   padding: 20px 0px 5px 0px;
 }
 
-.card {
+.card-dashboard {
   background-color: white;
   border-radius: 4px;
   margin-top: 8px;
@@ -374,7 +374,7 @@ body {
   transition: 0.3s;
 }
 
-.card:hover {
+.card-dashboard:hover {
   box-shadow: 5px 1px 20px 1px #ddd;
   transform: scale(0.96);
 }
