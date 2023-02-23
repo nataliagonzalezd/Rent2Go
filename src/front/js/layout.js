@@ -46,6 +46,7 @@ const Layout = () => {
               path="/costumer/:costumer_id/product/detail/:id"
             />
             <Route element={<ViewFavorites />} path="/viewFavorites" />
+            <Route element={<MyProductsView />} path="/product" />
             <Route element={<MyProductsView />} path="/product/:id" />
             <Route element={<Home />} path="/" />
             <Route element={<Login />} path="/login" />

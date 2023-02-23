@@ -7,20 +7,20 @@ import { useParams } from "react-router-dom";
 
 const MyProducts = function () {
   const { store, actions } = useContext(Context);
-  const [name, setName] = useState(store.products[0].name);
-  const [description, setDescription] = useState(store.products[0].description);
-  const [price, setPrice] = useState(store.products[0].price);
+  const [name, setName] = useState(name);
+  const [description, setDescription] = useState(description);
+  const [price, setPrice] = useState(price);
   const params = useParams();
 
   useEffect(() => {
     actions.getProductsDetails();
-
     console.log(store.products);
-    actions.updateProduct(params.id);
   }, []);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    console.log(name);
+    actions.updateProduct(params.id, name, description, price);
   };
 
   return (
