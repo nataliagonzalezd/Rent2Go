@@ -11,16 +11,16 @@ export const Navbar = () => {
 
   useEffect(() => {
     actions.getCategory();
+    console.log(store.auth);
   }, []);
 
-  useEffect(() => {
-    actions.getFavorites(localStorage.getItem("costumer_id"));
-  }, [store.productsFavorites]);
+  // useEffect(() => {
+  //   actions.getFavorites(localStorage.getItem("costumer_id"));
+  // }, [store.productsFavorites]);
 
-  useEffect(() => {
-    actions.getCart(localStorage.getItem("costumer_id"));
-  }, [store.productsCart]);
-
+  // useEffect(() => {
+  //   actions.getCart(localStorage.getItem("costumer_id"));
+  // }, [store.productsCart]);
 
   function handleLogout() {
     actions.logout();
@@ -82,56 +82,6 @@ export const Navbar = () => {
                       </a>
                     </li>
                   ))}
-
-                  {/* <li>
-                    {" "}
-                    <a
-                      className="dropdown-item text-black"
-                      href="/category/2/products"
-                    >
-                      Electronica
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item text-black"
-                      href="/category/3/products"
-                    >
-                      Jardineria
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item text-black"
-                      href="/category/4/products"
-                    >
-                      Indumentaria
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item text-black"
-                      href="/category/5/products"
-                    >
-                      Musica
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item text-black"
-                      href="/category/6/products"
-                    >
-                      Lectura
-                    </a>
-                  </li> */}
-                  {/* <li>
-                    <a
-                      className="dropdown-item text-black"
-                      href="/order_item/1"
-                    >
-                      Alquilando
-                    </a>
-                  </li> */}
                 </ul>
               </div>
             </li>
@@ -169,25 +119,35 @@ export const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
-                    <a className="dropdown-item" href="/login">
-                      Ingresa
-                    </a>
+                    {store.auth === true ? null : (
+                      <a className="btn" href="/login">
+                        Iniciar Sesion
+                      </a>
+                    )}
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/register">
-                      Crea tu cuenta
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/product">
-                      Mi cuenta
-                    </a>
+                    {store.auth === true ? null : (
+                      <a className="btn" href="/register">
+                        Crear cuenta
+                      </a>
+                    )}
                   </li>
                   <li>
                     {store.auth === true ? (
-                      <button className="btn" onClick={handleLogout}>
-                        Salir
-                      </button>
+                      <a className="btn" href="/product">
+                        Mi cuenta
+                      </a>
+                    ) : null}
+                  </li>
+                  <li>
+                    {store.auth === true ? (
+                      <a
+                        className="btn"
+                        href="/login"
+                        onClick={() => handleLogout()}
+                      >
+                        Cerrar Sesion
+                      </a>
                     ) : null}
                   </li>
                 </ul>
@@ -198,17 +158,15 @@ export const Navbar = () => {
               <a
                 className="nav-link active text-light"
                 aria-current="page"
-                href="cart"
+                href="/cart"
               >
                 <i className="fa fa-solid fa-cart-plus"></i>
               </a>
-              <span className="notification">
-                {store.productsCart.length}
-              </span>
+              <span className="notification">{store.productsCart.length}</span>
             </li>
 
             <li className="nav-item d-flex justify-content-center">
-              <a className="nav-link active text-light" href="viewfavorites">
+              <a className="nav-link active text-light" href="/viewfavorites">
                 <i className="fa fa-regular fa-heart"></i>
               </a>
               <span className="notification">

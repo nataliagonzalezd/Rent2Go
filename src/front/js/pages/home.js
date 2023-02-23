@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Navbar } from "reactstrap";
 import { Footer } from "../component/footer.js";
 import InspiredFavorites from "../component/inspiredFavorites.js";
 import RecentlyViewed from "../component/recentlyViewed.js";
@@ -11,7 +10,6 @@ import "../../styles/home.css";
 export const Home = () => {
   return (
     <div className="">
-      <Navbar />
       <div className="mx-5">
         <div className="text-center mt-5">
           <img

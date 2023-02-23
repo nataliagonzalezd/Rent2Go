@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { Navbar } from "reactstrap";
 import ProductDetails from "../component/productDetails.jsx";
 import RelatedProduct from "../component/relatedProduct.jsx";
 import { Context } from "../store/appContext";
@@ -20,7 +19,6 @@ const ViewProductDetails = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="mx-5">
         {store.productsDetail.map((cadaProducto, index) => (
           <ProductDetails

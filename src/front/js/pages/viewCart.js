@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { Navbar } from "reactstrap";
 import Cart from "../component/cart.js";
 import { Footer } from "../component/footer.js";
 import { Context } from "../store/appContext.js";
@@ -33,7 +32,6 @@ const ViewCart = (props) => {
     <Navigate to="/login" />
   ) : (
     <div className="">
-      <Navbar />
       <div className="text-center mt-5">
         <div>
           <h1>
