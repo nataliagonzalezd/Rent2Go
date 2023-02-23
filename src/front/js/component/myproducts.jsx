@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import "../../styles/dashboard.css";
 import MyCardsView from "../pages/cardProduct.jsx";
 import { useParams } from "react-router-dom";
 
@@ -13,8 +14,11 @@ const MyProducts = function () {
 
   useEffect(() => {
     actions.getProductsDetails();
+
+    console.log(store.products);
     actions.updateProduct(params.id);
-  }, [params.id]);
+  }, []);
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -136,6 +140,16 @@ const MyProducts = function () {
               <label className="checkbox">
                 <input type="checkbox" />
               </label>
+              <button
+                className="btn"
+                type="button"
+                id="enviar"
+                onClick={() =>
+                  actions.delAllProducts(localStorage.getItem("costumer_id"))
+                }
+              >
+                Eliminar todos
+              </button>
               <div className="down-arrow">
                 <img src="https://i.ibb.co/WDqrXj6/drop-down-arrow.png" />
               </div>
