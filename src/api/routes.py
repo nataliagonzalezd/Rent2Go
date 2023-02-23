@@ -341,5 +341,32 @@ def del_all_cart(costumer_id):
             db.session.commit()
         return jsonify("Todos los productos han sido eliminados"), 200
 
+## ------> Actualizando Productos
+
+@api.route('/product/<int:id>', methods=['PUT'])
+def update_product(id):
+
+    product = Product.query.get(id)
+
+    if product is None:
+        return jsonify({'error': 'Producto no encontrado.'}), 404
+
+    request_body = request.json
+    if 'name' in request_body:
+        product.name = request_body['name']
+    if 'description' in request_body:
+        product.description = request_body['description']
+    if 'image' in request_body:
+        product.image = request_body['image']
+    if 'price' in request_body:
+        product.price = request_body['price']
+    if 'costumer_id' in request_body:
+        product.costumer_id = request_body['costumer_id']
+    if 'category_id' in request_body:
+        product.category_id = request_body['category_id']
+
+    db.session.commit()
+
+    return jsonify({'msg': 'Producto actualizado correctamente.'}), 200
 
 
