@@ -30,6 +30,9 @@ const ViewProductDetails = () => {
             price={cadaProducto.price}
             description={cadaProducto.description}
             image={cadaProducto.image}
+            image2={cadaProducto.image2}
+            image3={cadaProducto.image3}
+            image4={cadaProducto.image4}
             costumer_id={cadaProducto.costumer_id}
           />
         ))}
