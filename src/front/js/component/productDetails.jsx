@@ -5,69 +5,198 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
+import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 
-const ProductDetails = function (props) {
-  const { store, actions } = useContext(Context);
+// const ProductDetails = function (props) {
+//   const { store, actions } = useContext(Context);
 
-  const params = useParams();
+//   const params = useParams();
 
-  // const para el calendario
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [numDias, setNumDias] = useState(null); //(seteo el numero de dias)
-  const numDiasValue = numDias !== null ? numDias : '';
+//   // const para el calendario
+//   const [startDate, setStartDate] = useState(null);
+//   const [endDate, setEndDate] = useState(null);
 
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const oneDay = 24 * 60 * 60 * 1000;
-  const days = Math.round(Math.abs((end - start) / oneDay));
-  const precioProducto = props.price;
-  const costoTotal = numDias * precioProducto;
+//   // const [startStore, setStartStore] = useState(null);
+//   // const [endStore, setEndStore] = useState(null);
 
-  const handleDateChange = (date) => {
-    if (!startDate || (startDate && endDate)) {
-      setStartDate(date);
-      setEndDate(null);
-    } else if (startDate && !endDate) {
-      if (date >= startDate) {
-        setEndDate(date);
-      } else {
-        setEndDate(startDate);
-        setStartDate(date);
+//   const [numDias, setNumDias] = useState(null); //(seteo el numero de dias)
+//   const numDiasValue = numDias !== null ? numDias : '';
+
+//   const start = new Date(startDate);
+//   const end = new Date(endDate);
+
+//   // setStartStore(start)
+//   // setEndStore(end)
+
+//   const oneDay = 24 * 60 * 60 * 1000;
+//   const days = Math.round(Math.abs((end - start) / oneDay));
+//   const precioProducto = props.price;
+//   const costoTotal = numDias * precioProducto;
+
+//   const handleDateChange = (date) => {
+//     if (!startDate || (startDate && endDate)) {
+//       setStartDate(date);
+//       setEndDate(null);
+//     } else if (startDate && !endDate) {
+//       if (date >= startDate) {
+//         setEndDate(date);
+//       } else {
+//         setEndDate(startDate);
+//         setStartDate(date);
+//       }
+//     }
+//     // Guardar fechas en localStorage
+//     localStorage.setItem('startDate', startDate);
+//     localStorage.setItem('endDate', endDate);
+//   };
+//   // Este useEffect no anda <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// useEffect(() => {
+//   const storedStartDate = localStorage.getItem('startDate');
+//   const storedEndDate = localStorage.getItem('endDate');
+  
+//   if (storedStartDate && moment(storedStartDate).isValid()) {
+//     setStartDate(new Date(storedStartDate));
+//   }
+//   if (storedEndDate && moment(storedEndDate).isValid()) {
+//     setEndDate(new Date(storedEndDate));
+//   }
+// }, []);
+
+//   // useEffect para el calendario
+//   useEffect(() => {
+//     setNumDias(days);
+//     console.log(days);
+//   }, [days]);
+
+//   // Funcion para actualizar el estado de los dias
+//   function handleNumDiasChange(event) {
+//     setNumDias(event.target.value); // Actualizamos el estado de numDias
+//   }
+//       // useEffect para el calendario y flux
+//       useEffect(() => {
+//         actions.costoTotalFlux(costoTotal)
+//      console.log(store.costoTotalStore)
+//       }, [costoTotal]);
+//   // fin calendario --------------- 
+
+//   useEffect(() => {
+//     console.log(params.costumer_id, params.id);
+//     console.log(store.cart);
+//     // actions.addCart(params.costumer_id, params.id);
+//   }, []);
+
+//   function cartAdded() {
+//     Swal.fire({
+//       icon: "success",
+//       title: "Añadido al carrito ",
+//       confirmButtonColor: "#2e2c3c",
+//     });
+//   }
+
+  const ProductDetails = function (props) {
+    const { store, actions } = useContext(Context);
+  
+    const params = useParams();
+  
+    // const para el calendario
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+  
+    const [numDias, setNumDias] = useState(null); //(seteo el numero de dias)
+    const numDiasValue = numDias !== null ? numDias : '';
+  
+    useEffect(() => {
+      const storedStartDate = localStorage.getItem('startDate');
+      const storedEndDate = localStorage.getItem('endDate');
+      
+      if (storedStartDate && moment(storedStartDate).isValid()) {
+        setStartDate(moment(storedStartDate)._d);
       }
+      if (storedEndDate && moment(storedEndDate).isValid()) {
+        setEndDate(moment(storedEndDate)._d);
+      }
+    }, []);
+  
+    useEffect(() => {
+      const oneDay = 24 * 60 * 60 * 1000;
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const days = Math.round(Math.abs((end - start) / oneDay));
+      setNumDias(days);
+    }, [startDate, endDate]);
+  
+    const precioProducto = props.price;
+    const costoTotal = numDias * precioProducto;
+  
+    const handleDateChange = (date) => {
+      if (!startDate || (startDate && endDate)) {
+        setStartDate(date);
+        setEndDate(null);
+      } else if (startDate && !endDate) {
+        if (date >= startDate) {
+          setEndDate(date);
+        } else {
+          setEndDate(startDate);
+          setStartDate(date);
+        }
+      }
+      // Guardar fechas en localStorage
+      localStorage.setItem('startDate', date);
+      localStorage.setItem('endDate', endDate);
+    };
+  
+    // useEffect para el calculo del costo total
+    useEffect(() => {
+      actions.costoTotalFlux(costoTotal)
+    }, [costoTotal]);
+  
+    // Funcion para actualizar el estado de los dias
+    function handleNumDiasChange(event) {
+      setNumDias(event.target.value); // Actualizamos el estado de numDias
     }
-  };
-  // useEffect para el calendario
-  useEffect(() => {
-    setNumDias(days);
-    // console.log(startDate,endDate)
-    console.log(days);
-  }, [days]);
-
-  // Funcion para actualizar el estado de los dias
-  function handleNumDiasChange(event) {
-    setNumDias(event.target.value); // Actualizamos el estado de numDias
-  }
-  // fin calendario --------------- 
-
-  useEffect(() => {
-    console.log(params.costumer_id, params.id);
-    console.log(store.cart);
-    // actions.addCart(params.costumer_id, params.id);
-  }, []);
-
-  function cartAdded() {
-    Swal.fire({
-      icon: "success",
-      title: "Añadido al carrito ",
-      confirmButtonColor: "#2e2c3c",
-    });
-  }
-
-
+  
+    // fin calendario --------------- 
+  
+    useEffect(() => {
+      console.log(params.costumer_id, params.id);
+      console.log(store.cart);
+      // actions.addCart(params.costumer_id, params.id);
+    }, []);
+  
+    function cartAdded() {
+      Swal.fire({
+        icon: "success",
+        title: "Añadido al carrito ",
+        confirmButtonColor: "#2e2c3c",
+      });
+    }
+  
   return (
     <>
+    <div>
+      <h1>{props.title}</h1>
+      <h2>Precio: {props.price}</h2>
+      <div>
+        <h3>Selecciona las fechas:</h3>
+        <div>
+          Desde:
+          <input type="date" value={moment(startDate).format('YYYY-MM-DD')} onChange={(event) => handleDateChange(event.target.value)} />
+        </div>
+        <div>
+          Hasta:
+          <input type="date" value={moment(endDate).format('YYYY-MM-DD')} onChange={(event) => handleDateChange(event.target.value)} />
+        </div>
+        <div>
+          <h3>Número de días: {numDiasValue}</h3>
+          <label htmlFor="numDias">Actualiza el número de días:</label>
+          <input type="number" id="numDias" value={numDiasValue} onChange={handleNumDiasChange} />
+        </div>
+        <div>
+          <h3>Costo total: {costoTotal}</h3>
+        </div>
+      </div>
+    </div>
       {/* Detalles del producto */}
       <div className="card mx-1 my-5">
         <div className="text-start mx-3 text-muted mt-2">

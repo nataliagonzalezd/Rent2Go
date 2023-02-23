@@ -14,8 +14,16 @@ const getState = ({
             productsFavorites: [],
             categoryproducts: [],
             mercadoPago: {},
+            costoTotalStore: (null),
         },
         actions: {
+            // costo total para el precio
+            costoTotalFlux: (costoTotal) => {
+                setStore({
+                    costoTotalStore: costoTotal,
+                })
+                console.log("funciona ")
+            },
             getProductsDetails: () => {
                 fetch(process.env.BACKEND_URL + "/api/products", {
                         method: "GET",
