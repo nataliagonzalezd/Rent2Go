@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint,current_app,json
-from api.models import db, Costumer, Product, Favorites, Cart
+from api.models import db, Costumer, Product, Favorites, Cart, Order, Order_item, Order_status_code
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -393,4 +393,42 @@ def update_product(id):
 
     return jsonify({'msg': 'Producto actualizado correctamente.'}), 200
 
+#---  Mostrar order ---#
 
+@api.route('/order/<int:costumer_id>', methods=['GET'])
+def orders(costumer_id):
+    allorders = Order.query.filter_by(costumer_id=costumer_id).all()
+    print(allorders)
+    results = list(map(lambda item:{**item.serialize(),**item.serialize6()},allorders))
+    print(results)
+    return jsonify(results), 200
+
+#---  Mostrar order_item ---#
+
+@api.route('/order_item', methods=['GET'])
+def orders_item():
+    allorders_items = Order_item.query.all()
+    print(allorders_items)
+    results = list(map(lambda item: item.serialize(),allorders_items))
+    print(results)
+    return jsonify(results), 200
+
+#---  Mostrar order_status_code ---#
+
+@api.route('/order_status_code', methods=['GET'])
+def orders_status():
+    allorders_status = Order_status_code.query.all()
+    print(allorders_status)
+    results = list(map(lambda item: item.serialize(),allorders_status))
+    print(results)
+    return jsonify(results), 200
+
+#---  Mostrar order_item segun el producto---#
+
+@api.route('/order_item/<int:product_id>', methods=['GET'])
+def orders_item_product(product_id):
+    allorders_items_products = Order_item.query.filter_by(product_id=product_id).all()
+    print(allorders_items_products)
+    results = list(map(lambda item:{**item.serialize(),**item.serialize4(),**item.serialize5(),**item.serialize7()},allorders_items_products))
+    print(results)
+    return jsonify(results), 200
