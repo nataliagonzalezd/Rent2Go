@@ -87,17 +87,17 @@ const ProductDetails = function (props) {
                 alt="..."
               />
               <img
-                src={props.image}
+                src={props.image2}
                 className="card-img mb-2 img-thumbnail"
                 alt="..."
               />
               <img
-                src={props.image}
+                src={props.image3}
                 className="card-img mb-2 img-thumbnail"
                 alt="..."
               />
               <img
-                src={props.image}
+                src={props.image4}
                 className="card-img mb-2 img-thumbnail"
                 alt="..."
               />

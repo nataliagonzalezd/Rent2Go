@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,11 @@ import Diseño from "../../img/Diseño.png";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    actions.getCategory();
+  }, []);
+
   function handleLogout() {
     actions.logout();
     localStorage.removeItem("costumer_id");
@@ -58,15 +63,18 @@ export const Navbar = () => {
                   <li>
                     <span className="dropdown-item-text">CATEGORIAS</span>
                   </li>
-                  <li>
-                    <a
-                      className="dropdown-item text-black"
-                      href="/category/1/products"
-                    >
-                      Pintura
-                    </a>
-                  </li>
-                  <li>
+                  {store.category.map((item, index) => (
+                    <li>
+                      <a
+                        className="dropdown-item text-black"
+                        href={`/category/${item.id}/products`}
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+
+                  {/* <li>
                     {" "}
                     <a
                       className="dropdown-item text-black"
@@ -106,15 +114,15 @@ export const Navbar = () => {
                     >
                       Lectura
                     </a>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <a
                       className="dropdown-item text-black"
                       href="/order_item/1"
                     >
                       Alquilando
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </li>
