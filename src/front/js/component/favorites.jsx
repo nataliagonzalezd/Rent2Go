@@ -34,7 +34,7 @@ const Favorites = function (props) {
                             type="button"
                             id="enviar"
                             onClick={() =>
-                                actions.delFavorites(params.costumer_id, params.id)
+                                actions.delFavorites(props.costumer_id, props.id)
                             }
                         >
                             <i className="fa fa-solid fa-trash"></i> Eliminar

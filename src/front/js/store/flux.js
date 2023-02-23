@@ -47,6 +47,7 @@ const getState = ({
                     )
                     .catch((err) => console.error(err));
             },
+            //////////////////////////////// CARRITO//////////////////////////////////
             getCart: (costumer_id) => {
                 fetch(process.env.BACKEND_URL + "/api/cart/" + costumer_id, {
                         method: "GET",
@@ -59,6 +60,71 @@ const getState = ({
                     )
                     .catch((err) => console.error(err));
             },
+            addCart: (costumer_id, id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/cart/" +
+                        id, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        // if (response.status === 200) {
+                        //     alert("Producto agregado al carrito");
+                        // } else if (response.status === 400) {
+                        //     console.log("Este producto ya existe");
+                        // }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            delCart: (costumer_id, id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/cart/" +
+                        id, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            delAllCart: (costumer_id) => {
+                fetch(
+                        process.env.BACKEND_URL + "/api/costumer/" + costumer_id + "/cart", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            ///////////////////////////////////////////////////////////////////////////////////////
             register: (email, username, password) => {
                 fetch(process.env.BACKEND_URL + "/api/register", {
                         method: "POST",
@@ -139,32 +205,7 @@ const getState = ({
                     .then((response) => response.json())
                     .then((data) => console.log(data));
             },
-            addCart: (costumer_id, id) => {
-                fetch(
-                        process.env.BACKEND_URL +
-                        "/api/costumer/" +
-                        costumer_id +
-                        "/cart/" +
-                        id, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    )
-                    .then((response) => {
-                        // if (response.status === 200) {
-                        //     alert("Producto agregado al carrito");
-                        // } else if (response.status === 400) {
-                        //     console.log("Este producto ya existe");
-                        // }
-                        return response.json();
-                    })
-                    .then((data) => {
-                        console.log(data);
-                    })
-                    .catch((err) => console.log(err));
-            },
+
             addInfo: (name, lastName, address, role, phone, image) => {
                 fetch(process.env.BACKEND_URL + "/api/editprofile", {
                         method: "POST",
@@ -209,7 +250,7 @@ const getState = ({
             //         )
             //         .catch((err) => console.error(err));
             // },
-            /////////////////////////////// FAVORITOS /////////////////////////////
+            ////////////////////////////////////// FAVORITOS /////////////////////////////////////
             getFavorites: (costumer_id) => {
                 fetch(process.env.BACKEND_URL + "/api/favorites/" + costumer_id, {
                         method: "GET",
@@ -269,6 +310,27 @@ const getState = ({
                     })
                     .catch((err) => console.log(err));
             },
+            delAllFavorites: (costumer_id) => {
+                fetch(
+                        process.env.BACKEND_URL +
+                        "/api/costumer/" +
+                        costumer_id +
+                        "/favorites", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => console.log(err));
+            },
+            /////////////////////////////////////////////////////////////////////////////////////////////
             // Precio productos ---------------------------------------------
             PrecioTotal: async (total) => {},
             // MERCADO PAGO ---------------------------------------------
@@ -289,28 +351,28 @@ const getState = ({
             },
             updateProduct: (id) => {
                 fetch(process.env.BACKEND_URL + "/api/product/" + id, {
-                        method: 'PUT',
+                        method: "PUT",
                         headers: {
-                            'Content-Type': 'application/json'
+                            "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
                             name: "name",
                             description: "jaja",
                             price: 89,
-                        })
+                        }),
                     })
-                    .then(response => {
+                    .then((response) => {
                         if (response.ok) {
                             return response.json();
                         } else {
-                            throw new Error('Error al actualizar el producto.');
+                            throw new Error("Error al actualizar el producto.");
                         }
                     })
-                    .then(data => {
+                    .then((data) => {
                         console.log(data);
                         return data;
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         console.log(error.message);
                         throw error;
                     });

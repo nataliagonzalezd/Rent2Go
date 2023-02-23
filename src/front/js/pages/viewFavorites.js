@@ -9,8 +9,7 @@ const ViewFavorites = () => {
 
     useEffect(() => {
         actions.getFavorites(localStorage.getItem("costumer_id"));
-    }, []);
-
+    }, [store.productsFavorites]);
 
     return localStorage.getItem("costumer_id") === null ? (
         <Navigate to="/login" />
@@ -35,7 +34,8 @@ const ViewFavorites = () => {
                 onClick={() =>
                     actions.delAllFavorites(localStorage.getItem("costumer_id"))
                 }
-            >Eliminar todos
+            >
+                Eliminar todos
             </button>
         </div>
     );
