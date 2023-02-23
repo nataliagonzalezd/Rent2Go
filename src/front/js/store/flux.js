@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       productsFavorites: [],
       categoryproducts: [],
       orderitem: [],
+      category: [],
       mercadoPago: {},
     },
     actions: {
@@ -55,6 +56,19 @@ const getState = ({ getStore, getActions, setStore }) => {
               orderitem: data,
             })
           )
+          .catch((err) => console.error(err));
+      },
+      getCategory: () => {
+        fetch(process.env.BACKEND_URL + "/api/category/", {
+          method: "GET",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setStore({
+              category: data,
+            });
+          })
           .catch((err) => console.error(err));
       },
       delProduct: (costumer_id, id) => {
