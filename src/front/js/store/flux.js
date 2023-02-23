@@ -287,9 +287,34 @@ const getState = ({
                     console.log(error);
                 }
             },
-
-            /////////////////////////////////////////////////////////////
-
+            updateProduct: (id) => {
+                fetch(process.env.BACKEND_URL + "/api/product/" + id, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: "name",
+                            description: "jaja",
+                            price: 89,
+                        })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Error al actualizar el producto.');
+                        }
+                    })
+                    .then(data => {
+                        console.log(data);
+                        return data;
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                        throw error;
+                    });
+            },
             getProductsCategory: (category_id) => {
                 fetch(
                         process.env.BACKEND_URL +
