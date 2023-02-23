@@ -21,9 +21,7 @@ const CardProduct = (props) => {
         <div className="check1">
           <i className="fa fa-solid fa-pen"></i>
           <div>
-            <Link
-              to={"/costumer/" + props.costumer_id + "/editproduct/" + props.id}
-            />
+            <Link to={"/product/" + props.id} className="btn btn-dark me-5" />
             <i className="fa fa-solid fa-trash"></i>
           </div>
           <div className="star">

@@ -2,18 +2,19 @@ import React from "react";
 import { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import MyCardsView from "../pages/cardProduct.jsx";
+import { useParams } from "react-router-dom";
 
 const MyProducts = function () {
   const { store, actions } = useContext(Context);
   const [name, setName] = useState(store.products[0].name);
   const [description, setDescription] = useState(store.products[0].description);
   const [price, setPrice] = useState(store.products[0].price);
+  const params = useParams();
 
   useEffect(() => {
     actions.getProductsDetails();
-    console.log(store.products);
     actions.updateProduct(params.id);
-  }, []);
+  }, [params.id]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
