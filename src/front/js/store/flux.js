@@ -315,19 +315,18 @@ const getState = ({
                     console.log("Error loading message from backend", error);
                 }
             },
-
-            // getProfile: () => {
-            //     fetch(process.env.BACKEND_URL + "/api/editprofile", {
-            //             method: "GET",
-            //         })
-            //         .then((res) => res.json())
-            //         .then((data) =>
-            //             setStore({
-            //                 profile: data,
-            //             })
-            //         )
-            //         .catch((err) => console.error(err));
-            // },
+            getProfile: () => {
+                fetch(process.env.BACKEND_URL + "/api/editprofile", {
+                        method: "GET",
+                    })
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            profile: data,
+                        })
+                    )
+                    .catch((err) => console.error(err));
+            },
             ////////////////////////////////////// FAVORITOS /////////////////////////////////////
             getFavorites: (costumer_id) => {
                 fetch(process.env.BACKEND_URL + "/api/favorites/" + costumer_id, {
