@@ -42,6 +42,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     code = db.Column(db.String(80), unique=False, nullable=False)
+    image = db.Column(db.String(120), unique=False, nullable=True)
     product = db.relationship('Product', backref='category', lazy=True)
     related = db.relationship('Related_product', backref='category', lazy=True)
     
@@ -54,6 +55,7 @@ class Category(db.Model):
             "id": self.id,
             "name": self.name,
             "code": self.code,
+            "image": self.image,
         }
 
 class Product(db.Model):
