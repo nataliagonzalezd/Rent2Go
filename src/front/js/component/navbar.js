@@ -14,13 +14,13 @@ export const Navbar = () => {
     console.log(store.auth);
   }, []);
 
-  // useEffect(() => {
-  //   actions.getFavorites(localStorage.getItem("costumer_id"));
-  // }, [store.productsFavorites]);
+  useEffect(() => {
+    actions.getFavorites(localStorage.getItem("costumer_id"));
+  }, [store.productsFavorites]);
 
-  // useEffect(() => {
-  //   actions.getCart(localStorage.getItem("costumer_id"));
-  // }, [store.productsCart]);
+  useEffect(() => {
+    actions.getCart(localStorage.getItem("costumer_id"));
+  }, [store.productsCart]);
 
   function handleLogout() {
     actions.logout();
