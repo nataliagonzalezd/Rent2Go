@@ -14,8 +14,8 @@ export const NewProduct = () => {
   const [imagesCloudinary, setImagesCloudinary] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState(null);
-  console.log(images);
-  console.log(imagesCloudinary[0]);
+  // console.log(images);
+  // console.log(imagesCloudinary[0]);
 
   function productAdded() {
     if (datas.msg === "Producto creado correctamente") {
@@ -61,8 +61,8 @@ export const NewProduct = () => {
     const files = e.target.files;
     try {
       const filesArray = Object.values(files);
-      console.log(files);
-      console.log(filesArray);
+      // console.log(files);
+      // console.log(filesArray);
       setLoading(true);
 
       const response = await Promise.all(
