@@ -1,10 +1,20 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/myprofile.css";
 
 const MyProfile = function (props) {
   const { store, actions } = useContext(Context);
+  const [name, setName] = useState(props.name);
+  const [email, setEmail] = useState(props.email);
+  const [role, setRole] = useState(props.role);
+  const [address, setAddress] = useState(props.address);
+  const [phone, setPhone] = useState(props.phone);
+  const [username, setUsername] = useState(props.username);
+
+  const handleUpdateProfile = () => {
+    actions.addInfo(name, name, address, role, phone, name);
+  };
 
   useEffect(() => {
     actions.getProfile();
@@ -21,15 +31,47 @@ const MyProfile = function (props) {
           </div>
           <div className="name_role">
             <p>{props.name}</p>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
             <span>{props.email}</span>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </div>
           <div className="skills">
             <span>{props.role}</span>
+            <input
+              type="text"
+              id="role"
+              value={role}
+              onChange={(e) => {
+                setRole(e.target.value);
+              }}
+            />
           </div>
           <div className="level">
             <div className="level_data">
               <p>
                 {props.address}
+                <input
+                  type="text"
+                  id="address"
+                  value={address}
+                  onChange={(e) => {
+                    setAddress(e.target.value);
+                  }}
+                />
                 <span>Calle 45</span>
               </p>
             </div>
@@ -63,16 +105,34 @@ const MyProfile = function (props) {
                 <i className="fa fa-solid fa-phone"></i>
               </div>
               <div className="count">{props.phone}</div>
+              <input
+                type="number"
+                id="phone"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
+              />
             </div>
             <div className="data_item">
               <div className="icon">
                 <i className="fa fa-solid fa-user"></i>
               </div>
               <div className="count">{props.username}</div>
+              <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
+              <button className="btn" onClick={handleUpdateProfile}>
+                Editar Perfil
+              </button>
             </div>
           </div>
           <div className="bio">Me gusta la venta ea</div>
-          <button className="btn">Editar Perfil</button>
           <div className="social_media">
             <div className="icon">
               <i className="fab fa-facebook-square"></i>

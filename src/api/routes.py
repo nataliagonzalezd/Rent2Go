@@ -306,7 +306,7 @@ def get_info_product(product_id):
     return jsonify(product.serialize()), 200
 
 #---  Completando el perfil ---
-@api.route('/editprofile', methods=['POST'])
+@api.route('/editprofile', methods=['PUT'])
 def edit_profile():
     request_body = request.json
     edit_profile = Costumer(name=request_body["name"],email=request_body["email"],password=request_body["password"],username=request_body["username"], lastName=request_body["lastName"],address=request_body["address"], role=request_body["role"],phone=request_body["phone"],image=request_body["image"])

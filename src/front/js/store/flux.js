@@ -282,14 +282,17 @@ const getState = ({
                     .then((data) => console.log(data));
             },
 
-            addInfo: (name, lastName, address, role, phone, image) => {
+            addInfo: (name, lastName, address, role, phone, email, username, image, password) => {
                 fetch(process.env.BACKEND_URL + "/api/editprofile", {
-                        method: "POST",
+                        method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
                             name: name,
+                            email: "eds",
+                            username: "userndsame",
+                            password: "passsdword",
                             lastName: lastName,
                             address: address,
                             role: role,
@@ -315,6 +318,7 @@ const getState = ({
                     console.log("Error loading message from backend", error);
                 }
             },
+
             getProfile: () => {
                 fetch(process.env.BACKEND_URL + "/api/editprofile", {
                         method: "GET",
