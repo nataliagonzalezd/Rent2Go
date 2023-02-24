@@ -15,14 +15,10 @@ const Filtroscatalogo = function () {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
           </ul>
         </div>
@@ -37,14 +33,10 @@ const Filtroscatalogo = function () {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
           </ul>
         </div>
@@ -77,14 +69,10 @@ const Filtroscatalogo = function () {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
           </ul>
         </div>
@@ -99,14 +87,10 @@ const Filtroscatalogo = function () {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
           </ul>
         </div>
@@ -121,14 +105,10 @@ const Filtroscatalogo = function () {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
             <li>
-              <a className="dropdown-item" href="#">
-                Dropdown link
-              </a>
+              <a className="dropdown-item" href="#"></a>
             </li>
           </ul>
         </div>
