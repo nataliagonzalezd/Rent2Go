@@ -6,6 +6,7 @@ import "../../styles/myprofile.css";
 const MyProfile = function (props) {
   const { store, actions } = useContext(Context);
   const [name, setName] = useState(props.name);
+  const [lastName, setLastName] = useState(props.lastName);
   const [email, setEmail] = useState(props.email);
   const [role, setRole] = useState(props.role);
   const [address, setAddress] = useState(props.address);
@@ -13,7 +14,16 @@ const MyProfile = function (props) {
   const [username, setUsername] = useState(props.username);
 
   const handleUpdateProfile = () => {
-    actions.addInfo(name, name, address, role, phone, name);
+    actions.addInfo(
+      props.id,
+      name,
+      lastName,
+      address,
+      role,
+      phone,
+      email,
+      username
+    );
   };
 
   useEffect(() => {
@@ -30,13 +40,24 @@ const MyProfile = function (props) {
             <img src="https://i.imgur.com/2QKIaJ5.png" alt="profile_pic" />
           </div>
           <div className="name_role">
-            <p>{props.name}</p>
+            <p>
+              {props.name}
+              {props.lastName}
+            </p>
             <input
               type="text"
               id="name"
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
+              }}
+            />
+            <input
+              type="text"
+              id="name"
+              value={lastName}
+              onChange={(e) => {
+                setLastName(e.target.value);
               }}
             />
             <span>{props.email}</span>
@@ -93,6 +114,9 @@ const MyProfile = function (props) {
               </div>
             </div>
           </div>
+          <button className="btn" onClick={handleUpdateProfile}>
+            Editar Perfil
+          </button>
           <div className="data">
             <div className="data_item">
               <div className="icon">
@@ -127,9 +151,6 @@ const MyProfile = function (props) {
                   setUsername(e.target.value);
                 }}
               />
-              <button className="btn" onClick={handleUpdateProfile}>
-                Editar Perfil
-              </button>
             </div>
           </div>
           <div className="bio">Me gusta la venta ea</div>

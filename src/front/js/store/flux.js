@@ -281,23 +281,22 @@ const getState = ({
                     .then((response) => response.json())
                     .then((data) => console.log(data));
             },
-
-            addInfo: (name, lastName, address, role, phone, email, username, image, password) => {
-                fetch(process.env.BACKEND_URL + "/api/editprofile", {
+            addInfo: (id, name, lastName, address, role, phone, email, username, image, password) => {
+                fetch(process.env.BACKEND_URL + "/api/editprofile/" + id, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
                             name: name,
-                            email: "eds",
-                            username: "userndsame",
-                            password: "passsdword",
+                            email: email,
+                            username: username,
+                            password: "password",
                             lastName: lastName,
                             address: address,
                             role: role,
                             phone: phone,
-                            image: "dklsaa",
+                            image: image,
                         }),
                     })
                     .then((response) => response.json())
