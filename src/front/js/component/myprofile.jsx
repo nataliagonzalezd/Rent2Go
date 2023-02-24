@@ -12,7 +12,7 @@ const MyProfile = function (props) {
   const [address, setAddress] = useState(props.address);
   const [phone, setPhone] = useState(props.phone);
   const [username, setUsername] = useState(props.username);
-  const [imageCloudinary, setImageCloudinary] = useState([]);
+  const [imageCloudinary, setImageCloudinary] = useState();
   const [loading, setLoading] = useState(false);
 
   const uploadImage = async (file) => {
@@ -32,7 +32,7 @@ const MyProfile = function (props) {
 
       const url = response.secure_url;
 
-      setImageCloudinary([url]);
+      setImageCloudinary(url);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -60,6 +60,7 @@ const MyProfile = function (props) {
 
   useEffect(() => {
     actions.getProfile();
+    console.log(imageCloudinary);
   }, []);
 
   return (
@@ -69,7 +70,7 @@ const MyProfile = function (props) {
       <div className="wrapper">
         <div className="profile">
           <div className="picture">
-            <img src={imageCloudinary} alt="profile_pic" />
+            <img src={props.image} alt="foto de perfil" />
           </div>
           <div className="name_role">
             <label htmlFor="InsertImage" className="mt-5">

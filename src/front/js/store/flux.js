@@ -299,7 +299,12 @@ const getState = ({
                             image: image,
                         }),
                     })
-                    .then((response) => response.json())
+                    .then((response) => {
+                        if (response.status === 200) {
+                            getActions().getProfile()
+                        }
+                        return response.json()
+                    })
                     .then((data) => console.log(data));
             },
 
@@ -317,7 +322,6 @@ const getState = ({
                     console.log("Error loading message from backend", error);
                 }
             },
-
             getProfile: () => {
                 fetch(process.env.BACKEND_URL + "/api/editprofile", {
                         method: "GET",
