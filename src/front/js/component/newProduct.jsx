@@ -18,7 +18,7 @@ export const NewProduct = () => {
   // console.log(imagesCloudinary[0]);
 
   function productAdded() {
-    if (datas.msg === "Producto creado correctamente") {
+    if (store?.mensajeNuevoProducto === "Producto creado correctamente") {
       Swal.fire({
         icon: "success",
         title: "Producto creado con éxito",
