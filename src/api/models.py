@@ -18,6 +18,7 @@ class Costumer(db.Model):
     order = db.relationship('Order', backref='costumer', lazy=True)
     order_item = db.relationship('Order_item', backref='costumer', lazy=True)
     cart = db.relationship('Cart', backref='costumer', lazy=True)
+    # status= db.Column(db.Boolean, unique=False, nullable=False)
 
 
     def __repr__(self):

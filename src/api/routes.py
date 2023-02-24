@@ -100,7 +100,7 @@ def login():
 @jwt_required() #es como el portero que permite o no la entrada; verifica si tiene el token
 def valid_token():
     # Access the identity of the current user with get_jwt_identity
-    current_user = get_jwt_identity()
+    current_costumer = get_jwt_identity()
 
     costumer = Costumer.query.filter_by(email=current_costumer).first()
 

@@ -17,7 +17,7 @@ const getState = ({
             category: [],
             mercadoPago: {},
             costoTotalStore: null,
-            auth: true,
+            auth: false,
         },
         actions: {
             // costo total para el precio
@@ -265,16 +265,21 @@ const getState = ({
             },
 
             validToken: async () => {
+                console.log("funciona");
                 let tokenAcceso = localStorage.getItem("token");
+                console.log(tokenAcceso);
                 try {
                     const response = await fetch(
-                        process.env.BACKEND_URL + "/valid-token", {
+                        process.env.BACKEND_URL + "/api/valid-token", {
                             headers: {
                                 Authorization: "Bearer " + tokenAcceso,
                             },
                         }
                     );
                     const data = await response.json();
+                    console.log(response);
+                    // console.log(response.status);
+                    console.log(data);
                     setStore({
                         auth: data.status,
                     });
