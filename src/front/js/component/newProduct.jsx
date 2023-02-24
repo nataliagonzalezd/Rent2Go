@@ -18,18 +18,18 @@ export const NewProduct = () => {
   // console.log(imagesCloudinary[0]);
 
   function productAdded() {
-    if (store?.mensajeNuevoProducto === "Producto creado correctamente") {
-      Swal.fire({
-        icon: "success",
-        title: "Producto creado con éxito",
-        confirmButtonColor: "#2e2c3c",
-      });
-    } else {
+    if (store?.mensajeNuevoProducto != "Producto creado correctamente") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Algo salió mal!",
         footer: '<a href="">Completa todos los campos requeridos</a>',
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Producto creado con éxito",
+        confirmButtonColor: "#2e2c3c",
       });
     }
   }

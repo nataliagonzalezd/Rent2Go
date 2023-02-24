@@ -5,109 +5,56 @@ import RecentlyViewed from "../component/recentlyViewed.js";
 import MoreRented from "../component/moreRented.js";
 import Offers from "../component/offers.js";
 import "../../styles/home.css";
+import banner from "../../img/banner.png";
 
 //create your first component
 export const Home = () => {
   return (
-    <div className="">
-      <div className="mx-5">
-        <div className="text-center mt-5">
-          <img
-            src="https://uploads-ssl.webflow.com/5c471c24395cd54f559228e5/5d1623691e99cd415d15fc95_Page-under-construction_kompuestos.gif"
-            alt=""
-          />
+    <>
+      <div id="carouselExampleDark" className="carousel carousel-dark slide">
+        <div className="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
+        <div className="carousel-inner">
+          <div className="carousel-item active" data-bs-interval="10000">
+            <img src={banner} className="d-block w-100" width="250" height="550" alt="..." />
 
-        {/* card Ofertas */}
-        <div className="container-fluid row g-4 my-2 d-flex justify-content-center">
-          <div className="col-8">
-            <Offers />
+            <div className="carousel-caption d-none d-md-block">
+              <h5>First slide label</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
           </div>
-        </div>
+          <div className="carousel-item" data-bs-interval="2000">
+            <img src="https://wowslider.com/sliders/demo-80/data1/images/plumage176723_1920.jpg" className="d-block w-100" width="250" height="550" alt="..." />
 
-        {/* titulo inspirado en tus favoritos */}
-        <div className="d-flex pt-0">
-          <div className="p-1 flex-fill">
-            <h1 className="border-white p-1 border ">
-              <strong>Insipirado en tus favoritos!</strong>
-            </h1>
+            <div className="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
           </div>
-          <div className="p-2 flex-fill">
-            <u className="border-white p-1 border ">
-              EXPLORA TODOS LOS PRODUCTOS
-            </u>
-          </div>
-        </div>
-        {/* card inspirado en tus favoritos */}
-        <div className="container-fluid row g-4 my-2 ">
-          <div className="col-3">
-            <InspiredFavorites />
-          </div>
-          <div className="col-3">
-            <InspiredFavorites />
-          </div>
-          <div className="col-3">
-            <InspiredFavorites />
-          </div>
-          <div className="col-3">
-            <InspiredFavorites />
-          </div>
-        </div>
-        {/* titulo vistos recientemente */}
-        <div className="d-flex mt-5">
-          <div className="p-1 flex-fill">
-            <h1 className="border-white p-1 border ">
-              <strong>Visto recientemente</strong>
-            </h1>
-          </div>
-        </div>
+          <div className="carousel-item">
+            <img src="https://wowslider.com/sliders/demo-80/data1/images/plumage176723_1920.jpg" className="d-block w-100" width="250" height="550" alt="..." />
 
-        {/* Vistos Recientemente */}
-        <div className="container-fluid row g-4 my-2">
-          <div className="col-3">
-            <RecentlyViewed />
-          </div>
-          <div className="col-3">
-            <RecentlyViewed />
-          </div>
-          <div className="col-3">
-            <RecentlyViewed />
-          </div>
-          <div className="col-3">
-            <RecentlyViewed />
+            <div className="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
           </div>
         </div>
-
-        {/* titulo inspirado en tus favoritos */}
-        <div className="d-flex pt-0">
-          <div className="p-1 flex-fill">
-            <h1 className="border-white p-1 border ">
-              <strong>Mas alquilado en tu zona!</strong>
-            </h1>
-          </div>
-          <div className="p-2 flex-fill">
-            <u className="border-white p-1 border ">
-              EXPLORA TODOS LOS PRODUCTOS
-            </u>
-          </div>
-        </div>
-        {/* card inspirado en tus favoritos */}
-        <div className="container-fluid row g-4 my-2 ">
-          <div className="col-3">
-            <MoreRented />
-          </div>
-          <div className="col-3">
-            <MoreRented />
-          </div>
-          <div className="col-3">
-            <MoreRented />
-          </div>
-          <div className="col-3">
-            <MoreRented />
-          </div>
-        </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
-    </div>
+
+    </>
+
   );
 };
 

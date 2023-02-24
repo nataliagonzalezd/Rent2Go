@@ -71,9 +71,9 @@ def preference():
             "email":"test_user_17805074@testuser.com"
         },
         "back_urls": {
-            "success": "https://3000-nataliagonzalez-rent2go-56m5il55oso.ws-us87.gitpod.io",
-            "failure": "https://3000-nataliagonzalez-rent2go-56m5il55oso.ws-us87.gitpod.io",
-            "pending": "https://3000-nataliagonzalez-rent2go-56m5il55oso.ws-us87.gitpod.io"
+            "success": "https://3000-nataliagonzalez-rent2go-rmnr5xxntcm.ws-us88.gitpod.io",
+            "failure": "https://3000-nataliagonzalez-rent2go-rmnr5xxntcm.ws-us88.gitpod.io",
+            "pending": "https://3000-nataliagonzalez-rent2go-rmnr5xxntcm.ws-us88.gitpod.io"
 	},
         "auto_return": "approved"
     }
