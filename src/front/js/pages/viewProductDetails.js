@@ -34,28 +34,7 @@ const ViewProductDetails = () => {
             costumer_id={cadaProducto.costumer_id}
           />
         ))}
-        <div className="card mx-1 my-5">
-          <h3 className="text-start mx-3 mt-2"> Productos Relacionados </h3>{" "}
-          <div className="container-fluid row g-4 my-2">
-            <div className="col-3">
-              <RelatedProduct />
-            </div>{" "}
-            <div className="col-3">
-              <RelatedProduct />
-            </div>{" "}
-            <div className="col-3">
-              <RelatedProduct />
-            </div>{" "}
-            <div className="col-3">
-              <RelatedProduct />
-            </div>{" "}
-          </div>{" "}
-        </div>{" "}
-        <div>
-          <VendorReviews />
-        </div>
-      </div>{" "}
-      {/* <Footer /> */}
+      </div>
     </div>
   );
 };
