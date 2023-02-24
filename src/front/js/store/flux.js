@@ -17,6 +17,7 @@ const getState = ({
             category: [],
             mercadoPago: {},
             costoTotalStore: null,
+            auth: true,
         },
         actions: {
             // costo total para el precio
@@ -197,7 +198,7 @@ const getState = ({
                     })
                     .catch((err) => console.log(err));
             },
-            ///////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////// Costumer ///////////////////////////////////////////////
             register: (email, username, password) => {
                 fetch(process.env.BACKEND_URL + "/api/register", {
                         method: "POST",
@@ -263,6 +264,32 @@ const getState = ({
                 });
             },
 
+            validToken: async () => {
+                let tokenAcceso = localStorage.getItem("token");
+                try {
+                    const response = await fetch(
+                        process.env.BACKEND_URL + "/valid-token", {
+                            headers: {
+                                Authorization: "Bearer " + tokenAcceso,
+                            },
+                        }
+                    );
+                    const data = await response.json();
+                    setStore({
+                        auth: data.status,
+                    });
+                    return;
+                } catch (error) {
+                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        setStore({
+                            auth: false,
+                        });
+                    }
+                    return false;
+                }
+            },
+
             addProduct: (productName, description, price, urls, url2, url3, url4) => {
                 fetch(process.env.BACKEND_URL + "/api/product", {
                         method: "POST",
@@ -281,7 +308,18 @@ const getState = ({
                     .then((response) => response.json())
                     .then((data) => console.log(data));
             },
-            addInfo: (id, name, lastName, address, role, phone, email, username, image, password) => {
+            addInfo: (
+                id,
+                name,
+                lastName,
+                address,
+                role,
+                phone,
+                email,
+                username,
+                image,
+                password
+            ) => {
                 fetch(process.env.BACKEND_URL + "/api/editprofile/" + id, {
                         method: "PUT",
                         headers: {
