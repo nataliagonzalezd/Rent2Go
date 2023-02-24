@@ -95,20 +95,6 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token, costumer_id=costumer.id) 
 
-# ---  Elimina un producto  ---
-@api.route('/product/<int:costumer_id>/<int:id>', methods=['DELETE'])
-def delete_product(costumer_id,id):
-    request_body=request.json
-    print(request_body)
-    print(costumer_id)
-    query= Product.query.filter_by(costumer_id=costumer_id,id=id).first()
-    print(query)
-    if query is None:
-        return jsonify({"msg":"No hubo coincidencias, no hay nada para eliminar"}),404
-    db.session.delete(query)
-    db.session.commit()
-    return jsonify({"msg":"El producto seleccionado ha sido eliminado correctamente"}),
-
 
 # ----------------------------------------------------------- Productos--------------------------------- #
 
@@ -306,13 +292,26 @@ def get_info_product(product_id):
     return jsonify(product.serialize()), 200
 
 #---  Completando el perfil ---
-@api.route('/editprofile', methods=['POST'])
-def edit_profile():
+@api.route('/editprofile/<int:id>', methods=['PUT'])
+def edit_profile(id):
+    customer = Costumer.query.get(id)
+    if not customer:
+        return jsonify({"msg": "El usuario no existe"}), 404
+
     request_body = request.json
-    edit_profile = Costumer(name=request_body["name"],email=request_body["email"],password=request_body["password"],username=request_body["username"], lastName=request_body["lastName"],address=request_body["address"], role=request_body["role"],phone=request_body["phone"],image=request_body["image"])
-    db.session.add(edit_profile)
+    customer.name = request_body.get("name", customer.name)
+    customer.email = request_body.get("email", customer.email)
+    customer.password = request_body.get("password", customer.password)
+    customer.username = request_body.get("username", customer.username)
+    customer.lastName = request_body.get("lastName", customer.lastName)
+    customer.address = request_body.get("address", customer.address)
+    customer.role = request_body.get("role", customer.role)
+    customer.phone = request_body.get("phone", customer.phone)
+    customer.image = request_body.get("image", customer.image)
+
     db.session.commit()
-    return jsonify({"msg":"Datos de profile obtenidos de forma satisfactoria"}),200
+    return jsonify({"msg":"Datos de perfil actualizados de forma satisfactoria"}), 200
+
 
 # -----------------------------------------------------------CART--------------------------------- # 
 

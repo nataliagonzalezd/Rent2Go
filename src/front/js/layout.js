@@ -19,6 +19,7 @@ import MyRent from "./pages/myRent";
 import NewProduct from "./component/newProduct.jsx";
 import MyProductsView from "./pages/DashboardViews/dashboardView.jsx";
 import MyDashMenuView from "./pages/DashboardViews/dashMenuView.jsx";
+import ProfileView from "./pages/profileView.jsx";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -46,6 +47,7 @@ const Layout = () => {
             <Route element={<Home />} path="/" />
             <Route element={<Login />} path="/login" />
             <Route element={<Demo />} path="/demo" />
+            <Route element={<ProfileView />} path="/editprofile/:id" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1> Not found! </h1>} />
           </Routes>{" "}

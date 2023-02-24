@@ -281,20 +281,22 @@ const getState = ({
                     .then((response) => response.json())
                     .then((data) => console.log(data));
             },
-
-            addInfo: (name, lastName, address, role, phone, image) => {
-                fetch(process.env.BACKEND_URL + "/api/editprofile", {
-                        method: "POST",
+            addInfo: (id, name, lastName, address, role, phone, email, username, image, password) => {
+                fetch(process.env.BACKEND_URL + "/api/editprofile/" + id, {
+                        method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
                             name: name,
+                            email: email,
+                            username: username,
+                            password: "password",
                             lastName: lastName,
                             address: address,
                             role: role,
                             phone: phone,
-                            image: "dklsaa",
+                            image: image,
                         }),
                     })
                     .then((response) => response.json())
@@ -316,18 +318,18 @@ const getState = ({
                 }
             },
 
-            // getProfile: () => {
-            //     fetch(process.env.BACKEND_URL + "/api/editprofile", {
-            //             method: "GET",
-            //         })
-            //         .then((res) => res.json())
-            //         .then((data) =>
-            //             setStore({
-            //                 profile: data,
-            //             })
-            //         )
-            //         .catch((err) => console.error(err));
-            // },
+            getProfile: () => {
+                fetch(process.env.BACKEND_URL + "/api/editprofile", {
+                        method: "GET",
+                    })
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setStore({
+                            profile: data,
+                        })
+                    )
+                    .catch((err) => console.error(err));
+            },
             ////////////////////////////////////// FAVORITOS /////////////////////////////////////
             getFavorites: (costumer_id) => {
                 fetch(process.env.BACKEND_URL + "/api/favorites/" + costumer_id, {
