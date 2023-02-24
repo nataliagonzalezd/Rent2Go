@@ -134,9 +134,12 @@ export const Navbar = () => {
                   </li>
                   <li>
                     {store.auth === true ? (
-                      <a className="btn" href="/product">
-                        Mi cuenta
-                      </a>
+                      <Link
+                        className="btn"
+                        to={
+                          "/editprofile/" + localStorage.getItem("costumer_id")
+                        }
+                      ></Link>
                     ) : null}
                   </li>
                   <li>
