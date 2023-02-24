@@ -7,7 +7,8 @@ import { useParams, Navigate } from "react-router-dom";
 const Cart = function (props) {
   const { store, actions } = useContext(Context);
   const params = useParams();
-
+  const days=props.quantity
+  const price=props.price
 
   return (
     <>
@@ -85,8 +86,9 @@ const Cart = function (props) {
                           <i className="fa fa-solid fa-trash"></i> Eliminar
                         </button>
                       </div>
-                      <div className="mt-auto p-2"> Flex item </div>{" "}
-                      <div className="mt-auto p-2"> Flex item </div>{" "}
+                      <div className="mt-auto p-2"> {days} </div>{" "}
+                      <div className="mt-auto p-2"> {price}  </div>{" "}
+
                     </div>
                   </div>{" "}
                 </div>{" "}
@@ -95,7 +97,7 @@ const Cart = function (props) {
             <div>
               <div className="col-md-6">
                 <div className="card-body">
-                  <h4 className="card-title">$ {store.costoTotalStore}</h4>
+                  <h4 className="card-title">$ {days*price}</h4>
                 </div>
               </div>
             </div>
