@@ -95,6 +95,26 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token, costumer_id=costumer.id) 
 
+#---  Valid Token ---
+@api.route("/valid-token", methods=["GET"])
+@jwt_required() #es como el portero que permite o no la entrada; verifica si tiene el token
+def valid_token():
+    # Access the identity of the current user with get_jwt_identity
+    current_costumer = get_jwt_identity()
+
+    costumer = Costumer.query.filter_by(email=current_costumer).first()
+
+    if costumer is None:
+        return jsonify({"status": False}), 404
+
+    response_body = {
+        
+        "costumer": costumer.serialize(),
+        "status": True
+    }
+
+
+    return jsonify(response_body), 200
 
 # ----------------------------------------------------------- Productos--------------------------------- #
 
