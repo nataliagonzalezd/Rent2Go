@@ -291,7 +291,7 @@ const getState = ({
                             name: name,
                             email: email,
                             username: username,
-                            password: "password",
+                            password: password,
                             lastName: lastName,
                             address: address,
                             role: role,
