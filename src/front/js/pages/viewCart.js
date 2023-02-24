@@ -9,14 +9,39 @@ const ViewCart = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
 
-  let subtotal = 0;
+const prices=[];
+const days=[];
+const totalPriceYaDeTodo=[];
+
+  // let subtotal = 0;
+  let finalPrice = 0;
+
+  // for (let i = 0; i < store.productsCart.length; i++) {
+  //   subtotal += store.productsCart[i].productinfo.price;
+  // }
 
   for (let i = 0; i < store.productsCart.length; i++) {
-    subtotal += store.productsCart[i].productinfo.price;
+    prices.push(store.productsCart[i].productinfo.price) ;
+  }
+
+  for (let i = 0; i < store.productsCart.length; i++) {
+    days.push(store.productsCart[i].quantity) ;
+  }
+
+  for (let i = 0; i < store.productsCart.length; i++) {
+     totalPriceYaDeTodo.push(prices[i]*days[i])
+    // console.log(totalPriceYaDeTodo)
+    // console.log(days[i])
+    // console.log(prices[i])
+    
+  }
+
+  for (let i = 0; i < store.productsCart.length; i++) {
+    finalPrice +=totalPriceYaDeTodo[i] ;
   }
 
   const alquilar = async () => {
-    let total = subtotal * 1.22;
+    let total = finalPrice * 1.22 ;
     console.log(total);
     await actions.pagoMercadoPago(total);
     let direccion = await store.mercadoPago.init_point;
@@ -55,7 +80,8 @@ const ViewCart = (props) => {
             price={cadaProducto.productinfo.price}
             description={cadaProducto.productinfo.description}
             image={cadaProducto.productinfo.image}
-            costumer_id={cadaProducto.productinfo.costumer_id}
+            costumer_id={cadaProducto.productinfo.costumer_id} 
+            quantity={cadaProducto.quantity}
           />
         ))}{" "}
         <div className="col-md-4">
@@ -70,9 +96,9 @@ const ViewCart = (props) => {
               </div>{" "}
               <div className="col-md-6">
                 <div className="card-body">
-                  <h5 className="card-title"> {subtotal} </h5>{" "}
-                  <h5 className="card-title"> {subtotal * 0.22} </h5>{" "}
-                  <h1 className="card-title"> {subtotal * 1.22} </h1>{" "}
+                  <h5 className="card-title"> {finalPrice} </h5>{" "}
+                  <h5 className="card-title"> {finalPrice * 0.22} </h5>{" "}
+                  <h1 className="card-title"> {finalPrice * 1.22} </h1>{" "}
                 </div>{" "}
               </div>{" "}
             </div>{" "}
