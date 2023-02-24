@@ -177,15 +177,8 @@ const ProductDetails = function (props) {
     <>
       {/* Detalles del producto */}
       <div className="card mx-1 my-5">
-        <div className="text-start mx-3 text-muted mt-2">
-          <h6>
-            Categoria <i className="fa fa-solid fa-angle-right mx-1"></i>{" "}
-            Camping
-          </h6>
-        </div>
         <div className="row g-0 mb-3">
-          <div className="col-md-1 d-flex justify-content-center d-flex align-items-center">
-            {/* Imagenes pequenas del producto */}
+          {/* <div className="col-md-2 d-flex justify-content-center d-flex align-items-center">
             <div className="card d-flex align-items-center mx-3 border border-0">
               <img
                 src={props.image}
@@ -208,14 +201,35 @@ const ProductDetails = function (props) {
                 alt="..."
               />
             </div>
-          </div>
+          </div> */}
           {/* Imagen grande del producto */}
-          <div className="col-md-7 my-4">
-            <img
+          <div className="col-md-8 my-4">
+            {/* <img
               src={props.image}
               className="img-fluid rounded-start"
               alt="..."
-            />
+            /> */}
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src={props.image} class="d-block w-100" alt="..." />
+                </div>
+                <div class="carousel-item">
+                  <img src={props.image2} class="d-block w-100" alt="..." />
+                </div>
+                <div class="carousel-item">
+                  <img src={props.image3} class="d-block w-100" alt="..." />
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
           {/* Form con detalles del producto */}
           <div className="col-md-4 d-flex align-items-center">
@@ -238,17 +252,7 @@ const ProductDetails = function (props) {
                   </button>
                 </div>
               </div>
-              <p className="card-text text-start text-muted my-0">
-                {props.description}
-              </p>
-              {/* Reviews del producto */}
-              <div className="text-start my-0">
-                <i className="fa fa-solid fa-star text-start"></i>
-                <i className="fa fa-solid fa-star"></i>
-                <i className="fa fa-solid fa-star"></i>
-                <i className="fa fa-solid fa-star"></i>
-                <i className="fa fa-duotone fa-star-half"></i> (3)
-              </div>
+
               {/* Precio */}
               <div className=" text-start">
                 <h3 className="card-title mt-3 mb-0"> $ {props.price}</h3>
@@ -256,49 +260,40 @@ const ProductDetails = function (props) {
               </div>
 
               {/* Calendario de google  */}
-              <div>
-                <DatePicker
-                  selected={startDate}
-                  onChange={handleDateChange}
-                  selectsStart
-                  startDate={startDate}
-                  endDate={endDate}
-                  placeholderText="Desde"
-                />
-                <DatePicker
-                  selected={endDate}
-                  onChange={handleDateChange}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={startDate}
-                  placeholderText="Hasta"
-                />
+              <div className="text-dark">
+                <div>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={handleDateChange}
+                    selectsStart
+                    startDate={startDate}
+                    endDate={endDate}
+                    placeholderText="Desde"
+                    className="text-dark"
+                  />
+                </div>
+
+                <div>
+                  <DatePicker
+                    selected={endDate}
+                    onChange={handleDateChange}
+                    selectsEnd
+                    startDate={startDate}
+                    endDate={endDate}
+                    minDate={startDate}
+                    placeholderText="Hasta"
+                    className="text-dark"
+                  />
+                </div>
+
               </div>
-              {/* Calendario seleccion periodo de alquiler */}
-              {/* <div className="row g-3 mb-4 d-flex justi">
-                <div className="col-md-5 text-start">
-                  <label htmlFor="desde" className="form-label fw-bold">
-                    Desde:
-                  </label>
-                  <input type="date" className="form-control" id="desde" />
-                </div>
-                <div className="col-md-5 text-start">
-                  <label
-                    htmlFor="hasta"
-                    className="form-label text-start fw-bold"
-                  >
-                    Hasta:
-                  </label>
-                  <input type="date" className="form-control" id="hasta" />
-                </div>
-              </div> */}
               {/* Seleccion de cantidad */}
               <div className="row row-cols-lg-auto g-3 mb-2">
                 {/* prueba */}
                 <div>
-                  <label htmlFor="numDias">Número de días:</label>
+                  <label htmlFor="numDias" className="text-dark">Número de días:</label>
                   <input
+                    className="text-dark"
                     id="numDias"
                     type="number"
                     value={numDiasValue}
@@ -306,36 +301,24 @@ const ProductDetails = function (props) {
                     disabled
                   />
 
-                  <p>Costo total de la reserva: {costoTotal}</p>
+
+                  <p className="text-dark">Costo total: {costoTotal}</p>
                 </div>
               </div>
-              {/* Stock */}
-              <h6 className="card-text text-start">
-                <i className="fa fa-solid fa-box mx-1"></i>Stock
-              </h6>
               <div>
-                <button className="btn btn-primary" type="button" id="enviar">
-                  Alquilar ahora
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    const funcion1 = actions.addCart(params.costumer_id, params.id, numDias);
+                    const funcion2 = cartAdded();
+                    funcion1();
+                    funcion2();
+                  }}
+                >
+                  <i className="fa fa-solid fa-cart-plus"></i> Anadir al carrito
                 </button>
               </div>
             </form>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                const funcion1 = actions.addCart(params.costumer_id, params.id, numDias);
-                const funcion2 = cartAdded();
-                funcion1();
-                funcion2();
-              }}
-            >
-              Anadir al carrito
-            </button>
-            <Link
-              to={"/cart/" + props.costumer_id}
-              className="btn btn-dark me-5"
-            >
-              Carrito
-            </Link>
           </div>
         </div>
         <div className="accordion row g-0" id="accordionPanelsStayOpenExample">
@@ -363,109 +346,9 @@ const ProductDetails = function (props) {
               </div>
             </div>
           </div>
-          {/* Tamano y Dimensiones */}
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-              <button
-                className="accordion-button collapsed fw-bold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo"
-                aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseTwo"
-              >
-                Tamano y Dimensiones
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseTwo"
-              className="accordion-collapse collapse"
-            >
-              <div className="accordion-body">
-                <ul className="text-start">
-                  <li>Capacidad: 3-4 personas</li>
-                  <li>Peso: 980 g</li>
-                  <li>Tipo: Playera</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          {/* Opiniones del producto */}
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="panelsStayOpen-headingThree">
-              <button
-                className="accordion-button collapsed fw-bold"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseThree"
-                aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseThree"
-              >
-                Opiniones del producto{" "}
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseThree"
-              className="accordion-collapse collapse"
-              aria-labelledby="panelsStayOpen-headingThree"
-            >
-              <div className="accordion-body text-start">
-                <h5 className="mb-4">
-                  {" "}
-                  4.5 <i className="fa fa-solid fa-star"></i>
-                  <i className="fa fa-solid fa-star"></i>
-                  <i className="fa fa-solid fa-star"></i>
-                  <i className="fa fa-solid fa-star"></i>
-                  <i className="fa fa-duotone fa-star-half"></i> (3)
-                </h5>
-                <hr />
-                <div>
-                  <p>
-                    <i className="fa fa-solid fa-star"></i>
-                    <i className="fa fa-solid fa-star"></i>
-                    <i className="fa fa-solid fa-star"></i>
-                  </p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempore architecto, dignissimos odio aliquam, voluptates ut
-                    aperiam eligendi iste quasi, asperiores molestiae
-                    laudantium? Maxime quas tempora in quasi cum, similique
-                    itaque!
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p>
-                    <i className="fa fa-solid fa-star"></i>
-                    <i className="fa fa-solid fa-star"></i>
-                    <i className="fa fa-solid fa-star"></i>
-                  </p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempore architecto, dignissimos odio aliquam, voluptates ut
-                    aperiam eligendi iste quasi, asperiores molestiae
-                    laudantium? Maxime quas tempora in quasi cum, similique
-                    itaque!
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p>
-                    <i className="fa fa-solid fa-star"></i>
-                    <i className="fa fa-solid fa-star"></i>
-                    <i className="fa fa-solid fa-star"></i>
-                  </p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempore architecto, dignissimos odio aliquam, voluptates ut
-                    aperiam eligendi iste quasi, asperiores molestiae
-                    laudantium? Maxime quas tempora in quasi cum, similique
-                    itaque!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
+
         </div>
       </div>
     </>
