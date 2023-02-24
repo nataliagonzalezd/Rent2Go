@@ -12,6 +12,37 @@ const MyProfile = function (props) {
   const [address, setAddress] = useState(props.address);
   const [phone, setPhone] = useState(props.phone);
   const [username, setUsername] = useState(props.username);
+  const [imageCloudinary, setImageCloudinary] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const uploadImage = async (file) => {
+    const form = new FormData();
+    try {
+      setLoading(true);
+      form.append(`file`, file);
+      form.append("upload_preset", "cloudy");
+
+      const response = await fetch(
+        "https://api.cloudinary.com/v1_1/dxhknbsqr/image/upload",
+        {
+          method: "POST",
+          body: form,
+        }
+      ).then((res) => res.json());
+
+      const url = response.secure_url;
+
+      setImageCloudinary([url]);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    uploadImage(file);
+  };
 
   const handleUpdateProfile = () => {
     actions.addInfo(
@@ -22,7 +53,8 @@ const MyProfile = function (props) {
       role,
       phone,
       email,
-      username
+      username,
+      imageCloudinary
     );
   };
 
@@ -37,9 +69,15 @@ const MyProfile = function (props) {
       <div className="wrapper">
         <div className="profile">
           <div className="picture">
-            <img src="https://i.imgur.com/2QKIaJ5.png" alt="profile_pic" />
+            <img src={imageCloudinary} alt="profile_pic" />
           </div>
           <div className="name_role">
+            <label htmlFor="InsertImage" className="mt-5">
+              Insertar Imagen de Perfil:
+            </label>
+            <div>
+              <input type="file" onChange={handleFileInputChange} />
+            </div>
             <p>
               {props.name}
               {props.lastName}

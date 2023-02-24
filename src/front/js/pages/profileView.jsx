@@ -15,6 +15,7 @@ const ProfileView = () => {
       <div className="col-12">
         {store.profile.map((cadaDato, index) => (
           <MyProfile
+            key={index}
             id={cadaDato.id}
             name={cadaDato.name}
             lastName={cadaDato.lastName}
