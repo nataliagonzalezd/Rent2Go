@@ -15,6 +15,7 @@ display: flex;
 .left {
     height: 100%;
     display: flex;
+    margin-right: 2400px;
 }
 
 .sidebar {
@@ -31,7 +32,7 @@ display: flex;
     padding-top: 80px;
 }
 
-.wrapper {
+.wrapper-dashboard {
     padding: 0 25px;
     height: 100vh;
     display: flex;
@@ -75,7 +76,7 @@ display: flex;
 .wrapper2 {
     padding: 0 25px;
     height: 100%;
-    overflow: auto;
+    margin-top: -650px;
 }
 
 .compose {
@@ -221,9 +222,10 @@ display: flex;
 .right-side {
     background-color: #f2f3f7;
     width: 100%;
-    padding: 8px 30px;
+    padding: 1px 0px;
     display: flex;
     flex-direction: column;
+    margin-left: 250px;
 }
 
 .right-side-product {
@@ -370,7 +372,7 @@ display: flex;
     padding: 20px 0px 5px 0px;
 }
 
-.card {
+.card-dashboard {
     background-color: white;
     border-radius: 4px;
     margin-top: 8px;
@@ -379,7 +381,7 @@ display: flex;
     transition: 0.3s;
 }
 
-.card:hover {
+.card-dashboard:hover {
     box-shadow: 5px 1px 20px 1px #ddd;
     transform: scale(0.96);
 }

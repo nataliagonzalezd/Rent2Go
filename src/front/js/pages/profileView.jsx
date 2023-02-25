@@ -11,24 +11,22 @@ const ProfileView = () => {
   }, []);
 
   return (
-    <div className="container-fluid row g-4 my-2 d-flex justify-content-center">
-      <div className="col-12">
-        {store.profile.map((cadaDato, index) => (
-          <MyProfile
-            key={index}
-            id={cadaDato.id}
-            name={cadaDato.name}
-            lastName={cadaDato.lastName}
-            email={cadaDato.email}
-            address={cadaDato.address}
-            phone={cadaDato.phone}
-            image={cadaDato.image}
-            role={cadaDato.role}
-            username={cadaDato.username}
-            costumer_id={cadaDato.costumer_id}
-          />
-        ))}
-      </div>
+    <div>
+      {store.profile.map((cadaDato, index) => (
+        <MyProfile
+          key={index}
+          id={cadaDato.id}
+          name={cadaDato.name}
+          lastName={cadaDato.lastName}
+          email={cadaDato.email}
+          address={cadaDato.address}
+          phone={cadaDato.phone}
+          image={cadaDato.image}
+          role={cadaDato.role}
+          username={cadaDato.username}
+          costumer_id={cadaDato.costumer_id}
+        />
+      ))}
     </div>
   );
 };

@@ -113,7 +113,7 @@ export const NewProduct = () => {
   return (
     <div className="page">
       <div className="container">
-        <div className="left">
+        <div className="left-new">
           <div className="product">Nuevo Producto</div>
           <div className="eula" onClick={help}>
             Ayuda

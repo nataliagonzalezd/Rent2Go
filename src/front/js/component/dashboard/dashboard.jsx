@@ -14,12 +14,6 @@ const Dashboard = function () {
           <div className="folders">Dashboard</div>
           <div className="folder-icons">
             <div className="icon1">
-              <img src="https://i.ibb.co/qdgf3TJ/envelope.png" />
-            </div>
-            <div className="icon-name1">Inbox</div>
-          </div>
-          <div className="folder-icons">
-            <div className="icon1">
               <i className="fa fa-duotone fa-folder-open"></i>
             </div>
             <div className="icon-name">Mis Rentas</div>
@@ -34,12 +28,6 @@ const Dashboard = function () {
             <div className="icon1">
               <i className="fa fa-solid fa-users"></i>
             </div>
-            <div className="icon-name">Clientes</div>
-          </div>
-          <div className="folder-icons">
-            <div className="icon1">
-              <i className="fa fa-solid fa-user"></i>
-            </div>
             <div className="icon-name">Mi Perfil</div>
           </div>
           <div className="folder-icons">
@@ -53,53 +41,25 @@ const Dashboard = function () {
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/women/65.jpg" />
             </div>
-            <div className="names">Don Allen</div>
+            <div className="names">Jair Torres</div>
           </div>
           <div className="folder-icons">
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/women/71.jpg" />
             </div>
-            <div className="names">Aaron Tim</div>
+            <div className="names">Valentina Pereyra</div>
           </div>
           <div className="folder-icons">
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/men/54.jpg" />
             </div>
-            <div className="names">Jack Joe</div>
+            <div className="names">Pablo Abreu</div>
           </div>
-          <div className="folders">Labels</div>
-          <div className="section1">
-            <button className="btn-dashboard buton1">
-              {" "}
-              Important
-              <span className="tag">
-                <img src="https://i.ibb.co/Zdx3jGx/tag.png" />
-              </span>
-            </button>
-
-            <button className="btn-dashboard buton2">
-              {" "}
-              New
-              <span className="tag">
-                <img src="https://i.ibb.co/N1SMfgQ/tag.png" />
-              </span>
-            </button>
-          </div>
-          <div className="section2">
-            <button className="btn-dashboard buton3">
-              {" "}
-              Old
-              <span className="tag">
-                <img src="https://i.ibb.co/C5q0MDM/tag.png" />
-              </span>
-            </button>
-            <button className="btn-dashboard buton4">
-              {" "}
-              Priority
-              <span className="tag">
-                <img src="https://i.ibb.co/DMmSZW0/tag.png" />
-              </span>
-            </button>
+          <div className="folder-icons">
+            <div className="avatar">
+              <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+            </div>
+            <div className="names">Natalia Gonzalez</div>
           </div>
         </div>
       </div>
