@@ -143,10 +143,13 @@ const MyProfile = function (props) {
                 <i className="fab fa-whatsapp-square"></i>
               </div>
             </div>
+            <button className="btn" onClick={handleUpdateProfile}>
+              Actualizar Perfil
+            </button>
           </div>
           <div className="profile-left">
             <div className="name_role">
-              <label htmlFor="InsertImage" className="mt-4">
+              <label htmlFor="InsertImage" className="mt-1">
                 Insertar Imagen de Perfil:
               </label>
               <div>
@@ -226,9 +229,6 @@ const MyProfile = function (props) {
             </div>
             <div className="data">
               <div className="data_item">
-                <div className="icon">
-                  <i className="fa fa-solid fa-phone"></i>
-                </div>
                 <label>Teléfono</label>
                 <input
                   type="number"
@@ -240,9 +240,7 @@ const MyProfile = function (props) {
                 />
               </div>
               <div className="data_item">
-                <div className="icon">
-                  <i className="fa fa-solid fa-user"></i>
-                </div>
+                <div className="icon"></div>
                 <label>Usuario</label>
                 <input
                   type="text"
@@ -254,7 +252,7 @@ const MyProfile = function (props) {
                 />
               </div>
               <button className="btn" onClick={handleUpdateProfile}>
-                Editar Perfil
+                Actualizar Perfil
               </button>
             </div>
           </div>

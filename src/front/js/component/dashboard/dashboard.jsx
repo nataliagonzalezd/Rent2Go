@@ -14,12 +14,6 @@ const Dashboard = function () {
           <div className="folders">Dashboard</div>
           <div className="folder-icons">
             <div className="icon1">
-              <img src="https://i.ibb.co/qdgf3TJ/envelope.png" />
-            </div>
-            <div className="icon-name1">Inbox</div>
-          </div>
-          <div className="folder-icons">
-            <div className="icon1">
               <i className="fa fa-duotone fa-folder-open"></i>
             </div>
             <div className="icon-name">Mis Rentas</div>
@@ -33,12 +27,6 @@ const Dashboard = function () {
           <div className="folder-icons">
             <div className="icon1">
               <i className="fa fa-solid fa-users"></i>
-            </div>
-            <div className="icon-name">Clientes</div>
-          </div>
-          <div className="folder-icons">
-            <div className="icon1">
-              <i className="fa fa-solid fa-user"></i>
             </div>
             <div className="icon-name">Mi Perfil</div>
           </div>
