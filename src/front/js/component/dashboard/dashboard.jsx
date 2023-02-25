@@ -53,53 +53,25 @@ const Dashboard = function () {
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/women/65.jpg" />
             </div>
-            <div className="names">Don Allen</div>
+            <div className="names">Jair Torres</div>
           </div>
           <div className="folder-icons">
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/women/71.jpg" />
             </div>
-            <div className="names">Aaron Tim</div>
+            <div className="names">Valentina Pereyra</div>
           </div>
           <div className="folder-icons">
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/men/54.jpg" />
             </div>
-            <div className="names">Jack Joe</div>
+            <div className="names">Pablo Abreu</div>
           </div>
-          <div className="folders">Labels</div>
-          <div className="section1">
-            <button className="btn-dashboard buton1">
-              {" "}
-              Important
-              <span className="tag">
-                <img src="https://i.ibb.co/Zdx3jGx/tag.png" />
-              </span>
-            </button>
-
-            <button className="btn-dashboard buton2">
-              {" "}
-              New
-              <span className="tag">
-                <img src="https://i.ibb.co/N1SMfgQ/tag.png" />
-              </span>
-            </button>
-          </div>
-          <div className="section2">
-            <button className="btn-dashboard buton3">
-              {" "}
-              Old
-              <span className="tag">
-                <img src="https://i.ibb.co/C5q0MDM/tag.png" />
-              </span>
-            </button>
-            <button className="btn-dashboard buton4">
-              {" "}
-              Priority
-              <span className="tag">
-                <img src="https://i.ibb.co/DMmSZW0/tag.png" />
-              </span>
-            </button>
+          <div className="folder-icons">
+            <div className="avatar">
+              <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+            </div>
+            <div className="names">Natalia Gonzalez</div>
           </div>
         </div>
       </div>
