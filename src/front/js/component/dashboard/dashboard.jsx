@@ -8,16 +8,17 @@ const Dashboard = function () {
       <div className="navigation">
         <div className="wrapper2">
           <div className="abilan"></div>
-          <a className="compose btn mt-1" href="/newProduct">
-            Añadir Producto
-            <span className="plus"></span>
-          </a>
           <div className="folders"></div>
+          <h5>Mi cuenta</h5>
           <div className="folder-icons">
             <div className="icon1">
-              <i className="fa fa-duotone fa-folder-open"></i>
+              <i className="fa fa-solid fa-upload"></i>
             </div>
-            <div className="icon-name">Mis Rentas</div>
+            <div>
+              <Link className="icon-name btn" to={"/newProduct"}>
+                Añadir Producto
+              </Link>
+            </div>
           </div>
           <div className="folder-icons">
             <div className="icon1">
@@ -41,13 +42,8 @@ const Dashboard = function () {
                 className="icon-name btn"
                 to={"/editprofile/" + localStorage.getItem("costumer_id")}
               >
-                Mi cuenta
+                Editar Perfil
               </Link>
-            </div>
-          </div>
-          <div className="folder-icons">
-            <div className="icon1">
-              <i className="fa fa-regular fa-cart-arrow-down"></i>
             </div>
           </div>
           <div className="folders">Clientes</div>

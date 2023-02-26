@@ -380,6 +380,15 @@ display: flex;
     padding: 20px 0px 5px 0px;
 }
 
+.delete-all {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.input-products {
+    width: 250px;
+}
+
 .card-dashboard {
     background-color: white;
     border-radius: 4px;
