@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import MyProfile from "../component/myprofile.jsx";
+import MyProfile from "../component/dashboard/myprofile.jsx";
 
 const ProfileView = () => {
   const { store, actions } = useContext(Context);

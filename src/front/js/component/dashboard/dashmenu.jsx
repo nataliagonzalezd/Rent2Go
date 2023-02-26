@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useContext, useState } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/dashboard.css";
-import MyCardsView from "../../pages/cardProduct.jsx";
+import MyCardsView from "../../pages/DashboardViews/cardProduct.jsx";
 import Dashboard from "./dashboard.jsx";
 
 const DashMenu = function () {

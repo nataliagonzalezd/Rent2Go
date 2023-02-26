@@ -308,7 +308,7 @@ const getState = ({
                             images: urls,
                             price: parseInt(price),
                             costumer_id: 1,
-                            category_id: 1,
+                            category_id: 2,
                         }),
                     })
                     .then((response) => response.json())

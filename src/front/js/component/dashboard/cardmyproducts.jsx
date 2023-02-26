@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext";
 import { Link } from "react-router-dom";
+import "../../../styles/dashboard.css";
 //create your first component
 const CardProduct = (props) => {
   const { store, actions } = useContext(Context);
@@ -10,7 +11,7 @@ const CardProduct = (props) => {
   }, []);
 
   return (
-    <div className="card">
+    <div className="card-dashboard">
       <div className="mails">
         <img src={props.image} />
         <div className="mail-names">{props.name}</div>
@@ -19,7 +20,6 @@ const CardProduct = (props) => {
       <div></div>
       <div className="bottom-info">
         <div className="check1">
-          <i className="fa fa-solid fa-pen"></i>
           <div>
             <button
               className="btn"
@@ -29,10 +29,10 @@ const CardProduct = (props) => {
             >
               <i className="fa fa-solid fa-trash"></i>
             </button>
-            <Link to={"/product/" + props.id} className="btn btn-dark me-5" />
-          </div>
-          <div className="star">
-            <i className="fa-solid fa-pen-to-square"></i>
+            <Link
+              to={"/product/" + props.id}
+              className="btn me-3 fa fa-solid fa-pen"
+            />
           </div>
         </div>
         <div className="date"></div>

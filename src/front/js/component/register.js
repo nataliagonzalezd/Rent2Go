@@ -118,7 +118,7 @@ export const Register = () => {
             {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}
-            <button className="btn" type="submit">
+            <button className="btn-register" type="submit">
               Crear Cuenta
             </button>
           </form>
@@ -135,14 +135,14 @@ export const Register = () => {
             <a href="#" className="link">
               Olvidaste tu contraseña?
             </a>
-            <button className="btn">Ingresar</button>
+            <button className="btn-register">Ingresar</button>
           </form>
         </div>
         <div className="container__overlay">
           <div className="overlay">
             <div className="overlay__panel overlay--left">
               <a
-                className="btn"
+                className="btn-register"
                 id="signIn"
                 onClick={handleSignInClick}
                 href="/login"
@@ -151,7 +151,11 @@ export const Register = () => {
               </a>
             </div>
             <div className="overlay__panel overlay--right">
-              <a className="btn" id="signUp" onClick={handleSignUpClick}>
+              <a
+                className="btn-register"
+                id="signUp"
+                onClick={handleSignUpClick}
+              >
                 Registro
               </a>
             </div>
