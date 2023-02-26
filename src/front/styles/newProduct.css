@@ -24,13 +24,13 @@
 } */
 
 .page {
-    background: #e2e2e5;
+    margin-top: -480px;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 40px);
+    height: 500px;
     position: absolute;
     place-content: center;
-    width: calc(100% - 40px);
+    margin-left: 320px;
 }
 
 @media (max-width: 767px) {
@@ -99,7 +99,7 @@
     color: #f1f1f2;
     position: relative;
     width: 50%;
-    height: 500px;
+    height: 460px;
     margin-top: 20px;
 }
 
@@ -135,6 +135,15 @@ label {
     font-size: 14px;
     height: 16px;
     margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.label-newproduct {
+    color: #c2c2c5;
+    display: block;
+    font-size: 14px;
+    height: 16px;
+    margin-top: 20px;
     margin-bottom: 5px;
 }
 
