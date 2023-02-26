@@ -23,7 +23,7 @@ export const Login = () => {
       icon: "success",
       title: "Hemos enviado un correo de recuperacion.",
       confirmButtonColor: "#2e2c3c",
-    }); 
+    });
   }
   const validate = (values) => {
     const errors = {};
@@ -41,8 +41,6 @@ export const Login = () => {
     ) {
       errors.email = "Por favor ingrese una direccion de correo valida";
     }
-
-
 
     return errors;
   };
@@ -82,7 +80,7 @@ export const Login = () => {
             />{" "}
             <input type="email" placeholder="Email" className="input" />
             <input type="password" placeholder="Contraseña" className="input" />
-            <button className="btn" type="submit">
+            <button className="btn-register" type="submit">
               Crear Cuenta
             </button>
           </form>
@@ -123,10 +121,10 @@ export const Login = () => {
             {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}
-            <a  className="link" onClick={recupContra}>
+            <a className="link" onClick={recupContra}>
               Olvidaste tu contraseña?
             </a>
-            <button className="btn" type="submit">
+            <button className="btn-register" type="submit">
               Ingresar
             </button>
           </form>
@@ -134,13 +132,17 @@ export const Login = () => {
         <div className="container__overlay">
           <div className="overlay">
             <div className="overlay__panel overlay--left">
-              <a className="btn" id="signIn" onClick={handleSignInClick}>
+              <a
+                className="btn-register"
+                id="signIn"
+                onClick={handleSignInClick}
+              >
                 Iniciar Sesion
               </a>
             </div>
             <div className="overlay__panel overlay--right">
               <a
-                className="btn"
+                className="btn-register"
                 id="signUp"
                 onClick={handleSignUpClick}
                 href="/register"

@@ -139,7 +139,9 @@ export const Navbar = () => {
                         to={
                           "/editprofile/" + localStorage.getItem("costumer_id")
                         }
-                      ></Link>
+                      >
+                        Mi cuenta
+                      </Link>
                     ) : null}
                   </li>
                   <li>
