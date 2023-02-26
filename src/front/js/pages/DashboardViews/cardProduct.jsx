@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
-import CardProduct from "../component/cardmyproducts.jsx";
+import { Context } from "../../store/appContext";
+import CardProduct from "../../component/dashboard/cardmyproducts.jsx";
 
 const MyCardsView = () => {
   const { store, actions } = useContext(Context);

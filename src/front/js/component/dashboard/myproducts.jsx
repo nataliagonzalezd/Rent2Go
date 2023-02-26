@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect, useContext, useState } from "react";
 import { Context } from "../../store/appContext";
 import "../../../styles/dashboard.css";
-import MyCardsView from "../../pages/cardProduct.jsx";
+import MyCardsView from "../../pages/DashboardViews/cardProduct.jsx";
 import { useParams } from "react-router-dom";
-import Dashboard from "./dashboard.jsx";
+import { Link } from "react-router-dom";
 
 const MyProducts = function () {
   const { store, actions } = useContext(Context);
@@ -27,8 +27,86 @@ const MyProducts = function () {
   return (
     <>
       <div className="dashboard">
-        <Dashboard />
-        <div className="right-side">
+        <div className="left">
+          <div className="navigation">
+            <div className="wrapper2-products">
+              <div className="abilan"></div>
+              <a className="compose btn mt-1" href="/newProduct">
+                Añadir Producto
+                <span className="plus"></span>
+              </a>
+              <div className="folders"></div>
+              <div className="folder-icons">
+                <div className="icon1">
+                  <i className="fa fa-duotone fa-folder-open"></i>
+                </div>
+                <div className="icon-name">Mis Rentas</div>
+              </div>
+              <div className="folder-icons">
+                <div className="icon1">
+                  <i className="fa fa-solid fa-box-open"></i>
+                </div>
+                <div>
+                  <Link
+                    className="icon-name btn"
+                    to={"/product/" + localStorage.getItem("costumer_id")}
+                  >
+                    Productos
+                  </Link>
+                </div>
+              </div>
+              <div className="folder-icons">
+                <div className="icon1">
+                  <i className="fa fa-solid fa-users"></i>
+                </div>
+                <div>
+                  <Link
+                    className="icon-name btn"
+                    to={"/editprofile/" + localStorage.getItem("costumer_id")}
+                  >
+                    Mi cuenta
+                  </Link>
+                </div>
+              </div>
+              <div className="folder-icons">
+                <div className="icon1">
+                  <i className="fa fa-regular fa-cart-arrow-down"></i>
+                </div>
+                <div>
+                  <Link className="icon-name btn" to={"/cart"}>
+                    Carrito
+                  </Link>
+                </div>
+              </div>
+              <div className="folders">Clientes</div>
+              <div className="folder-icons">
+                <div className="avatar">
+                  <img src="https://randomuser.me/api/portraits/women/65.jpg" />
+                </div>
+                <div className="names">Jair Torres</div>
+              </div>
+              <div className="folder-icons">
+                <div className="avatar">
+                  <img src="https://randomuser.me/api/portraits/women/71.jpg" />
+                </div>
+                <div className="names">Valentina Pereyra</div>
+              </div>
+              <div className="folder-icons">
+                <div className="avatar">
+                  <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+                </div>
+                <div className="names">Pablo Abreu</div>
+              </div>
+              <div className="folder-icons">
+                <div className="avatar">
+                  <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+                </div>
+                <div className="names">Natalia Gonzalez</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="right-side-products">
           <div className="right-header">
             <div className="top-bar">
               <div className="top-bar-justify">
@@ -38,9 +116,6 @@ const MyProducts = function () {
             <hr className="new-hr" />
             <div className="right-bottom">
               <div className="check">
-                <label className="checkbox">
-                  <input type="checkbox" />
-                </label>
                 <button
                   className="btn-dashboard"
                   type="button"

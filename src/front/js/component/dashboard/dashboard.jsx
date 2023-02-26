@@ -12,7 +12,7 @@ const Dashboard = function () {
             Añadir Producto
             <span className="plus"></span>
           </a>
-          <div className="folders">Dashboard</div>
+          <div className="folders"></div>
           <div className="folder-icons">
             <div className="icon1">
               <i className="fa fa-duotone fa-folder-open"></i>
@@ -48,11 +48,6 @@ const Dashboard = function () {
           <div className="folder-icons">
             <div className="icon1">
               <i className="fa fa-regular fa-cart-arrow-down"></i>
-            </div>
-            <div>
-              <Link className="icon-name btn" to={"/cart"}>
-                Carrito
-              </Link>
             </div>
           </div>
           <div className="folders">Clientes</div>
