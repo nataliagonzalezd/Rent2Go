@@ -16,7 +16,7 @@ import { Login } from "./component/login.js";
 import { Register } from "./component/register";
 import CatalogoVista from "./pages/catalogoVista";
 import MyRent from "./pages/myRent";
-import NewProduct from "./component/newProduct.jsx";
+import NewProduct from "./component/dashboard/newProduct.jsx";
 import MyProductsView from "./pages/DashboardViews/dashboardView.jsx";
 import MyDashMenuView from "./pages/DashboardViews/dashMenuView.jsx";
 import ProfileView from "./pages/profileView.jsx";

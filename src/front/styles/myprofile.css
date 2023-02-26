@@ -255,6 +255,15 @@
     cursor: pointer;
 }
 
+.file-input-newproduct {
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
 .file-input-label {
     display: inline-block;
     padding: 5px 12px 24px 10px;
