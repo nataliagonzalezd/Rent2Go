@@ -35,7 +35,7 @@ const ViewFavorites = () => {
                     actions.delAllFavorites(localStorage.getItem("costumer_id"))
                 }
             >
-                Eliminar todos
+                <i className="fa fa-solid fa-trash"></i> Eliminar todos
             </button>
         </div>
     );
