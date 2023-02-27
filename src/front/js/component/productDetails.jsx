@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import moment from 'moment';
 // import Moment from 'react-moment';
 import "react-datepicker/dist/react-datepicker.css";
+import "../../styles/productDetails.css";
 
 // const ProductDetails = function (props) {
 //   const { store, actions } = useContext(Context);
@@ -209,34 +210,34 @@ const ProductDetails = function (props) {
               className="img-fluid rounded-start"
               alt="..."
             /> */}
-            <div id="carouselExampleFade" class="carousel slide carousel-fade">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src={props.image} class="d-block w-100" alt="..." />
+            <div id="carouselExampleFade" className="carousel slide carousel-fade ">
+              <div className="carousel-inner d-flex justify-content-center d-flex align-items-center">
+                <div className="carousel-item active d-flex justify-content-center d-flex align-items-center">
+                  <img src={props.image} className="d-block w-100" alt="..." />
                 </div>
-                <div class="carousel-item">
-                  <img src={props.image2} class="d-block w-100" alt="..." />
+                <div className="carousel-item d-flex justify-content-center d-flex align-items-center">
+                  <img src={props.image2} className="d-block w-100" alt="..." />
                 </div>
-                <div class="carousel-item">
-                  <img src={props.image3} class="d-block w-100" alt="..." />
+                <div className="carousel-itemd-flex justify-content-center d-flex align-items-center">
+                  <img src={props.image3} className="d-block w-100" alt="..." />
                 </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>
-          {/* Form con detalles del producto */}
-          <div className="col-md-4 d-flex align-items-center">
-            <form className="card-body mx-3 border rounded">
+          {/* Form con detalles el producto */}
+          <div className="col-md-4 d-flex align-items-center mt-3">
+            <form className="card-body mx-3 bg-form">
               {/* Nombre y descripcion */}
               <div className="d-flex my-0">
-                <div className="w-100 text-start">
+                <div className="w-100 text-start fs-3">
                   <h2>{props.name}</h2>
                 </div>
                 <div className="p-2 flex-shrink-1">
@@ -260,7 +261,7 @@ const ProductDetails = function (props) {
               </div>
 
               {/* Calendario de google  */}
-              <div className="text-dark">
+              <div className="text-dark d-flex justify-content-start">
                 <div>
                   <DatePicker
                     selected={startDate}
@@ -288,26 +289,30 @@ const ProductDetails = function (props) {
 
               </div>
               {/* Seleccion de cantidad */}
-              <div className="row row-cols-lg-auto g-3 mb-2">
+              <div className="row row-cols-lg-auto g-3 mb-2 mt-2 fs-5">
                 {/* prueba */}
                 <div>
-                  <label htmlFor="numDias" className="text-dark">Número de días:</label>
-                  <input
-                    className="text-dark"
-                    id="numDias"
-                    type="number"
-                    value={numDiasValue}
-                    onChange={handleNumDiasChange}
-                    disabled
-                  />
+                  <div className="">
+                    <label htmlFor="numDias" className="text-dark fs-5">Número de días:</label>
+                    <span><input
+                      className="text-dark text-start fw-bold"
+                      id="numDias"
+                      type="number"
+                      value={numDiasValue}
+                      onChange={handleNumDiasChange}
+                      disabled
+                    />
+                    </span>
+                  </div>
 
 
-                  <p className="text-dark">Costo total: {costoTotal}</p>
+
+                  <p className="text-dark mt-2 fw-bold">Costo total: ${costoTotal}</p>
                 </div>
               </div>
               <div>
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-dashboard-detalles"
                   onClick={() => {
                     const funcion1 = actions.addCart(params.costumer_id, params.id, numDias);
                     const funcion2 = cartAdded();

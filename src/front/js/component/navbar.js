@@ -29,7 +29,7 @@ export const Navbar = () => {
   }
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary fixed-top"
+      className="navbar navbar-expand-lg bg-body-tertiary fixed-top fw-bold"
       id="navbar"
     >
       <div className="container-fluid">
@@ -44,7 +44,7 @@ export const Navbar = () => {
         >
           <i className="fa fa-solid fa-bars"></i>
         </button>
-        <a className="navbar-brand text-light fs-4" href="/">
+        <a className="navbar-brand text-light fs-3" href="/">
           {" "}
           <img
             src={Diseño}
@@ -61,7 +61,7 @@ export const Navbar = () => {
             <li className="nav-item">
               <div className="dropdown-center">
                 <a
-                  className="nav-link dropdown-toggle text-light"
+                  className="nav-link dropdown-toggle text-light fs-4"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -85,7 +85,7 @@ export const Navbar = () => {
                 </ul>
               </div>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link text-light" href="#">
                 OFERTAS
               </a>
@@ -94,16 +94,16 @@ export const Navbar = () => {
               <a className="nav-link text-light" href="/newProduct">
                 Subir un producto
               </a>
-            </li>
+            </li> */}
           </ul>
-          <form className="d-flex mx-5" role="search">
+          {/* <form className="d-flex mx-5" role="search">
             <input
               className="form-control me-2 rounded-pill"
               type="search"
               placeholder="Buscar productos.."
               aria-label="Search"
             />
-          </form>
+          </form> */}
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
               <div className="btn-group dropstart">
@@ -159,24 +159,30 @@ export const Navbar = () => {
               </div>
             </li>
 
-            <li className="nav-item d-flex justify-content-center ">
-              <a
-                className="nav-link active text-light"
-                aria-current="page"
-                href="/cart"
-              >
-                <i className="fa fa-solid fa-cart-plus"></i>
-              </a>
-              <span className="notification">{store.productsCart.length}</span>
+            <li className="nav-item">
+              <div className="d-flex flex-row">
+                <a
+                  className="nav-link active text-light"
+                  aria-current="page"
+                  href="/cart"
+                >
+                  <i className="fa fa-solid fa-cart-plus"></i>
+                </a>
+                <span className="notification">{store.productsCart.length}</span>
+              </div>
+
             </li>
 
-            <li className="nav-item d-flex justify-content-center">
-              <a className="nav-link active text-light" href="/viewfavorites">
-                <i className="fa fa-regular fa-heart"></i>
-              </a>
-              <span className="notification">
-                {store.productsFavorites.length}
-              </span>
+            <li className="nav-item">
+              <div className="d-flex flex-row">
+                <a className="nav-link active text-light" href="/viewfavorites">
+                  <i className="fa fa-regular fa-heart"></i>
+                </a>
+                <span className="notification">
+                  {store.productsFavorites.length}
+                </span>
+              </div>
+
             </li>
           </ul>
         </div>
