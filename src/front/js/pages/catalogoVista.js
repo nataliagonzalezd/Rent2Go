@@ -18,9 +18,7 @@ const CatalogoVista = () => {
   return (
     <div className="text-center bg-light bg-gradient">
       <Jumbotroncatalogo id={params.category_id} />
-      <div className="mx-5 mt-5">
-        <Filtroscatalogo />
-      </div>
+      <div className="mx-5 mt-5"></div>
       <br />
       <div className="">
         <div className="col-12  d-flex flex-wrap justify-content-center">
