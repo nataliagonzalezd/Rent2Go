@@ -1,110 +1,60 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { useParams, Navigate } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 
 const Cart = function (props) {
   const { store, actions } = useContext(Context);
   const params = useParams();
-  const days=props.quantity
-  const price=props.price
+  const days = props.quantity;
+  const price = props.price;
 
   return (
-    <>
-      <div>
-        <div className="card mb-3">
-          <div className="row g-0">
-            <div className="col-md-8">
-              <div className="card mb-3">
-                <div className="row g-0">
-                  <div className="col-md-2">
-                    <img
-                      src={props.image}
-                      className="img-fluid rounded-start ms-4"
-                      style={{
-                        width: 150,
-                        height: 230,
-                      }}
-                      alt="..."
-                    />
-                  </div>
-                  <div className="col-md-"> </div>
-                  <div className="col-md-4">
-                    <div className="card-body">
-                      <h5 className="card-title">
-                        <strong>{props.name} </strong>{" "}
-                      </h5>{" "}
-                      <p className="card-text">{props.description}</p>{" "}
-                      <p className="card-text">
-                        <small className="text-muted">
-                          {" "}
-                          Envío: 2 - 4 semanas{" "}
-                        </small>{" "}
-                      </p>{" "}
-                      <div className="ui-quantity-selector__container">
-                        <input
-                          type="submit"
-                          defaultValue="-"
-                          className="cu-button-reset ui-quantity-selector__button"
-                          style={{
-                            width: 30,
-                          }}
-                        />{" "}
-                        <input
-                          type="tel"
-                          defaultValue="1"
-                          className="u-button-reset ui-quantity-selector__input"
-                          style={{
-                            width: 30,
-                          }}
-                        />{" "}
-                        <input
-                          type="submit"
-                          defaultValue="+"
-                          className="cu-button-reset ui-quantity-selector__button"
-                          style={{
-                            width: 30,
-                          }}
-                        />{" "}
-                      </div>{" "}
-                    </div>{" "}
-                  </div>
-                  <div className="col-md-3"> </div>
-                  <div className="col-md-2">
-                    <div className="d-flex align-items-end flex-column">
-                      <div className="p-2">
-                        {" "}
-                        <button
-                          className="btn"
-                          type="button"
-                          id="enviar"
-                          onClick={() =>
-                            actions.delCart(props.costumer_id, props.id)
-                          }
-                        >
-                          <i className="fa fa-solid fa-trash"></i> Eliminar
-                        </button>
-                      </div>
-                      <div className="mt-auto p-2"> {days} </div>{" "}
-                      <div className="mt-auto p-2"> {price}  </div>{" "}
-
-                    </div>
-                  </div>{" "}
-                </div>{" "}
-              </div>{" "}
-            </div>
+    <div className="card mb-4" style={{ backgroundColor: "#daf0f4" }}>
+      <div className="row g-0">
+        <div className="col-md-6 image-container-especial">
+          <img
+            src={props.image}
+            className="img-fluid rounded-start"
+            alt={props.name}
+          />
+        </div>
+        <div className="col-md-6">
+        <div className="d-flex align-items-end justify-content-between p-3">
             <div>
-              <div className="col-md-6">
-                <div className="card-body">
-                  <h4 className="card-title">$ {days*price}</h4>
-                </div>
-              </div>
+              <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+                <strong>Producto:</strong> {props.name}
+              </p>
+              <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+                <strong>description:</strong> {props.description}
+              </p>
             </div>
+            </div>
+
+          <div className="d-flex align-items-end justify-content-between p-3">
+            <div>
+              <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+                <strong>Cantidad:</strong> {days}
+              </p>
+              <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+                <strong>Precio por día:</strong> ${price}
+              </p>
+              <h5 style={{ fontSize: "24px", marginBottom: "0px", color: "#07859c" }}>
+                <strong>Total:</strong> ${days * price}
+              </h5>
+            </div>
+            <button
+              className="btn btn-outline-danger align-self-start"
+              type="button"
+              onClick={() => actions.delCart(props.costumer_id, props.id)}
+              style={{ backgroundColor: "#3cb4c4", borderColor: "#3cb4c4" }}
+            >
+              <i className="fas fa-trash"></i> Eliminar
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
