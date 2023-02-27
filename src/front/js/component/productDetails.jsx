@@ -177,34 +177,9 @@ const ProductDetails = function (props) {
   return (
     <>
       {/* Detalles del producto */}
-      <div className="card mx-1 my-5">
-        <div className="row g-0 mb-3">
-          {/* <div className="col-md-2 d-flex justify-content-center d-flex align-items-center">
-            <div className="card d-flex align-items-center mx-3 border border-0">
-              <img
-                src={props.image}
-                className="card-img my-2 img-thumbnail"
-                alt="..."
-              />
-              <img
-                src={props.image2}
-                className="card-img mb-2 img-thumbnail"
-                alt="..."
-              />
-              <img
-                src={props.image3}
-                className="card-img mb-2 img-thumbnail"
-                alt="..."
-              />
-              <img
-                src={props.image4}
-                className="card-img mb-2 img-thumbnail"
-                alt="..."
-              />
-            </div>
-          </div> */}
-          {/* Imagen grande del producto */}
-          <div className="col-md-8 my-4">
+<div className="card mx-1 my-5 bg-form">
+  <div className="row g-0 mb-3">
+  <div className="col-md-8 my-4">
             {/* <img
               src={props.image}
               className="img-fluid rounded-start"
@@ -233,8 +208,8 @@ const ProductDetails = function (props) {
             </div>
           </div>
           {/* Form con detalles el producto */}
-          <div className="col-md-4 d-flex align-items-center mt-3">
-            <form className="card-body mx-3 bg-form">
+          <div className="col-md-4 d-flex align-items-center mt-3 my-3">
+            <form className="card-body mx-3 ">
               {/* Nombre y descripcion */}
               <div className="d-flex my-0">
                 <div className="w-100 text-start fs-3">
