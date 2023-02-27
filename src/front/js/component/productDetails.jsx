@@ -5,96 +5,9 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
-import moment from 'moment';
-// import Moment from 'react-moment';
+import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/productDetails.css";
-
-// const ProductDetails = function (props) {
-//   const { store, actions } = useContext(Context);
-
-//   const params = useParams();
-
-//   // const para el calendario
-//   const [startDate, setStartDate] = useState(null);
-//   const [endDate, setEndDate] = useState(null);
-
-//   // const [startStore, setStartStore] = useState(null);
-//   // const [endStore, setEndStore] = useState(null);
-
-//   const [numDias, setNumDias] = useState(null); //(seteo el numero de dias)
-//   const numDiasValue = numDias !== null ? numDias : '';
-
-//   const start = new Date(startDate);
-//   const end = new Date(endDate);
-
-//   // setStartStore(start)
-//   // setEndStore(end)
-
-//   const oneDay = 24 * 60 * 60 * 1000;
-//   const days = Math.round(Math.abs((end - start) / oneDay));
-//   const precioProducto = props.price;
-//   const costoTotal = numDias * precioProducto;
-
-//   const handleDateChange = (date) => {
-//     if (!startDate || (startDate && endDate)) {
-//       setStartDate(date);
-//       setEndDate(null);
-//     } else if (startDate && !endDate) {
-//       if (date >= startDate) {
-//         setEndDate(date);
-//       } else {
-//         setEndDate(startDate);
-//         setStartDate(date);
-//       }
-//     }
-//     // Guardar fechas en localStorage
-//     localStorage.setItem('startDate', startDate);
-//     localStorage.setItem('endDate', endDate);
-//   };
-//   // Este useEffect no anda <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-// useEffect(() => {
-//   const storedStartDate = localStorage.getItem('startDate');
-//   const storedEndDate = localStorage.getItem('endDate');
-
-//   if (storedStartDate && moment(storedStartDate).isValid()) {
-//     setStartDate(new Date(storedStartDate));
-//   }
-//   if (storedEndDate && moment(storedEndDate).isValid()) {
-//     setEndDate(new Date(storedEndDate));
-//   }
-// }, []);
-
-//   // useEffect para el calendario
-//   useEffect(() => {
-//     setNumDias(days);
-//     console.log(days);
-//   }, [days]);
-
-//   // Funcion para actualizar el estado de los dias
-//   function handleNumDiasChange(event) {
-//     setNumDias(event.target.value); // Actualizamos el estado de numDias
-//   }
-//       // useEffect para el calendario y flux
-//       useEffect(() => {
-//         actions.costoTotalFlux(costoTotal)
-//      console.log(store.costoTotalStore)
-//       }, [costoTotal]);
-//   // fin calendario --------------- 
-
-//   useEffect(() => {
-//     console.log(params.costumer_id, params.id);
-//     console.log(store.cart);
-//     // actions.addCart(params.costumer_id, params.id);
-//   }, []);
-
-//   function cartAdded() {
-//     Swal.fire({
-//       icon: "success",
-//       title: "Añadido al carrito ",
-//       confirmButtonColor: "#2e2c3c",
-//     });
-//   }
 
 const ProductDetails = function (props) {
   const { store, actions } = useContext(Context);
@@ -106,11 +19,11 @@ const ProductDetails = function (props) {
   const [endDate, setEndDate] = useState(null);
 
   const [numDias, setNumDias] = useState(null); //(seteo el numero de dias)
-  const numDiasValue = numDias !== null ? numDias : '';
+  const numDiasValue = numDias !== null ? numDias : "";
 
   useEffect(() => {
-    const storedStartDate = localStorage.getItem('startDate');
-    const storedEndDate = localStorage.getItem('endDate');
+    const storedStartDate = localStorage.getItem("startDate");
+    const storedEndDate = localStorage.getItem("endDate");
 
     if (storedStartDate && moment(storedStartDate).isValid()) {
       setStartDate(moment(storedStartDate)._d);
@@ -144,13 +57,13 @@ const ProductDetails = function (props) {
       }
     }
     // Guardar fechas en localStorage
-    localStorage.setItem('startDate', date);
-    localStorage.setItem('endDate', endDate);
+    localStorage.setItem("startDate", date);
+    localStorage.setItem("endDate", endDate);
   };
 
   // useEffect para el calculo del costo total
   useEffect(() => {
-    actions.costoTotalFlux(costoTotal)
+    actions.costoTotalFlux(costoTotal);
   }, [costoTotal]);
 
   // Funcion para actualizar el estado de los dias
@@ -158,7 +71,7 @@ const ProductDetails = function (props) {
     setNumDias(event.target.value); // Actualizamos el estado de numDias
   }
 
-  // fin calendario --------------- 
+  // fin calendario ---------------
 
   useEffect(() => {
     console.log(params.costumer_id, params.id);
@@ -177,32 +90,77 @@ const ProductDetails = function (props) {
   return (
     <>
       {/* Detalles del producto */}
-<div className="card mx-1 my-5 bg-form">
-  <div className="row g-0 mb-3">
-  <div className="col-md-8 my-4">
-            {/* <img
-              src={props.image}
-              className="img-fluid rounded-start"
-              alt="..."
-            /> */}
-            <div id="carouselExampleFade" className="carousel slide carousel-fade ">
-              <div className="carousel-inner d-flex justify-content-center d-flex align-items-center">
-                <div className="carousel-item active d-flex justify-content-center d-flex align-items-center">
-                  <img src={props.image} className="d-block w-100" alt="..." />
+      <div className="card mx-1 my-5 bg-form">
+        <div className="row g-0 mb-3">
+          <div className="col-md-8 my-4">
+            <div id="carouselExampleIndicators" className="carousel slide">
+              <div className="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="0"
+                  className="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+              </div>
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <img
+                    src={props.image}
+                    className="d-block  img-detail"
+                    alt="..."
+                  />
                 </div>
-                <div className="carousel-item d-flex justify-content-center d-flex align-items-center">
-                  <img src={props.image2} className="d-block w-100" alt="..." />
+                <div className="carousel-item">
+                  <img
+                    src={props.image2}
+                    className="d-block  img-detail"
+                    alt="..."
+                  />
                 </div>
-                <div className="carousel-itemd-flex justify-content-center d-flex align-items-center">
-                  <img src={props.image3} className="d-block w-100" alt="..." />
+                <div className="carousel-item">
+                  <img
+                    src={props.image3}
+                    className="d-block img-detail"
+                    alt="..."
+                  />
                 </div>
               </div>
-              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <button
+                className="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev"
+              >
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
                 <span className="visually-hidden">Previous</span>
               </button>
-              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <button
+                className="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next"
+              >
+                <span
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
                 <span className="visually-hidden">Next</span>
               </button>
             </div>
@@ -261,35 +219,41 @@ const ProductDetails = function (props) {
                     className="text-dark"
                   />
                 </div>
-
               </div>
               {/* Seleccion de cantidad */}
               <div className="row row-cols-lg-auto g-3 mb-2 mt-2 fs-5">
                 {/* prueba */}
                 <div>
                   <div className="">
-                    <label htmlFor="numDias" className="text-dark fs-5">Número de días:</label>
-                    <span><input
-                      className="text-dark text-start fw-bold"
-                      id="numDias"
-                      type="number"
-                      value={numDiasValue}
-                      onChange={handleNumDiasChange}
-                      disabled
-                    />
+                    <label htmlFor="numDias" className="text-dark fs-5">
+                      Número de días:
+                    </label>
+                    <span>
+                      <input
+                        className="text-dark text-start fw-bold"
+                        id="numDias"
+                        type="number"
+                        value={numDiasValue}
+                        onChange={handleNumDiasChange}
+                        disabled
+                      />
                     </span>
                   </div>
 
-
-
-                  <p className="text-dark mt-2 fw-bold">Costo total: ${costoTotal}</p>
+                  <p className="text-dark mt-2 fw-bold">
+                    Costo total: ${costoTotal}
+                  </p>
                 </div>
               </div>
               <div>
                 <button
                   className="btn btn-dashboard-detalles"
                   onClick={() => {
-                    const funcion1 = actions.addCart(params.costumer_id, params.id, numDias);
+                    const funcion1 = actions.addCart(
+                      params.costumer_id,
+                      params.id,
+                      numDias
+                    );
                     const funcion2 = cartAdded();
                     funcion1();
                     funcion2();
@@ -326,9 +290,6 @@ const ProductDetails = function (props) {
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
     </>
