@@ -5,6 +5,10 @@ import "../../../styles/dashboard.css";
 import MyCardsView from "../../pages/DashboardViews/cardProduct.jsx";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import valentinapereyra from "../../../img/valentinapereyra.jpg";
+import pabloabreu from "../../../img/pabloabreu.jpg";
+import nataliagonzalez from "../../../img/nataliagonzalez.jpeg";
+import jairtorres from "../../../img/jairtorres.png";
 
 const MyProducts = function () {
   const { store, actions } = useContext(Context);
@@ -72,27 +76,27 @@ const MyProducts = function () {
               <div className="folders">Clientes</div>
               <div className="folder-icons">
                 <div className="avatar">
-                  <img src="https://randomuser.me/api/portraits/women/65.jpg" />
+                  <img src={jairtorres} />
                 </div>
                 <div className="names">Jair Torres</div>
               </div>
               <div className="folder-icons">
                 <div className="avatar">
-                  <img src="https://randomuser.me/api/portraits/women/71.jpg" />
+                  <img src={valentinapereyra} />
                 </div>
                 <div className="names">Valentina Pereyra</div>
               </div>
               <div className="folder-icons">
                 <div className="avatar">
-                  <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+                  <img src={pabloabreu} />
                 </div>
                 <div className="names">Pablo Abreu</div>
               </div>
               <div className="folder-icons">
                 <div className="avatar">
-                  <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+                  <img src={nataliagonzalez} />
                 </div>
-                <div className="names">Natalia Gonzalez</div>
+                <div className="names">Natalia González</div>
               </div>
             </div>
           </div>
@@ -180,10 +184,10 @@ const MyProducts = function () {
               </form>
               <div className="son-images">
                 <div className="inside-img">
-                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" />
-                  <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" />
-                  <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" />
-                  <img src="https://images.unsplash.com/photo-1450609283058-0ec52fa7eac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" />
+                  <img src={valentinapereyra} />
+                  <img src={pabloabreu} />
+                  <img src={nataliagonzalez} />
+                  <img src={jairtorres} />
                 </div>
                 <button className="son-buton"> 3+</button>
               </div>

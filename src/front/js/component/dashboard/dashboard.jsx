@@ -1,6 +1,10 @@
 import React from "react";
 import "../../../styles/dashboard.css";
 import { Link } from "react-router-dom";
+import valentinapereyra from "../../../img/valentinapereyra.jpg";
+import pabloabreu from "../../../img/pabloabreu.jpg";
+import nataliagonzalez from "../../../img/nataliagonzalez.jpeg";
+import jairtorres from "../../../img/jairtorres.png";
 
 const Dashboard = function () {
   return (
@@ -49,27 +53,27 @@ const Dashboard = function () {
           <div className="folders">Clientes</div>
           <div className="folder-icons">
             <div className="avatar">
-              <img src="https://randomuser.me/api/portraits/women/65.jpg" />
+              <img src={jairtorres} />
             </div>
             <div className="names">Jair Torres</div>
           </div>
           <div className="folder-icons">
             <div className="avatar">
-              <img src="https://randomuser.me/api/portraits/women/71.jpg" />
+              <img src={valentinapereyra} />
             </div>
             <div className="names">Valentina Pereyra</div>
           </div>
           <div className="folder-icons">
             <div className="avatar">
-              <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+              <img src={pabloabreu} />
             </div>
             <div className="names">Pablo Abreu</div>
           </div>
           <div className="folder-icons">
             <div className="avatar">
-              <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+              <img src={nataliagonzalez} />
             </div>
-            <div className="names">Natalia Gonzalez</div>
+            <div className="names">Natalia González</div>
           </div>
         </div>
       </div>
