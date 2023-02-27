@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import Diseño from "../../img/Diseño.png";
 import { useParams } from "react-router-dom";
+import "../../styles/cardscatalogo.css";
 
 const Jumbotroncatalogo = function (props) {
   const { store, actions } = useContext(Context);
@@ -19,7 +20,7 @@ const Jumbotroncatalogo = function (props) {
   console.log(store.category[props.id - 1]);
   return (
     <>
-      <div className="card text-bg-dark d-flex">
+      <div className="card text-bg-dark d-flex border border-dark">
         <a href={`/category/${props.id}/`}>
           <img
             src={store?.category[props.id - 1]?.image}
@@ -28,7 +29,7 @@ const Jumbotroncatalogo = function (props) {
           />
         </a>
         <div className="card-img-overlay flex-column d-flex align-items-start">
-          <a className="card-text btn text-white" href="/">
+          <a className="card-text btn text-white" href="/" id="bottondetalless">
             ←Pantalla de Inicio{" "}
           </a>
           <h1 className="card-title text-white">

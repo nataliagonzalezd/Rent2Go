@@ -21,8 +21,9 @@ const CatalogoVista = () => {
       <div className="mx-5 mt-5">
         <Filtroscatalogo />
       </div>
-      <div className="container-fluid row g-4 my-2 d-flex justify-content-center">
-        <div className="col-12">
+      <br />
+      <div className="">
+        <div className="col-12  d-flex flex-wrap justify-content-center">
           {store.categoryproducts.map((cadaProducto, index) => (
             <Cardscatalogo
               key={index}

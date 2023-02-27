@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import "../../styles/cardscatalogo.css";
 
 const Cardscatalogo = function (props) {
   const { store, actions } = useContext(Context);
@@ -12,24 +13,28 @@ const Cardscatalogo = function (props) {
 
   return (
     <>
-      <div className="row row-cols-md-5 grid gap-3 p-2 d-flex justify-content-center">
-        <div className="card d-flex">
+      <div className="row-cols-md-12 grid gap-3 p-2 d-flex justify-content-center">
+        <div className="card d-flex border border-primary">
           <img
             src={props.image}
             width="500"
-            height="250"
-            className="card-img-top"
+            height="200"
+            className="card-img-top border-bottom border-primary"
             alt="..."
+            id="imagencardcatalogo"
           />
           <div className="card-body">
             <h5 className="card-title d-flex">{props.name}</h5>
             <p className="card-text d-flex">{props.description}</p>
-            <h6 className="card-text d-flex"> $ {props.price}</h6>
+            <br />
+            <h5 className="card-text d-flex"> $ {props.price}</h5>
+            <br />
             <Link
               to={
                 "/costumer/" + props.costumer_id + "/product/detail/" + props.id
               }
               className="btn btn-dark me-5"
+              id="bottondetalles"
             >
               Detalles
             </Link>
@@ -64,3 +69,4 @@ const Cardscatalogo = function (props) {
 };
 
 export default Cardscatalogo;
+
